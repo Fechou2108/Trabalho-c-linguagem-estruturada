@@ -1,0 +1,42 @@
+Com certeza! Vamos avaliar cada uma das expressões:
+
+---
+
+## Avaliação de Expressões
+
+Aqui está a avaliação de cada expressão como VERDADEIRO ou FALSO:
+
+**a) $6 <= 7$**
+* **VERDADEIRO**
+    * (6 é menor ou igual a 7)
+
+**b) $(64)^{(1/2)} > (5)*2$**
+* Primeiro, vamos resolver os dois lados da desigualdade:
+    * $(64)^{(1/2)}$ é a raiz quadrada de 64, que é 8.
+    * $(5)*2$ é 10.
+* Então a expressão se torna $8 > 10$.
+* **FALSO**
+    * (8 não é maior que 10)
+
+**c) 'Pseudocódigo' < 'PSEUDOCÓDIGO'**
+* Na comparação de strings em muitos sistemas (especialmente aqueles que seguem a ordem ASCII ou Unicode padrão), letras minúsculas têm um valor maior do que as letras maiúsculas correspondentes.
+* **FALSO**
+    * ('Pseudocódigo' não é "menor" que 'PSEUDOCÓDIGO' no sentido de ordenação alfabética comum que diferencia maiúsculas/minúsculas; na verdade, é o oposto em muitas implementações.)
+
+**d) 'Pseudocódigo' > 'turbo'**
+* Comparando as strings letra por letra, seguindo a ordem alfabética e considerando a diferença entre maiúsculas e minúsculas como na questão anterior:
+    * 'P' (de 'Pseudocódigo') é uma letra maiúscula.
+    * 't' (de 'turbo') é uma letra minúscula.
+    * Em sistemas que diferenciam maiúsculas/minúsculas (como a maioria das linguagens de programação), letras maiúsculas vêm antes das minúsculas. Portanto, 'P' é "menor" que 't'.
+* **FALSO**
+    * ('Pseudocódigo' não é "maior" que 'turbo'; na verdade, é o oposto.)
+
+**e) $3 + 5 <= 2 * 4$**
+* Primeiro, vamos resolver os dois lados da desigualdade:
+    * $3 + 5$ é 8.
+    * $2 * 4$ é 8.
+* Então a expressão se torna $8 <= 8$.
+* **VERDADEIRO**
+    * (8 é menor ou igual a 8)
+
+---
