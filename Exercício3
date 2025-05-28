@@ -1,0 +1,29 @@
+---
+## Resultados das Operações
+
+Vamos analisar o resultado de cada linha de código, considerando que "Escreva" geralmente imprime o valor da expressão entre parênteses:
+
+**a) Escreva ('mario' = 'maria');**
+* **Resultado:** `FALSO`
+    * A comparação de strings verifica se as duas strings são exatamente iguais. "mario" e "maria" são diferentes.
+
+**b) Escreva (2 + 4 = 6);**
+* **Resultado:** `VERDADEIRO`
+    * A expressão `2 + 4` resulta em `6`. A comparação `6 = 6` é verdadeira.
+
+**c) Escreva (10 - 4 > 7);**
+* **Resultado:** `FALSO`
+    * A expressão `10 - 4` resulta em `6`. A comparação `6 > 7` é falsa.
+
+**d) Escreva ((2*3) > (3*2));**
+* **Resultado:** `FALSO`
+    * A expressão `2*3` resulta em `6`.
+    * A expressão `3*2` resulta em `6`.
+    * A comparação `6 > 6` é falsa (6 não é estritamente maior que 6).
+
+**e) Escreva (não('a' < 'b'));**
+* **Resultado:** `FALSO`
+    * Primeiro, avaliamos a comparação `'a' < 'b'`. Em sistemas que seguem a ordem alfabética (como a maioria), 'a' é menor que 'b'. Então, `'a' < 'b'` é `VERDADEIRO`.
+    * Em seguida, aplicamos o operador `não` (NOT) a `VERDADEIRO`. `não(VERDADEIRO)` resulta em `FALSO`.
+
+---
