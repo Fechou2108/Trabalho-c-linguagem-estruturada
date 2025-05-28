@@ -1,0 +1,50 @@
+Certo! Abaixo está o algoritmo para calcular a área de uma circunferência em **pseudocódigo**, seguindo suas instruções:
+
+---
+
+```pseudocode
+ALGORITMO CalcularAreaCircunferencia
+
+VAR
+    RAIO : real
+    AREA : real
+    PI   : constante real = 3.14159
+
+INICIO
+    // 1. Solicita ao usuário o valor do raio
+    ESCREVA "Por favor, digite o valor do raio da circunferência:"
+    LEIA RAIO
+
+    // 2. Calcula a área usando a fórmula: AREA = PI * RAIO^2
+    //    Em pseudocódigo, RAIO^2 pode ser representado como RAIO * RAIO
+    AREA = PI * (RAIO * RAIO)
+
+    // 3. Exibe o resultado calculado
+    ESCREVA "A área da circunferência com raio ", RAIO, " é: ", AREA
+
+FIM
+```
+
+---
+
+### Como funciona este algoritmo:
+
+1.  **Declaração de Variáveis:**
+    * **RAIO**: Uma variável do tipo `real` para armazenar o valor que você digitar.
+    * **AREA**: Uma variável também do tipo `real` para guardar o resultado do cálculo.
+    * **PI**: Uma `constante` do tipo `real` com o valor `3.14159`. Usar uma constante garante que esse valor não mude durante a execução do algoritmo.
+
+2.  **Entrada de Dados:**
+    * O algoritmo primeiro pede para você **digitar o valor do raio** da circunferência.
+    * Em seguida, ele **lê** o que você digitou e guarda na variável `RAIO`.
+
+3.  **Cálculo da Área:**
+    * A linha `AREA = PI * (RAIO * RAIO)` é onde a mágica acontece!
+    * `RAIO * RAIO` calcula o quadrado do raio (`RAIO^2`).
+    * O resultado disso é então multiplicado pela constante `PI`.
+    * O valor final é armazenado na variável `AREA`.
+
+4.  **Saída de Dados:**
+    * Por fim, o algoritmo **mostra uma mensagem** com o raio que você informou e a área calculada.
+
+Este pseudocódigo é direto e fácil de entender, perfeito para representar a lógica de cálculo da área da circunferência.
