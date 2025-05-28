@@ -1,0 +1,74 @@
+---
+## Algoritmo para Inverter um Número de Três Algarismos
+
+Vamos criar um algoritmo para pegar um número de três algarismos (CDU) e gerar um novo número com esses algarismos em ordem inversa (UDC).
+
+```pseudocode
+ALGORITMO InverterNumeroTresAlgarismos
+
+VAR
+    N : inteiro // O número original (CDU)
+    C : inteiro // Algarismo das centenas
+    D : inteiro // Algarismo das dezenas
+    U : inteiro // Algarismo das unidades
+    M : inteiro // O número invertido (UDC)
+
+INICIO
+    // 1. Solicitar ao usuário o número de três algarismos
+    ESCREVA "Digite um número de três algarismos (ex: 123):"
+    LEIA N
+
+    // 2. Extrair os algarismos C, D e U de N
+    // Exemplo para N = 123:
+    // C = 123 DIV 100 = 1
+    // D = (123 MOD 100) DIV 10 = 23 DIV 10 = 2
+    // U = 123 MOD 10 = 3
+
+    C = N DIV 100         // Obtém o algarismo das centenas
+    D = (N MOD 100) DIV 10 // Obtém o algarismo das dezenas
+    U = N MOD 10          // Obtém o algarismo das unidades
+
+    // 3. Construir o número M com os algarismos em ordem inversa (UDC)
+    // Exemplo para U=3, D=2, C=1:
+    // M = (3 * 100) + (2 * 10) + 1 = 300 + 20 + 1 = 321
+
+    M = (U * 100) + (D * 10) + C
+
+    // 4. Apresentar o número original e o número invertido
+    ESCREVA "O número original é: ", N
+    ESCREVA "O número com algarismos invertidos é: ", M
+
+FIM
+```
+
+---
+
+### Entendendo o Algoritmo
+
+1.  **Variáveis**:
+    * **N**: Armazena o **número original** de três algarismos que o usuário digitar (por exemplo, `123`).
+    * **C, D, U**: Variáveis auxiliares para guardar cada **algarismo individual**: `C` para centenas, `D` para dezenas e `U` para unidades.
+    * **M**: Armazena o **novo número** com os algarismos invertidos (por exemplo, `321`).
+    Todas as variáveis são do tipo `inteiro`, pois estamos lidando com números inteiros e seus algarismos.
+
+2.  **Entrada de Dados**:
+    * Primeiro, pedimos ao usuário para **digitar um número de três algarismos**.
+    * Em seguida, **lemos** o número digitado e o guardamos na variável `N`.
+
+3.  **Extração dos Algarismos**:
+    * Essa é a parte crucial. Para separar os algarismos de `N`, usamos as operações de **divisão inteira (`DIV`)** e **módulo (`MOD`)**:
+        * Para obter `C` (centenas): `N DIV 100` divide `N` por 100 e pega a parte inteira (ex: `123 DIV 100` é `1`).
+        * Para obter `D` (dezenas): `(N MOD 100)` pega o resto da divisão de `N` por 100 (ex: `123 MOD 100` é `23`). Depois, `23 DIV 10` nos dá `2`.
+        * Para obter `U` (unidades): `N MOD 10` pega o resto da divisão de `N` por 10 (ex: `123 MOD 10` é `3`).
+
+4.  **Construção do Número Invertido (`M`)**:
+    * Uma vez que temos os algarismos `U`, `D` e `C` separados, os "montamos" na ordem inversa:
+        * Multiplicamos `U` por `100` (para que ele ocupe a casa das centenas no novo número).
+        * Multiplicamos `D` por `10` (para que ele ocupe a casa das dezenas).
+        * Somamos `C` (que ocupará a casa das unidades).
+    * O resultado dessa soma é o número invertido, armazenado em `M`.
+
+5.  **Saída de Dados**:
+    * Por fim, o algoritmo **exibe** tanto o número original (`N`) quanto o número invertido (`M`).
+
+Este algoritmo é uma solução eficiente e clara para inverter um número de três algarismos!
