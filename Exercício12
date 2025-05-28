@@ -1,0 +1,61 @@
+---
+## Algoritmo para Decodificar Código de Matrícula
+
+Vamos criar um algoritmo para ler um código de matrícula no formato AASDDD e extrair o ano e o semestre em que o aluno foi matriculado.
+
+```pseudocode
+ALGORITMO DecodificarMatricula
+
+VAR
+    codigoMatricula : inteiro
+    anoMatricula    : inteiro
+    semestreMatricula : inteiro
+
+INICIO
+    // 1. Solicita ao usuário o código de matrícula
+    ESCREVA "Digite o código de matrícula do aluno (formato AASDDD, ex: 2310045):"
+    LEIA codigoMatricula
+
+    // 2. Extrai os dois primeiros algarismos (AA - ano da matrícula)
+    // Ex: para 2310045, (2310045 DIV 100000) = 23
+    anoMatricula = codigoMatricula DIV 100000
+
+    // 3. Extrai o terceiro algarismo (S - semestre da matrícula)
+    // Ex: para 2310045, (2310045 MOD 100000) = 10045. Depois, (10045 DIV 10000) = 1
+    semestreMatricula = (codigoMatricula MOD 100000) DIV 10000
+
+    // 4. Apresenta o ano e o semestre da matrícula
+    ESCREVA "----------------------------------------"
+    ESCREVA "O aluno foi matriculado no ano: 20", anoMatricula // Assume século 21
+    ESCREVA "O aluno foi matriculado no semestre: ", semestreMatricula
+    ESCREVA "----------------------------------------"
+
+FIM
+```
+
+---
+
+### Como este algoritmo funciona:
+
+1.  **Variáveis (`VAR`)**:
+    * **`codigoMatricula`**: Uma variável do tipo `inteiro` para armazenar o código completo que o usuário digitar.
+    * **`anoMatricula`**: Uma variável do tipo `inteiro` para armazenar os dois últimos algarismos do ano.
+    * **`semestreMatricula`**: Uma variável do tipo `inteiro` para armazenar o dígito que indica o semestre (1 ou 2).
+
+2.  **Entrada de Dados**:
+    * O algoritmo pede ao usuário para digitar o **código de matrícula** no formato especificado (AASDDD, como `2310045` para o ano 2023, 1º semestre, ordem 45).
+    * Ele então **lê** o número digitado e o guarda na variável `codigoMatricula`.
+
+3.  **Extração do Ano (`anoMatricula`)**:
+    * Para obter os dois primeiros algarismos (AA), usamos a operação de **divisão inteira (`DIV`)** por `100000`.
+        * Por exemplo, se `codigoMatricula` for `2310045`: `2310045 DIV 100000` resulta em `23`. Este `23` representa o ano 2023.
+
+4.  **Extração do Semestre (`semestreMatricula`)**:
+    * Para obter o terceiro algarismo (S), precisamos primeiro remover os dois primeiros dígitos do ano e depois isolar o dígito do semestre.
+        * `codigoMatricula MOD 100000`: Pega o resto da divisão por 100000, o que efetivamente "remove" os algarismos do ano. Por exemplo, `2310045 MOD 100000` resulta em `10045`.
+        * `(resultado anterior) DIV 10000`: Agora, dividimos esse novo número por 10000 e pegamos a parte inteira para isolar o primeiro dígito restante, que é o semestre. Por exemplo, `10045 DIV 10000` resulta em `1`.
+
+5.  **Apresentação dos Resultados**:
+    * Por fim, o algoritmo **exibe** o ano e o semestre extraídos. É incluída uma suposição de que o ano é do século 21 (prefixando "20" ao `anoMatricula` para melhor clareza, ex: 2023).
+
+Este algoritmo consegue decodificar o código de matrícula conforme a estrutura definida e apresentar as informações solicitadas.
