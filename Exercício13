@@ -1,0 +1,83 @@
+---
+## Algoritmo para Reajuste Salarial por Categoria
+
+Vamos criar um algoritmo que calcula e exibe o nome, a categoria e o salário reajustado de um empregado, de acordo com as regras de aumento salarial que você forneceu.
+
+```pseudocode
+ALGORITMO ReajusteSalarial
+
+VAR
+    nomeFuncionario   : string
+    categoriaFuncionario : caractere // Usamos 'caractere' para uma única letra
+    salarioAtual      : real
+    salarioReajustado : real
+    percentualAumento : real
+
+INICIO
+    // 1. Solicita as informações do funcionário
+    ESCREVA "Digite o nome do funcionário:"
+    LEIA nomeFuncionario
+
+    ESCREVA "Digite a categoria do funcionário (A, B, C, etc.):"
+    LEIA categoriaFuncionario
+
+    ESCREVA "Digite o salário atual do funcionário:"
+    LEIA salarioAtual
+
+    // 2. Determina o percentual de aumento baseado na categoria
+    SE categoriaFuncionario = 'A' OU categoriaFuncionario = 'C' OU categoriaFuncionario = 'F' OU categoriaFuncionario = 'H' ENTAO
+        percentualAumento = 0.10 // 10% de aumento
+    SENAO SE categoriaFuncionario = 'B' OU categoriaFuncionario = 'D' OU categoriaFuncionario = 'E' OU categoriaFuncionario = 'I' OU categoriaFuncionario = 'J' OU categoriaFuncionario = 'T' ENTAO
+        percentualAumento = 0.15 // 15% de aumento
+    SENAO SE categoriaFuncionario = 'K' OU categoriaFuncionario = 'R' ENTAO
+        percentualAumento = 0.25 // 25% de aumento
+    SENAO SE categoriaFuncionario = 'L' OU categoriaFuncionario = 'M' OU categoriaFuncionario = 'N' OU categoriaFuncionario = 'O' OU categoriaFuncionario = 'P' OU categoriaFuncionario = 'Q' OU categoriaFuncionario = 'S' ENTAO
+        percentualAumento = 0.35 // 35% de aumento
+    SENAO SE categoriaFuncionario = 'U' OU categoriaFuncionario = 'V' OU categoriaFuncionario = 'X' OU categoriaFuncionario = 'Y' OU categoriaFuncionario = 'W' OU categoriaFuncionario = 'Z' ENTAO
+        percentualAumento = 0.50 // 50% de aumento
+    SENAO
+        ESCREVA "Categoria inválida. Nenhum aumento será aplicado."
+        percentualAumento = 0.0 // Nenhum aumento para categoria inválida
+    FIM_SE
+
+    // 3. Calcula o salário reajustado
+    salarioReajustado = salarioAtual * (1 + percentualAumento)
+
+    // 4. Apresenta os resultados
+    ESCREVA "----------------------------------------"
+    ESCREVA "Nome do Funcionário: ", nomeFuncionario
+    ESCREVA "Categoria: ", categoriaFuncionario
+    ESCREVA "Salário Atual: R$ ", salarioAtual
+    ESCREVA "Percentual de Aumento: ", (percentualAumento * 100), "%"
+    ESCREVA "Salário Reajustado: R$ ", salarioReajustado
+    ESCREVA "----------------------------------------"
+
+FIM
+```
+
+---
+
+### Como este algoritmo funciona:
+
+1.  **Declaração de Variáveis (`VAR`)**:
+    * **`nomeFuncionario`**: Uma variável do tipo **string** para armazenar o nome completo do empregado.
+    * **`categoriaFuncionario`**: Uma variável do tipo **caractere** (ou `string` de tamanho 1, dependendo do pseudocódigo) para armazenar a letra da categoria.
+    * **`salarioAtual`**: Uma variável do tipo **real** para o salário do funcionário antes do aumento.
+    * **`salarioReajustado`**: Uma variável do tipo **real** para o salário final após o aumento.
+    * **`percentualAumento`**: Uma variável do tipo **real** que armazenará o percentual de aumento aplicável (ex: 0.10 para 10%).
+
+2.  **Entrada de Dados**:
+    * O algoritmo solicita e lê o **nome**, a **categoria** e o **salário atual** do funcionário.
+
+3.  **Determinação do Percentual de Aumento (`SE...SENAO SE...FIM_SE`)**:
+    * Esta é a parte central da lógica. Usamos uma estrutura de **condicional aninhada** (`SE...SENAO SE`) para verificar a categoria do funcionário.
+    * Para cada grupo de categorias, é atribuído o `percentualAumento` correspondente (por exemplo, `0.10` para 10%, `0.15` para 15%, etc.).
+    * Há também um bloco `SENAO` final para lidar com **categorias inválidas**, onde `percentualAumento` é definido como `0.0` e uma mensagem é exibida.
+
+4.  **Cálculo do Salário Reajustado**:
+    * A linha `salarioReajustado = salarioAtual * (1 + percentualAumento)` calcula o novo salário. Multiplicar o `salarioAtual` por `(1 + percentualAumento)` é uma forma eficiente de somar o percentual ao salário (ex: `salario * (1 + 0.10)` é o mesmo que `salario + (salario * 0.10)`).
+
+5.  **Apresentação dos Resultados**:
+    * Finalmente, o algoritmo **exibe** o nome do funcionário, sua categoria, o salário atual, o percentual de aumento aplicado e, mais importante, o **salário reajustado**.
+
+Este algoritmo é uma solução completa para reajustar o salário de um funcionário com base na sua categoria, seguindo todas as regras que você especificou.
