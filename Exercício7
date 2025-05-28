@@ -1,0 +1,54 @@
+Ótimo! Para criar um algoritmo que junte o nome e o sobrenome, vamos seguir os passos que você descreveu.
+
+---
+
+## Algoritmo: Montar Nome Completo
+
+```pseudocode
+ALGORITMO MontarNomeCompleto
+
+VAR
+    nome       : string
+    sobrenome  : string
+    nomeCompleto : string
+
+INICIO
+    // a) Leia o nome
+    ESCREVA "Digite seu nome:"
+    LEIA nome
+
+    // b) Leia o sobrenome
+    ESCREVA "Digite seu sobrenome:"
+    LEIA sobrenome
+
+    // c) Concatene o nome com o sobrenome
+    //    Adicionamos um espaço entre o nome e o sobrenome para melhor leitura.
+    nomeCompleto = nome + " " + sobrenome
+
+    // d) Apresente o nome completo
+    ESCREVA "Seu nome completo é: ", nomeCompleto
+
+FIM
+```
+
+---
+
+### Como este algoritmo funciona:
+
+1.  **Declaração de Variáveis (`VAR`)**:
+    * `nome`: Uma variável do tipo **string** para guardar o primeiro nome.
+    * `sobrenome`: Uma variável do tipo **string** para guardar o último nome.
+    * `nomeCompleto`: Uma variável do tipo **string** para armazenar o resultado da união.
+
+2.  **Início do Algoritmo (`INICIO`)**:
+    * **Lê o Nome**: O algoritmo pede ao usuário para digitar o nome e armazena o que foi digitado na variável `nome`.
+    * **Lê o Sobrenome**: Em seguida, ele pede o sobrenome e guarda na variável `sobrenome`.
+
+3.  **Concatenação (`nomeCompleto = nome + " " + sobrenome`)**:
+    * Aqui, os textos das variáveis `nome` e `sobrenome` são **concatenados** (unidos).
+    * É adicionado um **espaço em branco** `" "` entre `nome` e `sobrenome` para que o nome completo não fique grudado (por exemplo, "JoãoSilva" em vez de "João Silva").
+
+4.  **Apresentação do Nome Completo (`ESCREVA`)**:
+    * Por fim, o algoritmo exibe na tela a frase "Seu nome completo é: " seguida do valor armazenado em `nomeCompleto`.
+
+Esse algoritmo é bem direto e realiza exatamente as operações que você solicitou!
