@@ -1,0 +1,46 @@
+Entendido! Abaixo estão as expressões matemáticas convertidas para pseudocódigo.
+
+---
+
+## Expressões Matemáticas em Pseudocódigo
+
+Aqui estão as expressões que você forneceu, representadas em pseudocódigo:
+
+* **a) $(A + B) * C$**
+    ```pseudocode
+    RESULTADO = (A + B) * C
+    ```
+
+* **b) $TOTAL / N$**
+    ```pseudocode
+    MEDIA = TOTAL / N
+    ```
+    (Assumi que o resultado seria uma média, mas você pode usar qualquer nome de variável apropriado, como `QUOCIENTE`.)
+
+* **c) $A - B(C + D^2) / E$**
+    ```pseudocode
+    RESULTADO = A - (B * (C + (D ^ 2))) / E
+    ```
+    (Note que `^` é usado para potenciação em muitos pseudocódigos e linguagens de programação, ou você pode usar uma função como `POTENCIA(D, 2)`.)
+
+* **d) $base^{expoente}$**
+    ```pseudocode
+    RESULTADO = base ^ expoente
+    ```
+    ou
+    ```pseudocode
+    RESULTADO = POTENCIA(base, expoente)
+    ```
+
+* **e) $a * b^c$**
+    ```pseudocode
+    RESULTADO = a * (b ^ c)
+    ```
+    ou
+    ```pseudocode
+    RESULTADO = a * POTENCIA(b, c)
+    ```
+
+---
+
+Espero que isso ajude! Se tiver mais alguma expressão para converter ou precisar de mais detalhes, é só me dizer.
