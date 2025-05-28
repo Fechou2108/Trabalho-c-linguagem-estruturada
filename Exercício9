@@ -1,0 +1,73 @@
+---
+## Algoritmo para Calcular Salário Líquido
+
+Vamos criar um algoritmo que calcula o salário líquido de um trabalhador, aplicando os descontos de previdência social e imposto.
+
+```pseudocode
+ALGORITMO CalcularSalarioLiquido
+
+VAR
+    salarioBruto         : real
+    valorPrevidencia     : real
+    salarioAposPrevidencia : real
+    valorImposto         : real
+    salarioLiquido       : real
+
+INICIO
+    // 1. Solicita ao usuário o salário bruto
+    ESCREVA "Digite o salário bruto do trabalhador:"
+    LEIA salarioBruto
+
+    // 2. Calcula o desconto da previdência social (10% do salário bruto)
+    valorPrevidencia = salarioBruto * 0.10
+
+    // 3. Calcula o salário após o desconto da previdência
+    salarioAposPrevidencia = salarioBruto - valorPrevidencia
+
+    // 4. Calcula o desconto do imposto (5% sobre o valor restante)
+    valorImposto = salarioAposPrevidencia * 0.05
+
+    // 5. Calcula o salário líquido final
+    salarioLiquido = salarioAposPrevidencia - valorImposto
+
+    // 6. Imprime o salário líquido
+    ESCREVA "----------------------------------------"
+    ESCREVA "Salário Bruto:        R$ ", salarioBruto
+    ESCREVA "Desconto Previdência: R$ ", valorPrevidencia
+    ESCREVA "Salário Após Previd.: R$ ", salarioAposPrevidencia
+    ESCREVA "Desconto Imposto:     R$ ", valorImposto
+    ESCREVA "----------------------------------------"
+    ESCREVA "Salário Líquido:      R$ ", salarioLiquido
+
+FIM
+```
+
+---
+
+### Como este algoritmo funciona:
+
+1.  **Declaração de Variáveis**:
+    * `salarioBruto`: Armazenará o valor inicial lido.
+    * `valorPrevidencia`: Guardará o valor do desconto da previdência (10%).
+    * `salarioAposPrevidencia`: Terá o salário após o primeiro desconto.
+    * `valorImposto`: Armazenará o valor do desconto do imposto (5%).
+    * `salarioLiquido`: Conterá o valor final, após todos os descontos.
+    Todas as variáveis são do tipo `real` para lidar com valores monetários.
+
+2.  **Entrada de Dados**:
+    * O algoritmo pede ao usuário para digitar o **salário bruto**.
+
+3.  **Cálculo da Previdência Social**:
+    * Ele calcula 10% do `salarioBruto` e guarda em `valorPrevidencia`.
+    * Em seguida, subtrai esse valor do `salarioBruto` para obter o `salarioAposPrevidencia`.
+
+4.  **Cálculo do Imposto**:
+    * Com base no `salarioAposPrevidencia` (o valor restante após o primeiro desconto), ele calcula 5% e armazena em `valorImposto`.
+
+5.  **Cálculo do Salário Líquido**:
+    * O `valorImposto` é então subtraído do `salarioAposPrevidencia` para chegar ao `salarioLiquido` final.
+
+6.  **Saída de Dados**:
+    * Por fim, o algoritmo **imprime todos os valores calculados** de forma clara, mostrando o salário bruto, cada desconto e o salário líquido resultante.
+
+Este algoritmo resolve a situação proposta de forma organizada e fácil de entender.
