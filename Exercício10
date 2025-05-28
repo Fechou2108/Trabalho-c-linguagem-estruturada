@@ -1,0 +1,81 @@
+---
+## Algoritmo para Calcular o Dígito Verificador Módulo 7
+
+Vamos criar um algoritmo que lê um código de cinco algarismos e calcula o dígito verificador, conforme a regra que você forneceu.
+
+```pseudocode
+ALGORITMO CalcularDigitoVerificador
+
+VAR
+    Codigo      : inteiro  // Variável para armazenar o código de 5 algarismos
+    A, B, C, D, E : inteiro  // Variáveis para armazenar cada algarismo individual
+    S           : inteiro  // Variável para armazenar a soma ponderada
+    DigitoV     : inteiro  // Variável para armazenar o dígito verificador
+
+INICIO
+    // 1. Solicita ao usuário o código de cinco algarismos
+    ESCREVA "Digite um código de cinco algarismos (ex: 12345):"
+    LEIA Codigo
+
+    // 2. Extrai cada algarismo do código
+    // Supondo que Codigo é um número inteiro de 5 algarismos (ABCDE)
+    // Para extrair os algarismos, usaremos operações de divisão e módulo.
+    // Exemplo: Para 12345:
+    // A = 12345 DIV 10000 = 1
+    // B = (12345 MOD 10000) DIV 1000 = (2345) DIV 1000 = 2
+    // C = (12345 MOD 1000) DIV 100 = (345) DIV 100 = 3
+    // D = (12345 MOD 100) DIV 10 = (45) DIV 10 = 4
+    // E = 12345 MOD 10 = 5
+
+    A = Codigo DIV 10000          // Obtém o primeiro algarismo (A)
+    B = (Codigo MOD 10000) DIV 1000 // Obtém o segundo algarismo (B)
+    C = (Codigo MOD 1000) DIV 100   // Obtém o terceiro algarismo (C)
+    D = (Codigo MOD 100) DIV 10     // Obtém o quarto algarismo (D)
+    E = Codigo MOD 10               // Obtém o quinto algarismo (E)
+
+    // 3. Calcula a soma ponderada S
+    S = (6 * A) + (5 * B) + (4 * C) + (3 * D) + (2 * E)
+
+    // 4. Calcula o dígito verificador (resto da divisão de S por 7)
+    DigitoV = S MOD 7
+
+    // 5. Apresenta o código original e o dígito verificador
+    ESCREVA "O código digitado foi: ", Codigo
+    ESCREVA "O dígito verificador para este código é: ", DigitoV
+
+FIM
+```
+
+---
+
+### Entendendo o Algoritmo:
+
+1.  **Declaração de Variáveis (`VAR`)**:
+    * `Codigo`: Guarda o número de cinco algarismos que o usuário digitará.
+    * `A, B, C, D, E`: Variáveis auxiliares que vão guardar **cada um dos algarismos** do código.
+    * `S`: Armazenará a soma ponderada dos algarismos.
+    * `DigitoV`: Guardará o resultado final, que é o dígito verificador.
+    Todas são do tipo `inteiro`, já que estamos lidando com algarismos e resultados de divisões.
+
+2.  **Entrada de Dados (`ESCREVA`, `LEIA`)**:
+    * O algoritmo pede para o usuário digitar o código de cinco algarismos e o lê, armazenando-o na variável `Codigo`.
+
+3.  **Extração dos Algarismos**:
+    * Esta é a parte mais "matemática" do algoritmo. Para um número `ABCDE` (ex: 12345), precisamos isolar cada algarismo. Usamos aqui as operações de **divisão inteira (`DIV`)** e **módulo (`MOD`)**:
+        * `DIV X`: Retorna a parte inteira da divisão de um número por X.
+        * `MOD X`: Retorna o resto da divisão de um número por X.
+    * Por exemplo, para o número `12345`:
+        * `A = 12345 DIV 10000` resulta em `1`.
+        * `B = (12345 MOD 10000)` resulta em `2345`. Depois, `2345 DIV 1000` resulta em `2`.
+        * E assim por diante, isolando cada dígito.
+
+4.  **Cálculo da Soma Ponderada (`S`)**:
+    * Com os algarismos separados, o algoritmo aplica a fórmula `S = 6*A + 5*B + 4*C + 3*D + 2*E`, multiplicando cada algarismo pelo seu peso correspondente.
+
+5.  **Cálculo do Dígito Verificador (`DigitoV`)**:
+    * O dígito verificador é obtido calculando o **resto da divisão** da `S` por `7` (`S MOD 7`).
+
+6.  **Saída de Dados (`ESCREVA`)**:
+    * Finalmente, o algoritmo exibe o código original digitado e o dígito verificador calculado.
+
+Este algoritmo é uma representação clara e funcional do processo que você descreveu para calcular o dígito verificador.
