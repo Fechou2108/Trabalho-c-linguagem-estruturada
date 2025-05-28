@@ -1,0 +1,36 @@
+
+A) (20 - 15) / 2
+ * Cálculo: 5 / 2 = 2.5
+ * Tipo: Real
+B) 20 - 15 / 2
+ * Cálculo: 20 - 7.5 = 12.5
+ * Tipo: Real
+C) 2 * 5 / 20 + 30 / 15 * 2
+ * Cálculo: 10 / 20 + 2 * 2 = 0.5 + 4 = 4.5
+ * Tipo: Real
+D) 2 * (5 / 20) + 30 / (15 * 2)
+ * Cálculo: 2 * 0.25 + 30 / 30 = 0.5 + 1 = 1.5
+ * Tipo: Real
+E) 23 DIV 4
+ * Cálculo: A divisão inteira de 23 por 4 é 5 (o quociente, ignorando o resto).
+ * Tipo: Inteiro
+F) 23 MOD 4
+ * Cálculo: O resto da divisão de 23 por 4 é 3.
+ * Tipo: Inteiro
+G) 35 DIV 6 + 2
+ * Cálculo: 5 + 2 = 7 (35 DIV 6 é 5)
+ * Tipo: Inteiro
+H) 35 DIV 6 - 2
+ * Cálculo: 5 - 2 = 3 (35 DIV 6 é 5)
+ * Tipo: Inteiro
+I) 35 DIV 6 * 2
+ * Cálculo: 5 * 2 = 10 (35 DIV 6 é 5)
+ * Tipo: Inteiro
+J) SQRT(625)
+ * Cálculo: \sqrt{625} = 25
+ * Tipo: Inteiro (neste caso, pois a raiz é exata)
+K) (SQR)
+ * Esta expressão está incompleta. "SQR" geralmente significa "quadrado de" ou "elevar ao quadrado", mas falta um número ou variável para operar. Não é possível calcular.
+L) 2 + SQRT(21 DIV 5)
+ * Cálculo: 2 + \text{SQRT}(4) = 2 + 2 = 4 (21 DIV 5 é 4)
+ * Tipo: Inteiro
