@@ -1,0 +1,92 @@
+Com certeza! Para ajudar a prefeitura a analisar os dados da pesquisa, criei um programa que calcula a **média do salário**, a **média do número de filhos**, o **maior salário** e o **percentual de pessoas com salário até R$100,00**.
+
+---
+
+### Como o programa funciona
+
+O programa vai te pedir o **salário** e o **número de filhos** de cada habitante. Para finalizar a entrada de dados, basta digitar um **salário negativo**. Depois, ele exibirá todas as estatísticas solicitadas.
+
+---
+
+### Código do Programa
+
+```python
+def analisar_pesquisa_prefeitura():
+    """
+    Coleta dados de salário e número de filhos de uma população e calcula estatísticas.
+    """
+    total_salarios = 0.0
+    total_filhos = 0
+    maior_salario = 0.0
+    numero_habitantes = 0
+    pessoas_salario_baixo = 0
+
+    print("--- Pesquisa da População ---")
+    print("Digite um salário negativo para encerrar a entrada de dados.")
+
+    while True:
+        try:
+            salario = float(input("\nDigite o salário (ou um valor negativo para sair): R$ "))
+
+            if salario < 0:
+                break  # Encerra o loop se o salário for negativo
+
+            numero_filhos = int(input("Digite o número de filhos: "))
+
+            if numero_filhos < 0:
+                print("O número de filhos não pode ser negativo. Por favor, digite um valor válido.")
+                continue # Pede os dados novamente para este habitante
+
+            total_salarios += salario
+            total_filhos += numero_filhos
+            numero_habitantes += 1
+
+            if salario > maior_salario:
+                maior_salario = salario
+
+            if salario <= 100.00:
+                pessoas_salario_baixo += 1
+
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um número para o salário e o número de filhos.")
+        except Exception as e:
+            print(f"Ocorreu um erro: {e}")
+
+    # --- Resultados da Pesquisa ---
+    print("\n--- Resultados da Pesquisa ---")
+
+    if numero_habitantes == 0:
+        print("Nenhum dado foi inserido para análise.")
+    else:
+        # a) Média do salário da população
+        media_salario = total_salarios / numero_habitantes
+        print(f"a) Média do salário da população: R$ {media_salario:.2f}")
+
+        # b) Média do número de filhos
+        media_filhos = total_filhos / numero_habitantes
+        print(f"b) Média do número de filhos: {media_filhos:.2f}")
+
+        # c) Maior salário
+        print(f"c) Maior salário: R$ {maior_salario:.2f}")
+
+        # d) Percentual de pessoas com salário até R$100,00
+        percentual_salario_baixo = (pessoas_salario_baixo / numero_habitantes) * 100
+        print(f"d) Percentual de pessoas com salário até R$100,00: {percentual_salario_baixo:.2f}%")
+
+    print("\nAnálise da pesquisa finalizada.")
+
+# Chama a função para executar o algoritmo
+analisar_pesquisa_prefeitura()
+```
+
+---
+
+### Como usar o programa
+
+1.  **Salve o código:** Copie o código acima e salve-o em um arquivo com a extensão `.py` (por exemplo, `pesquisa_prefeitura.py`).
+2.  **Execute:** Abra seu terminal ou prompt de comando, navegue até a pasta onde salvou o arquivo e execute-o com o comando: `python pesquisa_prefeitura.py`.
+3.  **Insira os dados:** O programa pedirá o salário e o número de filhos para cada habitante.
+4.  **Finalize:** Quando quiser parar de inserir dados, digite um **salário negativo** (por exemplo, `-1`).
+5.  **Veja os resultados:** Após a finalização, o programa exibirá todas as estatísticas calculadas.
+
+Este programa é uma ferramenta simples e eficaz para a prefeitura obter insights importantes sobre a população da cidade!
