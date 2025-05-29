@@ -1,0 +1,89 @@
+Que bom que você quer organizar os dados dos alunos da sua turma! Preparei um programa em Python que te ajuda a **cadastrar até 30 alunos**, armazenando o **nome do aluno**, **nome da disciplina** e a **média final**. Depois de cadastrar, você pode **consultar os alunos pelo nome**.
+
+---
+
+### Como funciona o programa
+
+O programa é dividido em duas partes principais:
+
+1.  **Cadastro de Alunos:** Você vai inserir os dados de cada estudante. O programa te pergunta se quer adicionar um novo aluno até você digitar 'N' ou atingir o limite de 30 cadastros.
+2.  **Consulta de Alunos:** Depois de cadastrar, a tela é limpa e você pode buscar alunos pelo nome. É só digitar 'FIM' para sair.
+
+---
+
+### Código do Programa
+
+```python
+import os
+
+# Define a estrutura para armazenar os dados de cada aluno
+class Aluno:
+    def __init__(self, nome, disciplina, media_final):
+        self.nome = nome
+        self.disciplina = disciplina
+        self.media_final = media_final
+
+# Lista para guardar os alunos cadastrados
+turma = []
+MAX_ALUNOS = 30
+
+# --- Parte de Cadastro de Alunos ---
+print("--- Cadastro de Alunos ---")
+while len(turma) < MAX_ALUNOS:
+    nome_aluno = input("Nome do aluno: ")
+    nome_disciplina = input("Nome da disciplina: ")
+    
+    # Validação para garantir que a média final seja um número
+    while True:
+        try:
+            media_final = float(input("Média final: "))
+            break
+        except ValueError:
+            print("Média final inválida. Por favor, digite um número.")
+
+    # Cria um novo objeto Aluno e adiciona à lista da turma
+    novo_aluno = Aluno(nome_aluno, nome_disciplina, media_final)
+    turma.append(novo_aluno)
+
+    # Pergunta se deseja cadastrar um novo aluno
+    if len(turma) < MAX_ALUNOS:
+        continuar = input("Novo Aluno (S/N)? ").upper()
+        if continuar != 'S':
+            break
+    else:
+        print("Limite máximo de alunos cadastrados (30) atingido.")
+
+# --- Parte de Consulta de Alunos ---
+os.system('cls' if os.name == 'nt' else 'clear') # Limpa a tela
+print("\n--- Consulta de Alunos ---")
+
+while True:
+    nome_consulta = input("Digite o nome do aluno para consultar (ou 'FIM' para encerrar): ")
+    if nome_consulta.upper() == 'FIM':
+        break
+
+    encontrado = False
+    print("-" * 30) # Linha divisória para melhor visualização
+    for aluno in turma:
+        if aluno.nome.lower() == nome_consulta.lower(): # Compara nomes sem se importar com maiúsculas/minúsculas
+            print(f"Nome: {aluno.nome}")
+            print(f"Disciplina: {aluno.disciplina}")
+            print(f"Média Final: {aluno.media_final}")
+            print("-" * 30)
+            encontrado = True
+    
+    if not encontrado:
+        print(f"Aluno '{nome_consulta}' não encontrado.")
+        print("-" * 30)
+
+print("Programa encerrado.")
+```
+
+---
+
+### Como rodar o programa
+
+1.  **Salve o código:** Copie o código acima e salve-o em um arquivo com extensão `.py` (por exemplo, `cadastro_alunos.py`).
+2.  **Execute pelo terminal:** Abra seu terminal ou prompt de comando, navegue até a pasta onde salvou o arquivo e execute-o com o comando: `python cadastro_alunos.py`
+
+Espero que este programa seja útil para você! Se tiver alguma dúvida ou quiser fazer alguma alteração, é só me dizer.
