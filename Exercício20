@@ -1,0 +1,47 @@
+def calcular_fatorial(numero):
+    """
+    Função auxiliar para calcular o fatorial de um número.
+    """
+    if numero < 0:
+        return "Erro: Fatorial não definido para números negativos."
+    elif numero == 0:
+        return 1
+    else:
+        fatorial = 1
+        for i in range(1, numero + 1):
+            fatorial *= i
+        return fatorial
+
+def calcular_valor_e():
+    """
+    Lê um valor N inteiro e positivo e calcula o valor de E.
+    E = 1 + 1 / 1! + 1 / 2! + 1 / 3! + ... + 1 / N!
+    """
+    print("--- Cálculo do Valor de E ---")
+
+    while True:
+        try:
+            n = int(input("Digite um valor inteiro e positivo para N: "))
+            if n < 0:
+                print("N deve ser um valor positivo. Tente novamente.")
+            else:
+                break # Sai do loop se N for válido
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um número inteiro.")
+
+    E = 1.0  # Inicializa E com o primeiro termo (1)
+
+    for i in range(1, n + 1):
+        fatorial_i = calcular_fatorial(i)
+        if fatorial_i != 0: # Para evitar divisão por zero, embora não deva ocorrer com N >= 0
+            termo = 1 / fatorial_i
+            E += termo
+        else:
+            print(f"Erro: Fatorial de {i} resultou em zero, cálculo interrompido.")
+            return # Encerra a função em caso de erro grave
+
+    print(f"\nO valor de E para N = {n} é: {E}")
+    print("--- Fim do Cálculo ---")
+
+# Chama a função principal para executar o algoritmo
+calcular_valor_e()
