@@ -1,0 +1,23 @@
+def contar_negativos():
+    """
+    Lê 5 valores e conta quantos deles são negativos.
+    """
+    valores_negativos = 0
+    print("--- Contagem de Valores Negativos ---")
+
+    for i in range(1, 6): # Loop para ler 5 valores (de 1 a 5)
+        while True:
+            try:
+                valor_a = float(input(f"Digite o {i}º valor: "))
+                break # Sai do loop interno se o valor for um número válido
+            except ValueError:
+                print("Entrada inválida. Por favor, digite um número.")
+        
+        if valor_a < 0:
+            valores_negativos += 1
+            
+    print(f"\nDos 5 valores digitados, {valores_negativos} são negativos.")
+    print("--- Fim da Contagem ---")
+
+# Chama a função para executar o algoritmo
+contar_negativos()
