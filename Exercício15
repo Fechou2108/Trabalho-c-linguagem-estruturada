@@ -1,0 +1,91 @@
+Com certeza! Criei um programa em Python que permite cadastrar informações de pessoas, incluindo o salário, e no final, ele **calcula o total de todos os salários**, **encontra o maior salário** e **mostra o nome da pessoa que o recebe**.
+
+---
+
+### Como o programa funciona
+
+Você vai digitar os dados de cada pessoa (nome, endereço, telefone, e-mail e salário). O programa continua pedindo novos registros até você digitar "fim" no campo do nome ou atingir o número máximo de registros predefinido. Depois, ele processa todos os dados e exibe os resultados.
+
+---
+
+### Código do Programa
+
+```python
+import os
+
+# Define a estrutura para armazenar os dados de cada pessoa
+class Registro:
+    def __init__(self, nome, endereco, telefone, email, salario):
+        self.nome = nome
+        self.endereco = endereco
+        self.telefone = telefone
+        self.email = email
+        self.salario = salario
+
+# Lista para guardar os registros
+pessoas = []
+MAX_REGISTROS = 5 # Você pode alterar este valor para o máximo de registros desejado
+
+print("--- Cadastro de Pessoas ---")
+print(f"Digite 'fim' no nome para encerrar o cadastro a qualquer momento.")
+
+while len(pessoas) < MAX_REGISTROS:
+    nome_input = input("\nNome (ou 'fim' para encerrar): ")
+    if nome_input.lower() == 'fim':
+        break
+
+    endereco_input = input("Endereço: ")
+    telefone_input = input("Telefone: ")
+    email_input = input("Email: ")
+    
+    while True:
+        try:
+            salario_input = float(input("Salário: R$ "))
+            if salario_input < 0:
+                print("O salário não pode ser negativo. Digite um valor válido.")
+            else:
+                break
+        except ValueError:
+            print("Salário inválido. Por favor, digite um número.")
+
+    novo_registro = Registro(nome_input, endereco_input, telefone_input, email_input, salario_input)
+    pessoas.append(novo_registro)
+
+    if len(pessoas) == MAX_REGISTROS:
+        print(f"\nLimite de {MAX_REGISTROS} registros atingido.")
+
+# Limpa a tela para exibir os resultados
+os.system('cls' if os.name == 'nt' else 'clear')
+
+# --- Processamento e Exibição dos Resultados ---
+total_salarios = 0.0
+maior_salario = 0.0
+nome_maior_salario = ""
+
+if not pessoas:
+    print("Nenhum registro foi cadastrado.")
+else:
+    for pessoa in pessoas:
+        total_salarios += pessoa.salario
+        if pessoa.salario > maior_salario:
+            maior_salario = pessoa.salario
+            nome_maior_salario = pessoa.nome
+    
+    print("\n--- Resumo dos Salários ---")
+    print(f"Total de salários: R$ {total_salarios:.2f}")
+    print(f"Maior salário: R$ {maior_salario:.2f} (pertence a {nome_maior_salario})")
+
+print("\nPrograma encerrado.")
+```
+
+---
+
+### Como usar o programa
+
+1.  **Salve o código:** Copie o código acima e salve-o em um arquivo com extensão `.py` (por exemplo, `cadastro_salarios.py`).
+2.  **Execute pelo terminal:** Abra seu terminal ou prompt de comando, navegue até a pasta onde salvou o arquivo e execute-o com o comando: `python cadastro_salarios.py`
+3.  **Cadastre os dados:** O programa pedirá as informações de cada pessoa.
+4.  **Finalize o cadastro:** Para parar de cadastrar, digite **fim** no campo "Nome" ou complete o número máximo de registros (que está como 5 por padrão, mas você pode mudar).
+5.  **Veja os resultados:** Após o cadastro, a tela será limpa e você verá o total de todos os salários, o maior salário e o nome da pessoa que o possui.
+
+Se quiser testar com mais ou menos registros, é só alterar o valor da variável `MAX_REGISTROS` no início do código!
