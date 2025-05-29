@@ -1,0 +1,57 @@
+def contagem_votos_eleicao():
+    """
+    Simula a contagem de votos em uma eleição presidencial,
+    calculando votos para candidatos, nulos e em branco.
+    """
+    # Inicializa os contadores de votos
+    votos_candidato = {
+        1: 0,  # Votos para o Candidato 1
+        2: 0,  # Votos para o Candidato 2
+        3: 0,  # Votos para o Candidato 3
+        4: 0   # Votos para o Candidato 4
+    }
+    votos_nulos = 0
+    votos_em_branco = 0
+
+    print("--- Contagem de Votos Eleitorais ---")
+    print("Códigos de Voto:")
+    print("  1, 2, 3, 4 = Voto para os respectivos candidatos")
+    print("  5 = Voto Nulo")
+    print("  6 = Voto em Branco")
+    print("  0 = Finalizar a votação")
+    print("-" * 40)
+
+    while True:
+        try:
+            codigo_voto = int(input("Digite o código do voto (0 para finalizar): "))
+
+            if codigo_voto == 0:
+                break  # Finaliza a contagem de votos
+
+            if 1 <= codigo_voto <= 4:
+                votos_candidato[codigo_voto] += 1
+            elif codigo_voto == 5:
+                votos_nulos += 1
+            elif codigo_voto == 6:
+                votos_em_branco += 1
+            else:
+                print("Código de voto inválido. Por favor, digite um código entre 0 e 6.")
+
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um número inteiro para o código do voto.")
+        except Exception as e:
+            print(f"Ocorreu um erro: {e}")
+
+    # --- Apresentação dos Resultados ---
+    print("\n--- Resultados da Eleição ---")
+    print("Total de votos por candidato:")
+    for candidato, total_votos in votos_candidato.items():
+        print(f"  Candidato {candidato}: {total_votos} votos")
+
+    print(f"Total de votos NULOS: {votos_nulos} votos")
+    print(f"Total de votos EM BRANCO: {votos_em_branco} votos")
+    print("-" * 40)
+    print("Contagem de votos finalizada.")
+
+# Chama a função para executar o algoritmo
+contagem_votos_eleicao()
