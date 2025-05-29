@@ -1,0 +1,78 @@
+Criei um algoritmo que ajuda o vendedor a calcular o preço total de uma compra. Ele vai pedir o **código do produto** e a **quantidade comprada**, e com base na tabela de preços que você forneceu, vai calcular o valor final.
+
+---
+
+### Como o algoritmo funciona
+
+1.  **Entrada de dados:** O programa pede o código do produto e a quantidade.
+2.  **Consulta de preço:** Ele verifica o código na tabela de preços.
+3.  **Cálculo:** Multiplica a quantidade pelo preço unitário.
+4.  **Exibição:** Mostra o preço total ao cliente.
+
+---
+
+### Código do Algoritmo
+
+```python
+def calcular_preco_total():
+    """
+    Calcula o preço total devido por um cliente, com base no código do produto e na quantidade.
+    """
+    # Tabela de preços dos produtos
+    tabela_precos = {
+        1001: 5.32,
+        1324: 6.45,
+        6548: 2.37,
+        987: 5.32,  # Ajustado de 0987 para 987, pois int não tem zero à esquerda
+        7623: 6.40  # Ajustado para 6.40 para padronizar
+    }
+
+    print("--- Cálculo de Preço Total ---")
+    print("Códigos de produto disponíveis:")
+    for codigo, preco in tabela_precos.items():
+        print(f"  Código: {codigo} - Preço Unitário: R$ {preco:.2f}")
+    print("-" * 30)
+
+    while True:
+        try:
+            codigo_produto = int(input("Digite o código do produto: "))
+            
+            # Verifica se o código do produto existe na tabela
+            if codigo_produto not in tabela_precos:
+                print("Código de produto inválido. Por favor, digite um código da tabela.")
+                continue # Volta para o início do loop para pedir o código novamente
+            
+            quantidade = int(input("Digite a quantidade comprada: "))
+            
+            if quantidade <= 0:
+                print("A quantidade deve ser um número positivo. Tente novamente.")
+                continue # Volta para o início do loop para pedir a quantidade novamente
+
+            preco_unitario = tabela_precos[codigo_produto]
+            preco_total = preco_unitario * quantidade
+
+            print(f"\nPreço unitário do produto {codigo_produto}: R$ {preco_unitario:.2f}")
+            print(f"Quantidade comprada: {quantidade}")
+            print(f"O preço total devido é: R$ {preco_total:.2f}")
+            break # Sai do loop se tudo estiver correto
+
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um número para o código e a quantidade.")
+        except Exception as e:
+            print(f"Ocorreu um erro: {e}")
+
+    print("\nCálculo finalizado.")
+
+# Chama a função para executar o algoritmo
+calcular_preco_total()
+```
+
+---
+
+### Como usar o programa
+
+1.  **Salve o código:** Copie o código e salve-o em um arquivo com a extensão `.py` (por exemplo, `calculadora_vendas.py`).
+2.  **Execute:** Abra seu terminal ou prompt de comando, navegue até a pasta onde salvou o arquivo e execute-o com o comando: `python calculadora_vendas.py`.
+3.  **Siga as instruções:** O programa pedirá o código do produto e a quantidade. Ele vai validar suas entradas e, se estiverem corretas, mostrará o preço total.
+
+Este algoritmo é uma ferramenta simples e eficaz para o vendedor calcular o preço final das compras de forma rápida.
