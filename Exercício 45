@@ -1,0 +1,55 @@
+INÍCIO
+
+  // Variáveis para armazenar os três números
+  NUMERO1
+  NUMERO2
+  NUMERO3
+
+  // Variável para armazenar o menor número encontrado
+  MENOR_NUMERO
+
+  // --- Leitura dos Três Números Distintos ---
+  ESCREVER "Olá! Digite três números inteiros distintos para descobrir qual é o menor."
+
+  // Lê o primeiro número
+  ESCREVER "Digite o primeiro número inteiro:"
+  LER NUMERO1
+
+  // Lê o segundo número, garantindo que seja diferente do primeiro
+  REPITA
+    ESCREVER "Digite o segundo número inteiro (diferente do primeiro):"
+    LER NUMERO2
+    SE NUMERO2 = NUMERO1 ENTÃO
+      ESCREVER "O segundo número não pode ser igual ao primeiro. Tente novamente."
+    FIM SE
+  ATÉ NUMERO2 <> NUMERO1
+
+  // Lê o terceiro número, garantindo que seja diferente dos dois primeiros
+  REPITA
+    ESCREVER "Digite o terceiro número inteiro (diferente dos dois primeiros):"
+    LER NUMERO3
+    SE NUMERO3 = NUMERO1 OU NUMERO3 = NUMERO2 ENTÃO
+      ESCREVER "O terceiro número não pode ser igual ao primeiro ou ao segundo. Tente novamente."
+    FIM SE
+  ATÉ NUMERO3 <> NUMERO1 E NUMERO3 <> NUMERO2
+
+  // --- Lógica para Encontrar o Menor ---
+  // Assume inicialmente que o primeiro número é o menor
+  MENOR_NUMERO = NUMERO1
+
+  // Compara o segundo número com o MENOR_NUMERO atual
+  SE NUMERO2 < MENOR_NUMERO ENTÃO
+    MENOR_NUMERO = NUMERO2
+  FIM SE
+
+  // Compara o terceiro número com o MENOR_NUMERO atual
+  SE NUMERO3 < MENOR_NUMERO ENTÃO
+    MENOR_NUMERO = NUMERO3
+  FIM SE
+
+  // --- Apresentação do Resultado ---
+  ESCREVER "\n--- Resultado ---"
+  ESCREVER "Os números digitados foram: ", NUMERO1, ", ", NUMERO2, ", e ", NUMERO3
+  ESCREVER "O menor número entre eles é: ", MENOR_NUMERO
+
+FIM
