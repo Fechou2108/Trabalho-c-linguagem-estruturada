@@ -1,0 +1,65 @@
+INÍCIO
+
+  // Preços unitários dos picolés
+  PRECO_PICOLÉ_TIPO1 = 0.50
+  PRECO_PICOLÉ_TIPO2 = 0.60
+  PRECO_PICOLÉ_TIPO3 = 0.75
+
+  // Variáveis para as quantidades vendidas
+  QTD_PICOLÉ_TIPO1
+  QTD_PICOLÉ_TIPO2
+  QTD_PICOLÉ_TIPO3
+
+  // Variáveis para os totais arrecadados por tipo
+  TOTAL_ARRECADADO_TIPO1
+  TOTAL_ARRECADADO_TIPO2
+  TOTAL_ARRECADADO_TIPO3
+
+  // --- Entrada de Dados: Quantidade Vendida por Tipo ---
+  ESCREVER "Olá! Vamos registrar as vendas de picolés."
+
+  REPITA
+    ESCREVER "Digite a quantidade de picolés do TIPO 1 vendidos (R$ 0.50 cada):"
+    LER QTD_PICOLÉ_TIPO1
+    SE QTD_PICOLÉ_TIPO1 < 0 ENTÃO
+      ESCREVER "A quantidade não pode ser negativa. Tente novamente."
+    FIM SE
+  ATÉ QTD_PICOLÉ_TIPO1 >= 0
+
+  REPITA
+    ESCREVER "Digite a quantidade de picolés do TIPO 2 vendidos (R$ 0.60 cada):"
+    LER QTD_PICOLÉ_TIPO2
+    SE QTD_PICOLÉ_TIPO2 < 0 ENTÃO
+      ESCREVER "A quantidade não pode ser negativa. Tente novamente."
+    FIM SE
+  ATÉ QTD_PICOLÉ_TIPO2 >= 0
+
+  REPITA
+    ESCREVER "Digite a quantidade de picolés do TIPO 3 vendidos (R$ 0.75 cada):"
+    LER QTD_PICOLÉ_TIPO3
+    SE QTD_PICOLÉ_TIPO3 < 0 ENTÃO
+      ESCREVER "A quantidade não pode ser negativa. Tente novamente."
+    FIM SE
+  ATÉ QTD_PICOLÉ_TIPO3 >= 0
+
+  // --- Cálculos: Total Arrecadado por Tipo ---
+  TOTAL_ARRECADADO_TIPO1 = QTD_PICOLÉ_TIPO1 * PRECO_PICOLÉ_TIPO1
+  TOTAL_ARRECADADO_TIPO2 = QTD_PICOLÉ_TIPO2 * PRECO_PICOLÉ_TIPO2
+  TOTAL_ARRECADADO_TIPO3 = QTD_PICOLÉ_TIPO3 * PRECO_PICOLÉ_TIPO3
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Resumo das Vendas de Picolés ---"
+
+  ESCREVER "\nTipo 1 (R$ ", FORMATAR_NUMERO(PRECO_PICOLÉ_TIPO1, 2), " cada):"
+  ESCREVER "  Quantidade Vendida: ", QTD_PICOLÉ_TIPO1
+  ESCREVER "  Total Arrecadado: R$", FORMATAR_NUMERO(TOTAL_ARRECADADO_TIPO1, 2)
+
+  ESCREVER "\nTipo 2 (R$ ", FORMATAR_NUMERO(PRECO_PICOLÉ_TIPO2, 2), " cada):"
+  ESCREVER "  Quantidade Vendida: ", QTD_PICOLÉ_TIPO2
+  ESCREVER "  Total Arrecadado: R$", FORMATAR_NUMERO(TOTAL_ARRECADADO_TIPO2, 2)
+
+  ESCREVER "\nTipo 3 (R$ ", FORMATAR_NUMERO(PRECO_PICOLÉ_TIPO3, 2), " cada):"
+  ESCREVER "  Quantidade Vendida: ", QTD_PICOLÉ_TIPO3
+  ESCREVER "  Total Arrecadado: R$", FORMATAR_NUMERO(TOTAL_ARRECADADO_TIPO3, 2)
+
+FIM
