@@ -1,0 +1,43 @@
+START
+
+  // Sentinel value to end input
+  SENTINEL = 9999
+
+  // Variables for input and counts
+  NUMBER_READ       // To store each number the user enters
+  EVEN_COUNT = 0    // Counter for even numbers
+  ODD_COUNT = 0     // Counter for odd numbers
+
+  // --- Start Reading Numbers ---
+  WRITE "Hello! Enter integer numbers to count evens and odds."
+  WRITE "Type 9999 to finish input."
+
+  // Read the first number before the loop
+  WRITE "Enter a number (or 9999 to finish):"
+  READ NUMBER_READ
+
+  // Loop to keep reading as long as the number is not the sentinel
+  WHILE NUMBER_READ <> SENTINEL DO
+    // Basic validation to ensure it's a number (optional, depends on environment)
+    IF TYPE_OF_DATA(NUMBER_READ) <> INTEGER THEN
+      WRITE "Invalid input. Please enter an integer number or 9999 to finish."
+    ELSE
+      // Check if the number is even or odd
+      IF (NUMBER_READ MOD 2) = 0 THEN // If the remainder of division by 2 is 0, it's even
+        EVEN_COUNT = EVEN_COUNT + 1
+      ELSE // Otherwise, it's odd
+        ODD_COUNT = ODD_COUNT + 1
+      END IF
+    END IF
+
+    // Read the next number for the next iteration
+    WRITE "Enter another number (or 9999 to finish):"
+    READ NUMBER_READ
+  END WHILE
+
+  // --- Display Results ---
+  WRITE "\n--- Analysis Results ---"
+  WRITE "Total Even Numbers: ", EVEN_COUNT
+  WRITE "Total Odd Numbers: ", ODD_COUNT
+
+END
