@@ -1,0 +1,97 @@
+INÍCIO
+
+  // Constante sentinela para a matrícula
+  MATRICULA_SENTINELA = 9999
+
+  // Variáveis para a entrada de dados de cada aluno
+  MATRICULA
+  NOTA1
+  NOTA2
+  NOTA3
+
+  // Variáveis para os cálculos
+  MEDIA_FINAL
+  
+  // Contadores para o resumo final
+  TOTAL_APROVADOS = 0
+  TOTAL_REPROVADOS = 0
+  TOTAL_ALUNOS_TURMA = 0
+
+  ESCREVER "Olá! Vamos calcular as médias finais dos alunos."
+  ESCREVER "Para encerrar a entrada de dados, digite 9999 na Matrícula."
+
+  // --- Início do Loop de Leitura de Dados dos Alunos ---
+  REPITA
+    ESCREVER "\n--- Dados do Aluno ---"
+    ESCREVER "Digite a matrícula do aluno (ou 9999 para finalizar):"
+    LER MATRICULA
+
+    // Verifica a condição de saída do loop (sentinela)
+    SE MATRICULA = MATRICULA_SENTINELA ENTÃO
+      QUEBRAR_LOOP // Sai do loop
+    FIM SE
+
+    // Validação da Matrícula (apenas verifica se é inteiro e positivo, exceto a sentinela)
+    SE MATRICULA < 0 OU TIPO_DE_DADO(MATRICULA) <> INTEIRO ENTÃO
+        ESCREVER "Matrícula inválida. Digite um número inteiro não negativo (ou 9999 para finalizar)."
+        CONTINUAR_PROXIMA_ITERACAO
+    FIM SE
+
+    // --- Leitura e Validação da Nota 1 ---
+    REPITA
+      ESCREVER "Digite a Nota 1 (peso 2):"
+      LER NOTA1
+      SE NOTA1 < 0 OU NOTA1 > 10 OU TIPO_DE_DADO(NOTA1) <> NUMERICO ENTÃO
+        ESCREVER "Nota 1 inválida. Digite um valor numérico entre 0 e 10."
+      FIM SE
+    ATÉ NOTA1 >= 0 E NOTA1 <= 10 E TIPO_DE_DADO(NOTA1) = NUMERICO
+
+    // --- Leitura e Validação da Nota 2 ---
+    REPITA
+      ESCREVER "Digite a Nota 2 (peso 3):"
+      LER NOTA2
+      SE NOTA2 < 0 OU NOTA2 > 10 OU TIPO_DE_DADO(NOTA2) <> NUMERICO ENTÃO
+        ESCREVER "Nota 2 inválida. Digite um valor numérico entre 0 e 10."
+      FIM SE
+    ATÉ NOTA2 >= 0 E NOTA2 <= 10 E TIPO_DE_DADO(NOTA2) = NUMERICO
+
+    // --- Leitura e Validação da Nota 3 ---
+    REPITA
+      ESCREVER "Digite a Nota 3 (peso 4):"
+      LER NOTA3
+      SE NOTA3 < 0 OU NOTA3 > 10 OU TIPO_DE_DADO(NOTA3) <> NUMERICO ENTÃO
+        ESCREVER "Nota 3 inválida. Digite um valor numérico entre 0 e 10."
+      FIM SE
+    ATÉ NOTA3 >= 0 E NOTA3 <= 10 E TIPO_DE_DADO(NOTA3) = NUMERICO
+
+    // --- Processamento dos Dados do Aluno ---
+    TOTAL_ALUNOS_TURMA = TOTAL_ALUNOS_TURMA + 1 // Incrementa o total de alunos
+
+    // Cálculo da Média Final
+    MEDIA_FINAL = ((2 * NOTA1) + (3 * NOTA2) + (4 * NOTA3)) / 9
+
+    // Determinar a situação do aluno e atualizar contadores
+    SE MEDIA_FINAL >= 5 THEN
+      ESCREVER "Matrícula: ", MATRICULA, ", Média Final: ", FORMATAR_NUMERO(MEDIA_FINAL, 2), " - APROVADO"
+      TOTAL_APROVADOS = TOTAL_APROVADOS + 1
+    SENÃO
+      ESCREVER "Matrícula: ", MATRICULA, ", Média Final: ", FORMATAR_NUMERO(MEDIA_FINAL, 2), " - REPROVADO"
+      TOTAL_REPROVADOS = TOTAL_REPROVADOS + 1
+    FIM SE
+
+  ATÉ FALSO // O loop será quebrado explicitamente pela matrícula 9999
+
+  // --- Apresentação do Resumo Final da Turma ---
+  ESCREVER "\n--- Resumo da Turma ---"
+  ESCREVER "-----------------------"
+
+  SE TOTAL_ALUNOS_TURMA = 0 ENTÃO
+    ESCREVER "Nenhum aluno foi registrado para análise."
+  SENÃO
+    ESCREVER "Total de Alunos da Turma: ", TOTAL_ALUNOS_TURMA
+    ESCREVER "Total de Aprovados: ", TOTAL_APROVADOS
+    ESCREVER "Total de Reprovados: ", TOTAL_REPROVADOS
+  FIM SE
+  ESCREVER "-----------------------"
+
+FIM
