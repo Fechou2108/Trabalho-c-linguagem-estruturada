@@ -1,0 +1,40 @@
+def trocar_valores_variaveis():
+    """
+    Lê dois valores para as variáveis A e B, efetua a troca de seus valores
+    e apresenta os valores antes e depois da troca.
+    """
+    print("--- Troca de Valores entre Variáveis ---")
+
+    # Solicita ao usuário os valores para A e B
+    while True:
+        try:
+            # Converte a entrada para float para permitir números decimais
+            a = float(input("Digite o valor para a variável A: "))
+            break
+        except ValueError:
+            print("Entrada inválida para A. Por favor, digite um valor numérico.")
+
+    while True:
+        try:
+            b = float(input("Digite o valor para a variável B: "))
+            break
+        except ValueError:
+            print("Entrada inválida para B. Por favor, digite um valor numérico.")
+
+    # Apresenta os valores ANTES da troca
+    print("\n--- Valores ANTES da troca ---")
+    print(f"A = {a}")
+    print(f"B = {b}")
+
+    # Efetua a troca dos valores usando uma variável auxiliar
+    auxiliar = a
+    a = b
+    b = auxiliar
+
+    # Apresenta os valores DEPOIS da troca
+    print("\n--- Valores DEPOIS da troca ---")
+    print(f"A = {a}")
+    print(f"B = {b}")
+
+# Executa o algoritmo
+trocar_valores_variaveis()
