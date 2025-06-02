@@ -1,0 +1,86 @@
+INÍCIO
+
+  // Declaração das variáveis
+  CODIGO_STRING   // Para ler o código como texto
+  A, B, C, D, E   // Para armazenar cada algarismo como número inteiro
+  S               // Para armazenar a soma ponderada
+  DIGITO_V        // Para armazenar o dígito verificador
+
+  // --- Leitura do Código de Cinco Algarismos ---
+  ESCREVER "Olá! Vamos calcular o dígito verificador de um código de cinco algarismos."
+
+  REPITA
+    ESCREVER "Digite um código de cinco algarismos (ex: 12345):"
+    LER CODIGO_STRING
+
+    // Verifica se o código tem exatamente 5 caracteres
+    SE COMPRIMENTO(CODIGO_STRING) <> 5 OU NAO E_NUMERICO(CODIGO_STRING) ENTÃO
+      ESCREVER "Erro: O código deve ter exatamente 5 algarismos. Tente novamente."
+    FIM SE
+  ATÉ COMPRIMENTO(CODIGO_STRING) = 5 E E_NUMERICO(CODIGO_STRING)
+
+  // --- Extração dos Algarismos ---
+  // Converte cada caractere do código para um número inteiro
+  A = CONVERTER_PARA_INTEIRO(CARACTERE(CODIGO_STRING, 1)) // Primeiro algarismo
+  B = CONVERTER_PARA_INTEIRO(CARACTERE(CODIGO_STRING, 2)) // Segundo algarismo
+  C = CONVERTER_PARA_INTEIRO(CARACTERE(CODIGO_STRING, 3)) // Terceiro algarismo
+  D = CONVERTER_PARA_INTEIRO(CARACTERE(CODIGO_STRING, 4)) // Quarto algarismo
+  E = CONVERTER_PARA_INTEIRO(CARACTERE(CODIGO_STRING, 5)) // Quinto algarismo
+
+  // --- Cálculo da Soma Ponderada (S) ---
+  S = (6 * A) + (5 * B) + (4 * C) + (3 * D) + (2 * E)
+
+  // --- Cálculo do Dígito Verificador (DigitoV) ---
+  DIGITO_V = S MOD 7 // Resto da divisão de S por 7
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Resultados ---"
+  ESCREVER "Código lido: ", CODIGO_STRING
+  ESCREVER "Soma ponderada (S): ", S
+  ESCREVER "Dígito Verificador (DigitoV): ", DIGITO_V
+
+FIM
+
+def calcular_digito_verificador_modulo7():
+    """
+    Lê um código de cinco algarismos e gera o dígito verificador
+    módulo 7 para o mesmo, usando a fórmula S = 6*A + 5*B + 4*C + 3*D + 2*E.
+    """
+    print("--- Calculadora de Dígito Verificador Módulo 7 ---")
+
+    # --- Leitura do Código de Cinco Algarismos com Validação ---
+    codigo_str = ""
+    while True:
+        codigo_str = input("Digite um código de cinco algarismos (ex: 12345): ").strip()
+
+        if len(codigo_str) != 5:
+            print("Erro: O código deve ter exatamente 5 algarismos.")
+        elif not codigo_str.isdigit(): # Verifica se todos os caracteres são dígitos
+            print("Erro: O código deve conter apenas algarismos numéricos.")
+        else:
+            break # Sai do loop se a entrada for válida
+
+    # --- Extração dos Algarismos ---
+    # Converte cada caractere do código para um número inteiro
+    # Ex: '12345' -> A=1, B=2, C=3, D=4, E=5
+    A = int(codigo_str[0])
+    B = int(codigo_str[1])
+    C = int(codigo_str[2])
+    D = int(codigo_str[3])
+    E = int(codigo_str[4])
+
+    # --- Cálculo da Soma Ponderada (S) ---
+    S = (6 * A) + (5 * B) + (4 * C) + (3 * D) + (2 * E)
+
+    # --- Cálculo do Dígito Verificador (DigitoV) ---
+    # O operador '%' em Python retorna o resto da divisão
+    digito_v = S % 7
+
+    # --- Apresentação dos Resultados ---
+    print("\n--- Resultados ---")
+    print(f"Código lido: {codigo_str}")
+    print(f"Soma ponderada (S = 6*{A} + 5*{B} + 4*{C} + 3*{D} + 2*{E}): {S}")
+    print(f"Dígito Verificador (DigitoV = {S} % 7): {digito_v}")
+
+# Executa o algoritmo
+calcular_digito_verificador_modulo7()
