@@ -1,0 +1,91 @@
+INÍCIO
+
+  // Variáveis para entrada
+  QUANTIDADE_FUNCIONARIOS
+  NOME_FUNCIONARIO
+  SALARIO_FUNCIONARIO
+
+  // Variáveis para cálculos e resultados
+  SOMA_SALARIOS = 0.0
+  MEDIA_SALARIOS = 0.0
+  SALARIO_MAIS_ALTO = -1.0  // Inicializa com um valor que será facilmente superado
+  SALARIO_MAIS_BAIXO = -1.0 // Inicializa com um valor que será facilmente superado (ou primeiro salário)
+
+  // Armazenar detalhes para exibição
+  NOME_SALARIO_MAIS_ALTO = ""
+  NOME_SALARIO_MAIS_BAIXO = ""
+  LISTA_FUNCIONARIOS = [] // Opcional: para listar todos os funcionários e salários no final
+
+  // --- Entrada: Quantidade de Funcionários ---
+  ESCREVER "Olá! Vamos calcular a média salarial da sua empresa."
+
+  REPITA
+    ESCREVER "Digite a quantidade de funcionários na empresa:"
+    LER QUANTIDADE_FUNCIONARIOS
+    SE QUANTIDADE_FUNCIONARIOS <= 0 ENTÃO
+      ESCREVER "A quantidade de funcionários deve ser um número inteiro positivo. Tente novamente."
+    FIM SE
+  ATÉ QUANTIDADE_FUNCIONARIOS > 0
+
+  // --- Loop para Ler Dados de Cada Funcionário ---
+  PARA I DE 1 ATÉ QUANTIDADE_FUNCIONARIOS FAÇA
+    ESCREVER "\n--- Funcionário ", I, " ---"
+    ESCREVER "Digite o nome do funcionário:"
+    LER NOME_FUNCIONARIO
+
+    REPITA
+      ESCREVER "Digite o salário de ", NOME_FUNCIONARIO, " (R$):"
+      LER SALARIO_FUNCIONARIO
+      SE SALARIO_FUNCIONARIO < 0 ENTÃO
+        ESCREVER "O salário não pode ser negativo. Tente novamente."
+      FIM SE
+    ATÉ SALARIO_FUNCIONARIO >= 0
+
+    // --- Atualizar Soma de Salários ---
+    SOMA_SALARIOS = SOMA_SALARIOS + SALARIO_FUNCIONARIO
+
+    // --- Encontrar o Salário Mais Alto e o Mais Baixo ---
+    SE I = 1 ENTÃO // Se for o primeiro funcionário, ele é o mais alto e o mais baixo até agora
+      SALARIO_MAIS_ALTO = SALARIO_FUNCIONARIO
+      NOME_SALARIO_MAIS_ALTO = NOME_FUNCIONARIO
+      SALARIO_MAIS_BAIXO = SALARIO_FUNCIONARIO
+      NOME_SALARIO_MAIS_BAIXO = NOME_FUNCIONARIO
+    SENÃO
+      SE SALARIO_FUNCIONARIO > SALARIO_MAIS_ALTO ENTÃO
+        SALARIO_MAIS_ALTO = SALARIO_FUNCIONARIO
+        NOME_SALARIO_MAIS_ALTO = NOME_FUNCIONARIO
+      FIM SE
+      SE SALARIO_FUNCIONARIO < SALARIO_MAIS_BAIXO ENTÃO
+        SALARIO_MAIS_BAIXO = SALARIO_FUNCIONARIO
+        NOME_SALARIO_MAIS_BAIXO = NOME_FUNCIONARIO
+      FIM SE
+    FIM SE
+
+    // Opcional: Adicionar à lista de funcionários
+    ADICIONAR { "nome": NOME_FUNCIONARIO, "salario": SALARIO_FUNCIONARIO } A LISTA_FUNCIONARIOS
+  FIM PARA
+
+  // --- Cálculo da Média ---
+  SE QUANTIDADE_FUNCIONARIOS > 0 ENTÃO // Evita divisão por zero
+    MEDIA_SALARIOS = SOMA_SALARIOS / QUANTIDADE_FUNCIONARIOS
+  FIM SE
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Relatório Salarial da Empresa ---"
+  ESCREVER "Quantidade de Funcionários Processados: ", QUANTIDADE_FUNCIONARIOS
+
+  // Opcional: Imprimir lista de funcionários e salários
+  SE TAMANHO(LISTA_FUNCIONARIOS) > 0 ENTÃO
+    ESCREVER "\nDetalhes dos Funcionários:"
+    PARA CADA FUNCIONARIO EM LISTA_FUNCIONARIOS FAÇA
+      ESCREVER "  ", FUNCIONARIO.nome, ": R$", FORMATAR_NUMERO(FUNCIONARIO.salario, 2)
+    FIM PARA
+  FIM SE
+
+  ESCREVER "\n------------------------------------"
+  ESCREVER "Média de Salários da Empresa: R$", FORMATAR_NUMERO(MEDIA_SALARIOS, 2)
+  ESCREVER "Salário Mais Alto: R$", FORMATAR_NUMERO(SALARIO_MAIS_ALTO, 2), " (", NOME_SALARIO_MAIS_ALTO, ")"
+  ESCREVER "Salário Mais Baixo: R$", FORMATAR_NUMERO(SALARIO_MAIS_BAIXO, 2), " (", NOME_SALARIO_MAIS_BAIXO, ")"
+  ESCREVER "------------------------------------"
+
+FIM
