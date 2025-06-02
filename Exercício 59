@@ -1,0 +1,34 @@
+INÍCIO
+
+  // Variáveis para armazenar os termos da série
+  TERMO_ATUAL
+  TERMO_ANTERIOR1 = 0 // Primeiro termo da série
+  TERMO_ANTERIOR2 = 1 // Segundo termo da série
+
+  // Definir o número de termos a serem gerados
+  NUMERO_DE_TERMOS = 20
+
+  ESCREVER "Olá! Vamos gerar a Série de Fibonacci até o 20º termo."
+  ESCREVER "\n--- Série de Fibonacci ---"
+
+  // Caso especial para o primeiro termo (0)
+  SE NUMERO_DE_TERMOS >= 1 ENTÃO
+    ESCREVER TERMO_ANTERIOR1
+  FIM SE
+
+  // Caso especial para o segundo termo (1)
+  SE NUMERO_DE_TERMOS >= 2 ENTÃO
+    ESCREVER TERMO_ANTERIOR2
+  FIM SE
+
+  // Loop para gerar os termos restantes (do 3º ao 20º)
+  PARA I DE 3 ATÉ NUMERO_DE_TERMOS FAÇA
+    TERMO_ATUAL = TERMO_ANTERIOR1 + TERMO_ANTERIOR2
+    ESCREVER TERMO_ATUAL
+
+    // Atualiza os termos anteriores para a próxima iteração
+    TERMO_ANTERIOR1 = TERMO_ANTERIOR2
+    TERMO_ANTERIOR2 = TERMO_ATUAL
+  FIM PARA
+
+FIM
