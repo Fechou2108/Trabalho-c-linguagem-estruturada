@@ -1,0 +1,40 @@
+INÍCIO
+
+  // Variáveis para armazenar os números e resultados
+  NUMERO_LIDO          // Para cada número que for lido
+  SOMA_NUMEROS = 0     // Acumulador da soma de todos os números
+  MAIOR_NUMERO = -INFINITO // Inicializa com um valor muito baixo
+  MENOR_NUMERO = +INFINITO // Inicializa com um valor muito alto
+
+  // --- Loop para Ler os 10 Números ---
+  ESCREVER "Olá! Digite 10 números inteiros."
+
+  PARA I DE 1 ATÉ 10 FAÇA
+    ESCREVER "Digite o ", I, "º número inteiro:"
+    LER NUMERO_LIDO
+
+    // --- Atualizar Soma ---
+    SOMA_NUMEROS = SOMA_NUMEROS + NUMERO_LIDO
+
+    // --- Encontrar o Maior Número ---
+    SE NUMERO_LIDO > MAIOR_NUMERO ENTÃO
+      MAIOR_NUMERO = NUMERO_LIDO
+    FIM SE
+
+    // --- Encontrar o Menor Número ---
+    SE NUMERO_LIDO < MENOR_NUMERO ENTÃO
+      MENOR_NUMERO = NUMERO_LIDO
+    FIM SE
+  FIM PARA
+
+  // --- Cálculo da Média ---
+  MEDIA = SOMA_NUMEROS / 10
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Resultados da Análise ---"
+  ESCREVER "A soma dos números é: ", SOMA_NUMEROS
+  ESCREVER "A média dos números é: ", FORMATAR_NUMERO(MEDIA, 2)
+  ESCREVER "O maior número digitado é: ", MAIOR_NUMERO
+  ESCREVER "O menor número digitado é: ", MENOR_NUMERO
+
+FIM
