@@ -1,0 +1,97 @@
+INÍCIO
+
+  // Variáveis para a entrada de dados de cada habitante
+  IDADE               // Idade do habitante
+  SEXO                // Sexo (M/F)
+  COR_OLHOS           // Cor dos olhos (A/V/C)
+  COR_CABELOS         // Cor dos cabelos (L/C/P)
+
+  // Variáveis para os resultados da análise
+  MAIOR_IDADE = -INFINITO                 // a) Inicializa com um valor muito baixo
+  CONT_FEMININO_18_A_35 = 0               // b) Contador para mulheres entre 18 e 35 anos
+  CONT_OLHOS_VERDES_CABELOS_LOUROS = 0    // c) Contador para olhos verdes e cabelos louros
+
+  ESCREVER "Olá! Vamos analisar as características físicas da população."
+  ESCREVER "Para encerrar a entrada de dados, digite -1 na idade."
+
+  // --- Início do Loop de Leitura de Dados dos Habitantes ---
+  REPITA
+    ESCREVER "\n--- Dados do Habitante ---"
+    ESCREVER "Digite a idade (ou -1 para finalizar):"
+    LER IDADE
+
+    // Verifica a condição de saída do loop (sentinela)
+    SE IDADE = -1 ENTÃO
+      QUEBRAR_LOOP // Sai do loop se a idade for -1
+    FIM SE
+
+    // --- Validação da Idade (já sabemos que é não negativa se não for sentinela) ---
+    SE IDADE < 0 OU TIPO_DE_DADO(IDADE) <> INTEIRO ENTÃO // Se for diferente de -1 e negativo, ou não inteiro
+      ESCREVER "Idade inválida. Por favor, digite um número inteiro não negativo (ou -1 para finalizar)."
+      CONTINUAR_PROXIMA_ITERACAO // Pula para a próxima iteração do loop
+    FIM SE
+
+    // --- Leitura e Validação do Sexo ---
+    REPITA
+      ESCREVER "Digite o sexo (M para Masculino, F para Feminino):"
+      LER SEXO
+      SEXO = MAIUSCULAS(SEXO) // Converte para maiúsculas
+      SE SEXO <> "M" E SEXO <> "F" ENTÃO
+        ESCREVER "Sexo inválido. Digite 'M' ou 'F'."
+      FIM SE
+    ATÉ SEXO = "M" OU SEXO = "F"
+
+    // --- Leitura e Validação da Cor dos Olhos ---
+    REPITA
+      ESCREVER "Digite a cor dos olhos (A=Azuis, V=Verdes, C=Castanhos):"
+      LER COR_OLHOS
+      COR_OLHOS = MAIUSCULAS(COR_OLHOS) // Converte para maiúsculas
+      SE COR_OLHOS <> "A" E COR_OLHOS <> "V" E COR_OLHOS <> "C" ENTÃO
+        ESCREVER "Cor dos olhos inválida. Digite 'A', 'V' ou 'C'."
+      FIM SE
+    ATÉ COR_OLHOS = "A" OU COR_OLHOS = "V" OU COR_OLHOS = "C"
+
+    // --- Leitura e Validação da Cor dos Cabelos ---
+    REPITA
+      ESCREVER "Digite a cor dos cabelos (L=Louros, C=Castanhos, P=Pretos):"
+      LER COR_CABELOS
+      COR_CABELOS = MAIUSCULAS(COR_CABELOS) // Converte para maiúsculas
+      SE COR_CABELOS <> "L" E COR_CABELOS <> "C" E COR_CABELOS <> "P" ENTÃO
+        ESCREVER "Cor dos cabelos inválida. Digite 'L', 'C' ou 'P'."
+      FIM SE
+    ATÉ COR_CABELOS = "L" OU COR_CABELOS = "C" OU COR_CABELOS = "P"
+
+    // --- Processamento dos Dados Válidos ---
+
+    // a) Maior idade dos habitantes
+    SE IDADE > MAIOR_IDADE ENTÃO
+      MAIOR_IDADE = IDADE
+    FIM SE
+
+    // b) Quantidade de mulheres com idade entre 18 e 35 anos (inclusive)
+    SE SEXO = "F" E IDADE >= 18 E IDADE <= 35 ENTÃO
+      CONT_FEMININO_18_A_35 = CONT_FEMININO_18_A_35 + 1
+    FIM SE
+
+    // c) Quantidade de indivíduos que tenham olhos verdes e cabelos louros
+    SE COR_OLHOS = "V" E COR_CABELOS = "L" ENTÃO
+      CONT_OLHOS_VERDES_CABELOS_LOUROS = CONT_OLHOS_VERDES_CABELOS_LOUROS + 1
+    FIM SE
+
+  ATÉ FALSO // O loop será quebrado explicitamente pela idade -1
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Relatório da Pesquisa de Características Físicas ---"
+  ESCREVER "--------------------------------------------------------"
+
+  // Verifica se algum dado válido foi inserido
+  SE MAIOR_IDADE = -INFINITO ENTÃO // Se maior idade permaneceu no valor inicial, nenhum dado válido foi inserido
+    ESCREVER "Nenhum dado válido de habitante foi registrado para análise."
+  SENÃO
+    ESCREVER "a) Maior idade dos habitantes: ", MAIOR_IDADE, " anos"
+    ESCREVER "b) Quantidade de mulheres com idade entre 18 e 35 anos: ", CONT_FEMININO_18_A_35
+    ESCREVER "c) Quantidade de indivíduos com olhos verdes e cabelos louros: ", CONT_OLHOS_VERDES_CABELOS_LOUROS
+  FIM SE
+  ESCREVER "--------------------------------------------------------"
+
+FIM
