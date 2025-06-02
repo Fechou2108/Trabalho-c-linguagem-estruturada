@@ -1,0 +1,113 @@
+INÍCIO
+
+  // Variável para armazenar o código de matrícula como string para facilitar a extração de partes
+  CODIGO_MATRICULA_STR
+  ANO_MATRICULA_COMPLETO // Ano completo (ex: 2023)
+  SEMESTRE_MATRICULA
+  ORDEM_MATRICULA // (Não é pedido para imprimir, mas pode ser extraído se necessário)
+
+  // --- Leitura do Código de Matrícula ---
+  ESCREVER "Olá! Vamos decodificar um código de matrícula de aluno."
+
+  REPITA
+    ESCREVER "Digite o código de matrícula (formato AASDDD, ex: 2310123):"
+    LER CODIGO_MATRICULA_STR
+
+    // Validações básicas do formato:
+    // 1. Deve ter 7 caracteres
+    // 2. Deve ser composto apenas por dígitos
+    // 3. O terceiro dígito (semestre) deve ser '1' ou '2'
+    SE COMPRIMENTO(CODIGO_MATRICULA_STR) <> 7 OU NAO E_NUMERICO(CODIGO_MATRICULA_STR) ENTÃO
+      ESCREVER "Erro: O código de matrícula deve ter exatamente 7 algarismos numéricos."
+    SENÃO SE CARACTERE(CODIGO_MATRICULA_STR, 3) <> '1' E CARACTERE(CODIGO_MATRICULA_STR, 3) <> '2' ENTÃO
+      ESCREVER "Erro: O terceiro algarismo (semestre) deve ser '1' ou '2'."
+    FIM SE
+  ATÉ COMPRIMENTO(CODIGO_MATRICULA_STR) = 7 E E_NUMERICO(CODIGO_MATRICULA_STR) E (CARACTERE(CODIGO_MATRICULA_STR, 3) = '1' OU CARACTERE(CODIGO_MATRICULA_STR, 3) = '2')
+
+  // --- Extração e Decodificação ---
+
+  // Extrai os dois primeiros dígitos (AA) e converte para inteiro
+  // Ex: "23" de "2310123"
+  ULTIMOS_DOIS_DIGITOS_ANO = CONVERTER_PARA_INTEIRO(SUBSTRING(CODIGO_MATRICULA_STR, 1, 2))
+
+  // Converte para o ano completo (supondo século 21 para anos < 50, e século 20 para anos >= 50)
+  // Ou, mais simples para este problema, apenas o AA é o suficiente se a pergunta for apenas "ano AA"
+  // Se for para gerar o ano completo, a lógica é:
+  SE ULTIMOS_DOIS_DIGITOS_ANO <= ANO_ATUAL_ULTIMOS_DOIS_DIGITOS ENTÃO // Ex: se 23 e estamos em 2025, então 2023
+      ANO_MATRICULA_COMPLETO = 2000 + ULTIMOS_DOIS_DIGITOS_ANO
+  SENAO // Ex: se 98 e estamos em 2025, então 1998
+      ANO_MATRICULA_COMPLETO = 1900 + ULTIMOS_DOIS_DIGITOS_ANO
+  FIM SE
+  // OU, para simplificar e apenas exibir "Ano: AA", basta usar ULTIMOS_DOIS_DIGITOS_ANO
+
+  // Extrai o terceiro dígito (S) e converte para inteiro
+  // Ex: "1" de "2310123"
+  SEMESTRE_MATRIC
+
+def decodificar_matricula():
+    """
+    Lê um código de matrícula no formato AASDDD e imprime o ano e o semestre
+    em que o aluno foi matriculado.
+    """
+    print("--- Decodificador de Código de Matrícula ---")
+
+    codigo_matricula_str = ""
+    while True:
+        codigo_matricula_str = input("Digite o código de matrícula (formato AASDDD, ex: 2310123): ").strip()
+
+        # Validações:
+        # 1. Tamanho do código
+        if len(codigo_matricula_str) != 7:
+            print("Erro: O código de matrícula deve ter exatamente 7 algarismos.")
+        # 2. Se é composto apenas por dígitos
+        elif not codigo_matricula_str.isdigit():
+            print("Erro: O código de matrícula deve conter apenas algarismos numéricos.")
+        # 3. Validação do terceiro dígito (semestre)
+        elif codigo_matricula_str[2] not in ['1', '2']:
+            print("Erro: O terceiro algarismo (semestre) deve ser '1' ou '2'.")
+        else:
+            break # Sai do loop se todas as validações passarem
+
+    # --- Extração e Decodificação ---
+
+    # Extrai os dois primeiros dígitos (AA) e converte para inteiro
+    # Ex: "23" de "2310123" -> 23
+    ultimos_dois_digitos_ano = int(codigo_matricula_str[0:2])
+
+    # Para obter o ano completo, podemos assumir o século 20 ou 21.
+    # Por exemplo, se o ano atual (2025) termina em 25, e a matrícula é '23', é 2023.
+    # Se a matrícula é '98', é 1998.
+    # Usando o ano atual do sistema (2025) para a lógica de século
+    import datetime
+    ano_atual_completo = datetime.datetime.now().year
+    ultimos_dois_digitos_ano_atual = ano_atual_completo % 100
+
+    if ultimos_dois_digitos_ano <= ultimos_dois_digitos_ano_atual:
+        # Se 23 e ano atual é 2025, então 2023. Ou 98 e ano atual 2025, então 1998.
+        # Esta lógica pode precisar de ajuste dependendo da janela de anos esperada.
+        # Uma simplificação é considerar apenas o século atual (2000s)
+        ano_matricula_completo = 2000 + ultimos_dois_digitos_ano
+    else:
+        # Ex: se 98 e ano atual é 2025, assumimos que é 1998
+        ano_matricula_completo = 1900 + ultimos_dois_digitos_ano
+
+    # Extrai o terceiro dígito (S) e converte para inteiro
+    # Ex: "1" de "2310123" -> 1
+    semestre_matricula = int(codigo_matricula_str[2])
+
+    # Os quatro últimos dígitos (DDD) não são solicitados para impressão,
+    # mas poderiam ser extraídos assim:
+    # ordem_matricula = int(codigo_matricula_str[3:])
+
+    # --- Apresentação dos Resultados ---
+    print("\n--- Informações da Matrícula Decodificadas ---")
+    print(f"Código de Matrícula Lido: {codigo_matricula_str}")
+    print(f"Ano da Matrícula: {ano_matricula_completo}")
+
+    if semestre_matricula == 1:
+        print("Semestre da Matrícula: 1º Semestre")
+    else:
+        print("Semestre da Matrícula: 2º Semestre")
+
+# Executa o algoritmo
+decodificar_matricula()
