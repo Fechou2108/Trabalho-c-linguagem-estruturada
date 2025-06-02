@@ -1,0 +1,63 @@
+def algoritmo_vestibular():
+    """
+    Algoritmo para processar dados de candidatos de um concurso vestibular.
+    Coleta nome e notas, calcula a média e verifica a aprovação.
+    """
+    candidatos = []
+
+    while True:
+        print("\n--- Cadastro de Candidato ---")
+        nome = input("Digite o nome do candidato (ou 'sair' para finalizar): ").strip()
+        if nome.lower() == 'sair':
+            break
+
+        try:
+            portugues = float(input("Digite a nota de Português: "))
+            matematica = float(input("Digite a nota de Matemática: "))
+            conhecimentos_gerais = float(input("Digite a nota de Conhecimentos Gerais: "))
+        except ValueError:
+            print("Entrada inválida. Por favor, digite notas numéricas.")
+            continue
+
+        candidato = {
+            "nome": nome,
+            "portugues": portugues,
+            "matematica": matematica,
+            "conhecimentos_gerais": conhecimentos_gerais
+        }
+        candidatos.append(candidato)
+
+    print("\n--- Resultados dos Candidatos ---")
+    if not candidatos:
+        print("Nenhum candidato cadastrado.")
+        return
+
+    for candidato in candidatos:
+        # a) Nome e notas
+        print(f"\nNome: {candidato['nome']}")
+        print(f"Notas:")
+        print(f"  Português: {candidato['portugues']:.2f}")
+        print(f"  Matemática: {candidato['matematica']:.2f}")
+        print(f"  Conhecimentos Gerais: {candidato['conhecimentos_gerais']:.2f}")
+
+        # b) Média do candidato
+        media = (candidato['portugues'] + candidato['matematica'] + candidato['conhecimentos_gerais']) / 3
+        print(f"Média: {media:.2f}")
+
+        # c) Informação de aprovação
+        aprovado = False
+        if media > 7.0 and \
+           candidato['portugues'] >= 5.0 and \
+           candidato['matematica'] >= 5.0 and \
+           candidato['conhecimentos_gerais'] >= 5.0:
+            aprovado = True
+
+        if aprovado:
+            print("Situação: Aprovado")
+        else:
+            print("Situação: Reprovado")
+
+        print("-" * 30) # Separador
+
+# Executar o algoritmo
+algoritmo_vestibular()
