@@ -1,0 +1,33 @@
+def calcular_quadrado_e_cubo():
+    """
+    Lê um valor inteiro do usuário e apresenta os resultados
+    do seu quadrado e do seu cubo.
+    """
+    print("--- Calculadora de Quadrado e Cubo ---")
+
+    # --- Leitura do Valor Inteiro com Validação ---
+    while True:
+        try:
+            valor_inteiro = int(input("Por favor, digite um valor inteiro: "))
+            break # Sai do loop se a entrada for um inteiro válido
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um NÚMERO INTEIRO.")
+
+    # --- Cálculo do Quadrado ---
+    quadrado = valor_inteiro * valor_inteiro
+    # Alternativamente, você pode usar o operador de potência:
+    # quadrado = valor_inteiro ** 2
+
+    # --- Cálculo do Cubo ---
+    cubo = valor_inteiro * valor_inteiro * valor_inteiro
+    # Alternativamente, você pode usar o operador de potência:
+    # cubo = valor_inteiro ** 3
+
+    # --- Apresentação dos Resultados ---
+    print("\n--- Resultados ---")
+    print(f"O valor digitado foi: {valor_inteiro}")
+    print(f"O quadrado de {valor_inteiro} é: {quadrado}")
+    print(f"O cubo de {valor_inteiro} é: {cubo}")
+
+# Executa o algoritmo
+calcular_quadrado_e_cubo()
