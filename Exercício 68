@@ -1,0 +1,107 @@
+INÍCIO
+
+  // Constante sentinela
+  SENTINELA = "-1" // Nome do hotel para finalizar a entrada
+
+  // Variáveis de entrada para cada hotel
+  NOME_HOTEL
+  DISTANCIA_DO_CENTRO    // em Km
+  VISITANTES_FERIADO     // Número médio de visitantes
+  TIPO_ACESSO            // 0 = não asfaltado, 1 = asfaltado
+
+  // Variáveis para as respostas da análise
+  CONT_MAIS_DE_15KM = 0                     // a) Número de hotéis com distância > 15km
+  SOMA_VISITANTES_NAO_ASFALTADO = 0         // b) Soma de visitantes para hotéis não asfaltados
+  CONT_HOTEIS_NAO_ASFALTADO = 0             // b) Contador de hotéis não asfaltados
+  MEDIA_VISITANTES_NAO_ASFALTADO = 0.0      // b) Média de visitantes para hotéis não asfaltados
+
+  // c) Lista para armazenar nome e distância de hotéis específicos
+  LISTA_HOTEIS_ACESS_ASFALT_MENOS_1000 = [] // Armazena {nome, distancia}
+
+  ESCREVER "Olá! Vamos analisar os dados dos hotéis fazenda da região."
+  ESCREVER "Para encerrar a entrada de dados, digite '-1' no nome do hotel."
+
+  // --- Início do Loop de Leitura dos Dados dos Hotéis ---
+  REPITA
+    ESCREVER "\n--- Dados do Hotel ---"
+    ESCREVER "Digite o nome do hotel (ou -1 para finalizar):"
+    LER NOME_HOTEL
+
+    SE NOME_HOTEL = SENTINELA ENTÃO
+      QUEBRAR_LOOP // Sai do loop se a sentinela for digitada
+    FIM SE
+
+    // --- Leitura e Validação da Distância ---
+    REPITA
+      ESCREVER "Digite a distância do hotel do centro da cidade em Km:"
+      LER DISTANCIA_DO_CENTRO
+      SE DISTANCIA_DO_CENTRO <= 0 OU TIPO_DE_DADO(DISTANCIA_DO_CENTRO) <> NUMERICO ENTÃO
+        ESCREVER "Distância inválida. Digite um valor numérico positivo."
+      FIM SE
+    ATÉ DISTANCIA_DO_CENTRO > 0 E TIPO_DE_DADO(DISTANCIA_DO_CENTRO) = NUMERICO
+
+    // --- Leitura e Validação do Número de Visitantes ---
+    REPITA
+      ESCREVER "Digite o número médio de visitantes no último feriado:"
+      LER VISITANTES_FERIADO
+      SE VISITANTES_FERIADO < 0 OU TIPO_DE_DADO(VISITANTES_FERIADO) <> INTEIRO ENTÃO
+        ESCREVER "Número de visitantes inválido. Digite um número inteiro não negativo."
+      FIM SE
+    ATÉ VISITANTES_FERIADO >= 0 E TIPO_DE_DADO(VISITANTES_FERIADO) = INTEIRO
+
+    // --- Leitura e Validação do Tipo de Acesso ---
+    REPITA
+      ESCREVER "Digite o tipo de acesso (0 para não asfaltado, 1 para asfaltado):"
+      LER TIPO_ACESSO
+      SE (TIPO_ACESSO <> 0 E TIPO_ACESSO <> 1) OU TIPO_DE_DADO(TIPO_ACESSO) <> INTEIRO ENTÃO
+        ESCREVER "Tipo de acesso inválido. Digite 0 ou 1."
+      FIM SE
+    ATÉ (TIPO_ACESSO = 0 OU TIPO_ACESSO = 1) E TIPO_DE_DADO(TIPO_ACESSO) = INTEIRO
+
+    // --- Processamento dos Dados para as Respostas ---
+
+    // a) Contar hotéis que distam mais de 15km
+    SE DISTANCIA_DO_CENTRO > 15 THEN
+      CONT_MAIS_DE_15KM = CONT_MAIS_DE_15KM + 1
+    FIM SE
+
+    // b) Somar visitantes e contar hotéis com acesso não asfaltado
+    SE TIPO_ACESSO = 0 THEN // Acesso não asfaltado
+      SOMA_VISITANTES_NAO_ASFALTADO = SOMA_VISITANTES_NAO_ASFALTADO + VISITANTES_FERIADO
+      CONT_HOTEIS_NAO_ASFALTADO = CONT_HOTEIS_NAO_ASFALTADO + 1
+    FIM SE
+
+    // c) Identificar hotéis com acesso asfaltado e < 1000 visitantes
+    SE TIPO_ACESSO = 1 E VISITANTES_FERIADO < 1000 THEN
+      ADICIONAR { "nome": NOME_HOTEL, "distancia": DISTANCIA_DO_CENTRO } A LISTA_HOTEIS_ACESS_ASFALT_MENOS_1000
+    FIM SE
+
+  ATÉ FALSO // Este loop será quebrado explicitamente pela sentinela
+  // OU: ENQUANTO NOME_HOTEL <> SENTINELA FAÇA - se a leitura da sentinela for antes do corpo do loop
+
+  // --- Cálculo da Média de Visitantes Não Asfaltados (b) ---
+  SE CONT_HOTEIS_NAO_ASFALTADO > 0 ENTÃO
+    MEDIA_VISITANTES_NAO_ASFALTADO = SOMA_VISITANTES_NAO_ASFALTADO / CONT_HOTEIS_NAO_ASFALTADO
+  SENÃO
+    MEDIA_VISITANTES_NAO_ASFALTADO = 0 // Ou indicar que não há dados
+  FIM SE
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Relatório da Análise de Hotéis Fazenda ---"
+  ESCREVER "------------------------------------------------"
+
+  ESCREVER "\na) Número de hotéis que distam mais de 15km do centro: ", CONT_MAIS_DE_15KM, " hotéis"
+
+  ESCREVER "\nb) Quantidade média de visitantes em hotéis com acesso NÃO asfaltado: ", FORMATAR_NUMERO(MEDIA_VISITANTES_NAO_ASFALTADO, 2)
+
+  ESCREVER "\nc) Hotéis com acesso asfaltado que tiveram menos de 1.000 visitantes:"
+  SE TAMANHO(LISTA_HOTEIS_ACESS_ASFALT_MENOS_1000) > 0 ENTÃO
+    PARA CADA HOTEL_INFO EM LISTA_HOTEIS_ACESS_ASFALT_MENOS_1000 FAÇA
+      ESCREVER "  Nome: ", HOTEL_INFO.nome, ", Distância: ", FORMATAR_NUMERO(HOTEL_INFO.distancia, 1), " Km"
+    FIM PARA
+  SENÃO
+    ESCREVER "  Nenhum hotel encontrado nesta categoria."
+  FIM SE
+  ESCREVER "------------------------------------------------"
+
+FIM
