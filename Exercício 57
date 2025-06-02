@@ -1,0 +1,42 @@
+INÍCIO
+
+  // Constante para a meia-vida do material
+  TEMPO_MEIA_VIDA = 50 // segundos
+
+  // Variáveis para a massa e tempo
+  MASSA_INICIAL      // Massa em gramas fornecida pelo usuário
+  MASSA_ATUAL
+  TEMPO_TOTAL = 0    // Tempo total em segundos
+  CICLOS_DECAIMENTO = 0 // Contador de ciclos de 50 segundos
+
+  // --- Entrada da Massa Inicial ---
+  ESCREVER "Olá! Vamos calcular o tempo para um material radioativo decair."
+
+  REPITA
+    ESCREVER "Digite a massa inicial do material em gramas (deve ser > 0.05):"
+    LER MASSA_INICIAL
+    SE MASSA_INICIAL <= 0.05 ENTÃO
+      ESCREVER "A massa inicial deve ser maior que 0.05 gramas para que haja decaimento. Tente novamente."
+    FIM SE
+  ATÉ MASSA_INICIAL > 0.05
+
+  // Inicializa a massa atual com a massa inicial
+  MASSA_ATUAL = MASSA_INICIAL
+
+  // --- Loop de Decaimento ---
+  // Continua dividindo a massa pela metade até que ela seja menor que 0.05
+  ENQUANTO MASSA_ATUAL >= 0.05 FAÇA
+    MASSA_ATUAL = MASSA_ATUAL / 2.0  // Reduz a massa pela metade
+    TEMPO_TOTAL = TEMPO_TOTAL + TEMPO_MEIA_VIDA // Adiciona o tempo da meia-vida
+    CICLOS_DECAIMENTO = CICLOS_DECAIMENTO + 1 // Incrementa o contador de ciclos
+  FIM ENQUANTO
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Resultado do Decaimento ---"
+  ESCREVER "Massa Inicial: ", FORMATAR_NUMERO(MASSA_INICIAL, 4), " gramas"
+  ESCREVER "Massa Final (aproximada, menor que 0.05g): ", FORMATAR_NUMERO(MASSA_ATUAL, 4), " gramas"
+  ESCREVER "Tempo de Meia-Vida do Material: ", TEMPO_MEIA_VIDA, " segundos"
+  ESCREVER "Número de Ciclos de Decaimento (meias-vidas): ", CICLOS_DECAIMENTO
+  ESCREVER "Tempo Total Necessário: ", TEMPO_TOTAL, " segundos"
+
+FIM
