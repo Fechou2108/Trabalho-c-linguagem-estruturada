@@ -1,0 +1,56 @@
+INÍCIO
+
+  // Variáveis de entrada
+  N      // Número de termos
+  A1     // Primeiro termo
+  R      // Razão da progressão
+
+  // Variáveis de controle e cálculo
+  TERMO_ATUAL // Para gerar cada termo da PA
+  SOMA_TERMOS = 0 // Acumulador da soma
+
+  ESCREVER "Olá! Vamos gerar e somar os termos de uma Progressão Aritmética."
+
+  // --- Leitura e Validação de N (Número de Termos) ---
+  REPITA
+    ESCREVER "Digite o número de termos (N - um inteiro positivo):"
+    LER N
+    SE N <= 0 OU TIPO_DE_DADO(N) <> INTEIRO ENTÃO
+      ESCREVER "Entrada inválida. N deve ser um número inteiro positivo."
+    FIM SE
+  ATÉ N > 0 E TIPO_DE_DADO(N) = INTEIRO
+
+  // --- Leitura de A1 (Primeiro Termo) ---
+  REPITA
+    ESCREVER "Digite o primeiro termo da progressão (A1):"
+    LER A1
+    SE TIPO_DE_DADO(A1) <> NUMERICO ENTÃO
+      ESCREVER "Entrada inválida. A1 deve ser um valor numérico."
+    FIM SE
+  ATÉ TIPO_DE_DADO(A1) = NUMERICO
+
+  // --- Leitura de R (Razão) ---
+  REPITA
+    ESCREVER "Digite a razão da progressão (R):"
+    LER R
+    SE TIPO_DE_DADO(R) <> NUMERICO ENTÃO
+      ESCREVER "Entrada inválida. R deve ser um valor numérico."
+    FIM SE
+  ATÉ TIPO_DE_DADO(R) = NUMERICO
+
+  // --- Geração e Soma dos Termos ---
+  ESCREVER "\n--- Termos da Progressão Aritmética ---"
+  TERMO_ATUAL = A1 // Começa com o primeiro termo
+
+  PARA I DE 1 ATÉ N FAÇA
+    ESCREVER "Termo ", I, ": ", TERMO_ATUAL
+    SOMA_TERMOS = SOMA_TERMOS + TERMO_ATUAL // Adiciona o termo atual à soma
+    TERMO_ATUAL = TERMO_ATUAL + R          // Calcula o próximo termo
+  FIM PARA
+
+  // --- Apresentação da Soma ---
+  ESCREVER "\n----------------------------------------"
+  ESCREVER "A soma dos ", N, " termos da progressão é: ", SOMA_TERMOS
+  ESCREVER "----------------------------------------"
+
+FIM
