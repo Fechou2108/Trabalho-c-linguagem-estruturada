@@ -1,0 +1,56 @@
+def gerar_relatorio_comissoes():
+    """
+    Gera um relatório de vendas e comissões para três corretores,
+    calculando a comissão com base no valor da venda e o total de vendas da empresa.
+    """
+    corretores_dados = []
+    total_vendas_empresa = 0.0
+
+    print("--- Entrada de Dados dos Corretores ---")
+    for i in range(3): # Loop para os três corretores
+        print(f"\nCorretor {i + 1}:")
+        nome_corretor = input("Digite o nome do corretor: ").strip()
+
+        while True:
+            try:
+                valor_venda = float(input("Digite o valor da venda (R$): "))
+                if valor_venda < 0:
+                    print("O valor da venda não pode ser negativo. Tente novamente.")
+                else:
+                    break
+            except ValueError:
+                print("Entrada inválida. Por favor, digite um valor numérico para a venda.")
+
+        comissao = 0.0
+        if valor_venda > 50000.00:
+            comissao = valor_venda * 0.12  # 12%
+        elif 30000.00 <= valor_venda <= 50000.00:
+            comissao = valor_venda * 0.095 # 9.5%
+        else:
+            comissao = valor_venda * 0.07  # 7%
+
+        # Adiciona o valor da venda do corretor ao total da empresa
+        total_vendas_empresa += valor_venda
+
+        # Armazena os dados do corretor
+        corretores_dados.append({
+            "nome": nome_corretor,
+            "valor_venda": valor_venda,
+            "comissao": comissao
+        })
+
+    print("\n--- Relatório de Vendas e Comissões ---")
+    if not corretores_dados:
+        print("Nenhum dado de corretor foi inserido.")
+        return
+
+    for corretor in corretores_dados:
+        print(f"\nCorretor: {corretor['nome']}")
+        print(f"  Valor da Venda: R$ {corretor['valor_venda']:.2f}")
+        print(f"  Comissão: R$ {corretor['comissao']:.2f}")
+        print("-" * 20) # Separador
+
+    print(f"\nTotal de Vendas da Empresa: R$ {total_vendas_empresa:.2f}")
+
+# Executa o algoritmo
+gerar_relatorio_comissoes()
