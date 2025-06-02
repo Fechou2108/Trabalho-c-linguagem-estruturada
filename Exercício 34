@@ -1,0 +1,50 @@
+INÍCIO
+
+  // Variáveis para armazenar o total de vendas da empresa
+  TOTAL_VENDAS_EMPRESA = 0
+
+  // Estrutura para armazenar os dados de cada corretor
+  CORRETORES = []
+
+  // Loop para processar os três corretores
+  PARA I DE 1 ATÉ 3 FAÇA
+    // Solicita o nome do corretor
+    LER NOME_CORRETOR
+
+    // Solicita o valor da venda
+    LER VALOR_VENDA
+
+    // Calcula a comissão com base nas regras
+    SE VALOR_VENDA > 50000.00 ENTÃO
+      COMISSAO = VALOR_VENDA * 0.12
+    SENÃO SE VALOR_VENDA >= 30000.00 E VALOR_VENDA <= 50000.00 ENTÃO
+      COMISSAO = VALOR_VENDA * 0.095
+    SENÃO
+      COMISSAO = VALOR_VENDA * 0.07
+    FIM SE
+
+    // Adiciona o valor da venda do corretor ao total de vendas da empresa
+    TOTAL_VENDAS_EMPRESA = TOTAL_VENDAS_EMPRESA + VALOR_VENDA
+
+    // Armazena os dados do corretor em uma estrutura (ex: dicionário ou registro)
+    CORRETOR = {
+      "nome": NOME_CORRETOR,
+      "valor_venda": VALOR_VENDA,
+      "comissao": COMISSAO
+    }
+    ADICIONAR CORRETOR A CORRETORES
+  FIM PARA
+
+  // Gera o relatório
+  ESCREVER "--- Relatório de Vendas e Comissões ---"
+
+  PARA CADA CORRETOR EM CORRETORES FAÇA
+    ESCREVER "Corretor:", CORRETOR.nome
+    ESCREVER "  Valor da Venda: R$", FORMATAR_NUMERO(CORRETOR.valor_venda, 2)
+    ESCREVER "  Comissão: R$", FORMATAR_NUMERO(CORRETOR.comissao, 2)
+    ESCREVER "--------------------"
+  FIM PARA
+
+  ESCREVER "Total de Vendas da Empresa: R$", FORMATAR_NUMERO(TOTAL_VENDAS_EMPRESA, 2)
+
+FIM
