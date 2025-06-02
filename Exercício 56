@@ -1,0 +1,96 @@
+INÍCIO
+
+  // Constantes
+  PRECO_DIARIA = 50.00
+  NUMERO_QUARTOS_HOTEL = 30 // Embora o número de quartos não seja diretamente usado no cálculo, é uma informação do problema.
+
+  // Variáveis para acumular o total ganho pelo hotel
+  TOTAL_GANHO_HOTEL = 0.0
+
+  // Variáveis para cada cliente
+  NOME_CLIENTE
+  NUMERO_DIARIAS_CLIENTE
+  TAXA_SERVICO_POR_DIARIA_CLIENTE
+  CUSTO_DIARIAS_BRUTO_CLIENTE
+  CUSTO_TAXA_SERVICOS_TOTAL_CLIENTE
+  TOTAL_CONTA_CLIENTE
+
+  // Lista opcional para armazenar os detalhes de cada cliente para um resumo final
+  LISTA_CLIENTES_CONTAS = []
+
+  // --- Loop para cada cliente ---
+  // Podemos imaginar que há um número indeterminado de clientes que entram no hotel,
+  // ou podemos simular um cenário onde N clientes são processados.
+  // Para este problema, vamos assumir que o usuário informará "0" para diárias para parar.
+  // Ou podemos pedir para o usuário informar quantos clientes. Vamos pedir quantos clientes.
+
+  ESCREVER "Olá! Vamos calcular as contas dos clientes e o faturamento do hotel."
+
+  QUANTIDADE_CLIENTES = 0
+  REPITA
+    ESCREVER "Quantos clientes você deseja registrar? (Digite um número inteiro positivo):"
+    LER QUANTIDADE_CLIENTES
+    SE QUANTIDADE_CLIENTES <= 0 ENTÃO
+      ESCREVER "A quantidade de clientes deve ser um número inteiro positivo. Tente novamente."
+    FIM SE
+  ATÉ QUANTIDADE_CLIENTES > 0
+
+
+  PARA I DE 1 ATÉ QUANTIDADE_CLIENTES FAÇA
+    ESCREVER "\n--- Cliente ", I, " ---"
+    ESCREVER "Digite o nome do cliente:"
+    LER NOME_CLIENTE
+
+    REPITA
+      ESCREVER "Digite o número de diárias de hospedagem para ", NOME_CLIENTE, ":"
+      LER NUMERO_DIARIAS_CLIENTE
+      SE NUMERO_DIARIAS_CLIENTE <= 0 ENTÃO
+        ESCREVER "O número de diárias deve ser um valor positivo. Tente novamente."
+      FIM SE
+    ATÉ NUMERO_DIARIAS_CLIENTE > 0
+
+    // --- Determinar Taxa de Serviço por Diária ---
+    SE NUMERO_DIARIAS_CLIENTE < 15 ENTÃO
+      TAXA_SERVICO_POR_DIARIA_CLIENTE = 4.00
+    SENÃO SE NUMERO_DIARIAS_CLIENTE = 15 ENTÃO
+      TAXA_SERVICO_POR_DIARIA_CLIENTE = 3.60
+    SENÃO // NUMERO_DIARIAS_CLIENTE > 15
+      TAXA_SERVICO_POR_DIARIA_CLIENTE = 3.00
+    FIM SE
+
+    // --- Cálculos para o Cliente Atual ---
+    CUSTO_DIARIAS_BRUTO_CLIENTE = NUMERO_DIARIAS_CLIENTE * PRECO_DIARIA
+    CUSTO_TAXA_SERVICOS_TOTAL_CLIENTE = NUMERO_DIARIAS_CLIENTE * TAXA_SERVICO_POR_DIARIA_CLIENTE
+    TOTAL_CONTA_CLIENTE = CUSTO_DIARIAS_BRUTO_CLIENTE + CUSTO_TAXA_SERVICOS_TOTAL_CLIENTE
+
+    // --- Acumular no Total Ganho pelo Hotel ---
+    TOTAL_GANHO_HOTEL = TOTAL_GANHO_HOTEL + TOTAL_CONTA_CLIENTE
+
+    // --- Imprimir a Conta do Cliente Atual ---
+    ESCREVER "\n  --- Conta de ", NOME_CLIENTE, " ---"
+    ESCREVER "  Número de Diárias: ", NUMERO_DIARIAS_CLIENTE
+    ESCREVER "  Preço da Diária: R$", FORMATAR_NUMERO(PRECO_DIARIA, 2)
+    ESCREVER "  Taxa de Serviço por Diária Aplicada: R$", FORMATAR_NUMERO(TAXA_SERVICO_POR_DIARIA_CLIENTE, 2)
+    ESCREVER "  Custo Bruto Diárias: R$", FORMATAR_NUMERO(CUSTO_DIARIAS_BRUTO_CLIENTE, 2)
+    ESCREVER "  Custo Total Taxa de Serviços: R$", FORMATAR_NUMERO(CUSTO_TAXA_SERVICOS_TOTAL_CLIENTE, 2)
+    ESCREVER "  TOTAL DA CONTA: R$", FORMATAR_NUMERO(TOTAL_CONTA_CLIENTE, 2)
+
+    // Adicionar à lista para resumo final
+    ADICIONAR { "nome": NOME_CLIENTE, "total_conta": TOTAL_CONTA_CLIENTE } A LISTA_CLIENTES_CONTAS
+  FIM PARA
+
+  // --- Imprimir o Total Ganho pelo Hotel ---
+  ESCREVER "\n======================================="
+  ESCREVER "RELATÓRIO DE FATURAMENTO DO HOTEL"
+  ESCREVER "======================================="
+  // Opcional: listar todos os clientes e suas contas
+  SE TAMANHO(LISTA_CLIENTES_CONTAS) > 0 ENTÃO
+    ESCREVER "\nContas Individuais:"
+    PARA CADA CLIENTE_INFO EM LISTA_CLIENTES_CONTAS FAÇA
+      ESCREVER "  ", CLIENTE_INFO.nome, ": R$", FORMATAR_NUMERO(CLIENTE_INFO.total_conta, 2)
+    FIM PARA
+  FIM SE
+  ESCREVER "\nTOTAL ARRECADADO PELO HOTEL: R$", FORMATAR_NUMERO(TOTAL_GANHO_HOTEL, 2)
+  ESCREVER "======================================="
+
+FIM
