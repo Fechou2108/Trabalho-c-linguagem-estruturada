@@ -1,0 +1,37 @@
+INÍCIO
+
+  // Declaração das variáveis para as notas e pesos
+  NOTA1
+  NOTA2
+  NOTA3
+  PESO1 = 2
+  PESO2 = 3
+  PESO3 = 5
+  MEDIA_FINAL
+
+  // --- Entrada das Notas do Aluno ---
+  ESCREVER "Olá! Vamos calcular a média final do aluno."
+
+  ESCREVER "Digite a nota da PRIMEIRA PROVA (Peso 2):"
+  LER NOTA1
+
+  ESCREVER "Digite a nota da SEGUNDA PROVA (Peso 3):"
+  LER NOTA2
+
+  ESCREVER "Digite a nota da TERCEIRA PROVA (Peso 5):"
+  LER NOTA3
+
+  // --- Cálculo da Média Ponderada ---
+  // Fórmula: (Nota1*Peso1 + Nota2*Peso2 + Nota3*Peso3) / (Peso1 + Peso2 + Peso3)
+  SOMA_PESOS = PESO1 + PESO2 + PESO3 // 2 + 3 + 5 = 10
+  MEDIA_FINAL = ((NOTA1 * PESO1) + (NOTA2 * PESO2) + (NOTA3 * PESO3)) / SOMA_PESOS
+
+  // --- Apresentação da Média Final ---
+  ESCREVER "\n--- Resultado da Média Final ---"
+  ESCREVER "Notas informadas:"
+  ESCREVER "  Prova 1 (Peso 2): ", NOTA1
+  ESCREVER "  Prova 2 (Peso 3): ", NOTA2
+  ESCREVER "  Prova 3 (Peso 5): ", NOTA3
+  ESCREVER "A Média Final do aluno é: ", MEDIA_FINAL
+
+FIM
