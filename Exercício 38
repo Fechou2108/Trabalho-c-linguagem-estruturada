@@ -1,0 +1,67 @@
+INÍCIO
+
+  // Variáveis para entrada de dados
+  SALARIO_MINIMO        // Valor atual do salário mínimo
+  CARROS_VENDIDOS       // Número de carros que o vendedor vendeu
+  VALOR_TOTAL_VENDAS    // Valor total das vendas (soma do preço de todos os carros vendidos)
+
+  // Variáveis para cálculo
+  SALARIO_FIXO_BASE
+  COMISSAO_POR_CARRO
+  COMISSAO_PERCENTUAL
+  SALARIO_TOTAL
+
+  // --- Entrada de Dados ---
+  ESCREVER "Olá! Vamos calcular o salário total de um vendedor."
+
+  REPITA
+    ESCREVER "Digite o valor atual do salário mínimo (R$):"
+    LER SALARIO_MINIMO
+    SE SALARIO_MINIMO <= 0 ENTÃO
+      ESCREVER "O salário mínimo deve ser um valor positivo. Tente novamente."
+    FIM SE
+  ATÉ SALARIO_MINIMO > 0
+
+  REPITA
+    ESCREVER "Digite o número de carros vendidos pelo funcionário:"
+    LER CARROS_VENDIDOS
+    SE CARROS_VENDIDOS < 0 ENTÃO
+      ESCREVER "O número de carros vendidos não pode ser negativo. Tente novamente."
+    FIM SE
+  ATÉ CARROS_VENDIDOS >= 0
+
+  REPITA
+    ESCREVER "Digite o valor total das vendas realizadas (soma do valor de todos os carros, R$):"
+    LER VALOR_TOTAL_VENDAS
+    SE VALOR_TOTAL_VENDAS < 0 ENTÃO
+      ESCREVER "O valor total das vendas não pode ser negativo. Tente novamente."
+    FIM SE
+  ATÉ VALOR_TOTAL_VENDAS >= 0
+
+  // --- Cálculos ---
+
+  // 1. Calcular o salário fixo base (dois salários mínimos)
+  SALARIO_FIXO_BASE = 2 * SALARIO_MINIMO
+
+  // 2. Calcular a comissão fixa por carro vendido
+  COMISSAO_POR_CARRO = CARROS_VENDIDOS * 50.00 // R$ 50,00 por carro
+
+  // 3. Calcular a comissão percentual sobre o valor das vendas
+  COMISSAO_PERCENTUAL = VALOR_TOTAL_VENDAS * 0.05 // 5% do valor das vendas
+
+  // 4. Calcular o salário total
+  SALARIO_TOTAL = SALARIO_FIXO_BASE + COMISSAO_POR_CARRO + COMISSAO_PERCENTUAL
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Resumo do Salário do Vendedor ---"
+  ESCREVER "Valor do Salário Mínimo Utilizado: R$", FORMATAR_NUMERO(SALARIO_MINIMO, 2)
+  ESCREVER "Número de Carros Vendidos: ", CARROS_VENDIDOS
+  ESCREVER "Valor Total das Vendas: R$", FORMATAR_NUMERO(VALOR_TOTAL_VENDAS, 2)
+  ESCREVER "------------------------------------"
+  ESCREVER "Salário Fixo (2 Salários Mínimos): R$", FORMATAR_NUMERO(SALARIO_FIXO_BASE, 2)
+  ESCREVER "Comissão por Carro Vendido: R$", FORMATAR_NUMERO(COMISSAO_POR_CARRO, 2)
+  ESCREVER "Comissão sobre Valor das Vendas (5%): R$", FORMATAR_NUMERO(COMISSAO_PERCENTUAL, 2)
+  ESCREVER "------------------------------------"
+  ESCREVER "SALÁRIO TOTAL DO VENDEDOR: R$", FORMATAR_NUMERO(SALARIO_TOTAL, 2)
+
+FIM
