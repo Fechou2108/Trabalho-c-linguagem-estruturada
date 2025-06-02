@@ -1,0 +1,70 @@
+INÍCIO
+
+  // Constante sentinela
+  SENTINELA = -1
+
+  // Variáveis para contagem de alunos em cada categoria
+  CONT_MENOS_DE_10 = 0    // Conta alunos que usaram < 10 vezes
+  CONT_ENTRE_10_E_15 = 0  // Conta alunos que usaram entre 10 e 15 vezes (inclusive)
+  CONT_ACIMA_DE_15 = 0    // Conta alunos que usaram > 15 vezes
+  TOTAL_ALUNOS = 0        // Conta o total de alunos válidos pesquisados
+
+  // Variável para a entrada do número de usos
+  USOS_RESTAURANTE
+
+  // Variáveis para os percentuais
+  PERCENTUAL_MENOS_DE_10 = 0.0
+  PERCENTUAL_ENTRE_10_E_15 = 0.0
+  PERCENTUAL_ACIMA_DE_15 = 0.0
+
+  // --- Início da Leitura dos Dados ---
+  ESCREVER "Olá! Vamos analisar o uso do restaurante universitário."
+  ESCREVER "Digite o número de vezes que cada aluno utilizou o restaurante no último mês."
+  ESCREVER "Para encerrar a entrada de dados, digite -1."
+
+  // Lê o primeiro dado antes do loop
+  ESCREVER "Digite o número de usos (ou -1 para finalizar):"
+  LER USOS_RESTAURANTE
+
+  // Loop para continuar lendo enquanto o número não for a sentinela
+  ENQUANTO USOS_RESTAURANTE <> SENTINELA FAÇA
+    // Validação básica para garantir que é um número positivo (excluindo a sentinela)
+    SE TIPO_DE_DADO(USOS_RESTAURANTE) <> INTEIRO OU USOS_RESTAURANTE < 0 ENTÃO
+      ESCREVER "Entrada inválida. Por favor, digite um número inteiro não negativo (ou -1 para finalizar)."
+    SENÃO
+      TOTAL_ALUNOS = TOTAL_ALUNOS + 1 // Incrementa o total de alunos válidos
+
+      // Classifica o aluno na categoria correta
+      SE USOS_RESTAURANTE < 10 ENTÃO
+        CONT_MENOS_DE_10 = CONT_MENOS_DE_10 + 1
+      SENÃO SE USOS_RESTAURANTE >= 10 E USOS_RESTAURANTE <= 15 ENTÃO
+        CONT_ENTRE_10_E_15 = CONT_ENTRE_10_E_15 + 1
+      SENÃO // USOS_RESTAURANTE > 15
+        CONT_ACIMA_DE_15 = CONT_ACIMA_DE_15 + 1
+      FIM SE
+    FIM SE
+
+    // Lê o próximo dado para a próxima iteração
+    ESCREVER "Digite o número de usos (ou -1 para finalizar):"
+    LER USOS_RESTAURANTE
+  FIM ENQUANTO
+
+  // --- Cálculo dos Percentuais ---
+  SE TOTAL_ALUNOS > 0 ENTÃO // Evita divisão por zero se nenhum aluno válido for digitado
+    PERCENTUAL_MENOS_DE_10 = (CONT_MENOS_DE_10 / TOTAL_ALUNOS) * 100
+    PERCENTUAL_ENTRE_10_E_15 = (CONT_ENTRE_10_E_15 / TOTAL_ALUNOS) * 100
+    PERCENTUAL_ACIMA_DE_15 = (CONT_ACIMA_DE_15 / TOTAL_ALUNOS) * 100
+  SENÃO
+    ESCREVER "\nNenhum dado válido de uso foi digitado. Impossível calcular percentuais."
+  FIM SE
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Relatório de Uso do Restaurante ---"
+  ESCREVER "Total de Alunos Pesquisados: ", TOTAL_ALUNOS
+  ESCREVER "---------------------------------------"
+  ESCREVER "Percentual de alunos que utilizaram MENOS que 10 vezes: ", FORMATAR_NUMERO(PERCENTUAL_MENOS_DE_10, 2), "%"
+  ESCREVER "Percentual de alunos que utilizaram ENTRE 10 e 15 vezes: ", FORMATAR_NUMERO(PERCENTUAL_ENTRE_10_E_15, 2), "%"
+  ESCREVER "Percentual de alunos que utilizaram ACIMA de 15 vezes: ", FORMATAR_NUMERO(PERCENTUAL_ACIMA_DE_15, 2), "%"
+  ESCREVER "---------------------------------------"
+
+FIM
