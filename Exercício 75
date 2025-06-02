@@ -1,0 +1,35 @@
+INÍCIO
+
+  // Variável para armazenar o número N
+  N
+
+  // Variáveis para o cálculo
+  RAIZ_TESTE = 0      // Para testar possíveis raízes (1, 2, 3...)
+  MAIOR_QUADRADO = 0  // Para armazenar o maior quadrado encontrado até então
+
+  ESCREVER "Olá! Vamos encontrar o maior quadrado perfeito menor ou igual a um número N."
+
+  // --- Leitura e Validação de N ---
+  REPITA
+    ESCREVER "Digite um número inteiro positivo para N:"
+    LER N
+    SE N < 0 OU TIPO_DE_DADO(N) <> INTEIRO ENTÃO
+      ESCREVER "Entrada inválida. Por favor, digite um número inteiro e positivo."
+    FIM SE
+  ATÉ N >= 0 E TIPO_DE_DADO(N) = INTEIRO
+
+  // --- Encontrar o Maior Quadrado ---
+  // Começamos testando a raiz 0, depois 1, 2, etc.
+  // Continuamos enquanto o quadrado da raiz_teste não ultrapassar N.
+  ENQUANTO (RAIZ_TESTE * RAIZ_TESTE) <= N FAÇA
+    MAIOR_QUADRADO = RAIZ_TESTE * RAIZ_TESTE // Armazena este quadrado como o maior até agora
+    RAIZ_TESTE = RAIZ_TESTE + 1             // Incrementa a raiz para o próximo teste
+  FIM ENQUANTO
+
+  // --- Apresentação do Resultado ---
+  ESCREVER "\n--- Resultado ---"
+  ESCREVER "Para N = ", N, ":"
+  ESCREVER "O maior quadrado perfeito menor ou igual a N é: ", MAIOR_QUADRADO
+  ESCREVER "Este é o quadrado de: ", (RAIZ_TESTE - 1) // (RAIZ_TESTE - 1) é a raiz do MAIOR_QUADRADO
+
+FIM
