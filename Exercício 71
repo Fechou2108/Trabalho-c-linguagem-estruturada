@@ -1,0 +1,46 @@
+START
+
+  // Variables
+  N             // The positive integer entered by the user
+  E = 1.0       // Accumulator for the value of E, starting with 1
+  TERMO         // Variable to hold each term (1 / factorial)
+  FATORIAL      // Variable to calculate the factorial for each term
+
+  // --- Input and Validation of N ---
+  WRITE "Hello! Let's calculate the value of E for a given N."
+
+  REPEAT
+    WRITE "Please enter a positive integer value for N:"
+    READ N
+    IF N < 0 OR TYPE_OF_DATA(N) <> INTEGER THEN
+      WRITE "Invalid input. Please enter a positive integer (e.g., 0, 1, 2, ...)."
+    END IF
+  UNTIL N >= 0 AND TYPE_OF_DATA(N) = INTEGER
+
+  // --- Calculation of E ---
+  // The loop starts from 1 because the 0! term (which is 1) is already in E = 1.0
+  FOR I FROM 1 TO N DO
+    // Calculate factorial for the current 'I'
+    FATORIAL = 1
+    IF I > 0 THEN // Factorial of 0 is 1, handled by initial E. Factorial of I > 0
+      FOR J FROM 1 TO I DO
+        FATORIAL = FATORIAL * J
+      END FOR
+    END IF
+    // Note: FATORIAL of 0 is 1. If N=0, this loop won't run, E remains 1.0, which is correct.
+    // If N=1, I=1, FATORIAL=1, TERMO = 1/1 = 1, E = 1+1 = 2.0.
+    // If N=2, I=1 (done), I=2, FATORIAL=2, TERMO = 1/2 = 0.5, E = 2.0 + 0.5 = 2.5.
+
+    // Calculate the term (1 / factorial)
+    TERMO = 1.0 / FATORIAL
+    
+    // Add the term to E
+    E = E + TERMO
+  END FOR
+
+  // --- Display Result ---
+  WRITE "\n--- Calculation Result ---"
+  WRITE "For N = ", N
+  WRITE "The value of E is: ", FORMAT_NUMBER(E, 8) // Format to 8 decimal places for precision
+
+END
