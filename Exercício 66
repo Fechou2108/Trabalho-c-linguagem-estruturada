@@ -1,0 +1,50 @@
+INÍCIO
+
+  // Variáveis para a P.G. e a soma
+  PRIMEIRO_TERMO = 3
+  RAZAO = 3
+  ULTIMO_TERMO = 6561
+  TERMO_ATUAL // Variável para gerar cada termo da P.G.
+  SOMA_TOTAL = 0 // Acumulador da soma dos termos
+
+  ESCREVER "Olá! Vamos somar os termos da Progressão Geométrica 3, 9, ..., 6561."
+  ESCREVER "Gerando e somando cada termo individualmente."
+  ESCREVER "\n--- Termos da P.G. e Soma ---"
+
+  // Inicializa o termo atual com o primeiro termo
+  TERMO_ATUAL = PRIMEIRO_TERMO
+
+  // Loop para gerar e somar cada termo da P.G.
+  // O loop continua enquanto o termo atual não ultrapassar o último termo
+  ENQUANTO TERMO_ATUAL <= ULTIMO_TERMO FAÇA
+    SOMA_TOTAL = SOMA_TOTAL + TERMO_ATUAL // Adiciona o termo atual à soma
+    ESCREVER "Somando termo: ", TERMO_ATUAL, " (Soma parcial: ", SOMA_TOTAL, ")" // Opcional: mostrar passo a passo
+
+    // Calcula o próximo termo da P.G.
+    // Usamos a adição e não a multiplicação como o problema da multiplicação
+    // permite apenas operações de adição e subtração.
+    // Se a restrição é não usar o operador '*', então a multiplicação deve ser simulada.
+    // Considerando o contexto, "não utilizar a fórmula de soma" significa não usar S_n = a1 * (q^n - 1) / (q - 1).
+    // A multiplicação para gerar o próximo termo (termo_atual * razao) é uma operação fundamental da PG
+    // e deve ser permitida, a menos que especificado o contrário.
+    // Se a restrição for sobre _qualquer_ multiplicação, faremos a simulação.
+
+    // Vamos assumir que a restrição de "não usar a operação de multiplicação" era para o problema anterior
+    // e para este problema de PG podemos usar a multiplicação para gerar os termos.
+    // Se não puder usar 'TERMO_ATUAL * RAZAO', então:
+    // PROXIMO_TERMO = 0
+    // PARA I DE 1 ATÉ RAZAO FAÇA
+    //   PROXIMO_TERMO = PROXIMO_TERMO + TERMO_ATUAL
+    // FIM PARA
+    // TERMO_ATUAL = PROXIMO_TERMO
+
+    // Usando a multiplicação usual para gerar o próximo termo:
+    TERMO_ATUAL = TERMO_ATUAL * RAZAO
+  FIM ENQUANTO
+
+  // --- Apresentação do Resultado Final ---
+  ESCREVER "\n==============================="
+  ESCREVER "Soma Total dos Termos da P.G.: ", SOMA_TOTAL
+  ESCREVER "==============================="
+
+FIM
