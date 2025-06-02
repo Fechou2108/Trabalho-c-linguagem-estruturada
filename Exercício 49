@@ -1,0 +1,27 @@
+INÍCIO
+
+  // Variáveis para armazenar os dois números
+  NUMERO1
+  NUMERO2
+
+  // --- Leitura dos Dois Números ---
+  ESCREVER "Olá! Este programa compara dois números e informa qual é o maior."
+
+  ESCREVER "Digite o primeiro número:"
+  LER NUMERO1
+
+  ESCREVER "Digite o segundo número:"
+  LER NUMERO2
+
+  // --- Comparação e Impressão do Maior ---
+  ESCREVER "\n--- Resultado ---"
+
+  SE NUMERO1 > NUMERO2 ENTÃO
+    ESCREVER "O maior número é: ", NUMERO1
+  SENÃO SE NUMERO2 > NUMERO1 ENTÃO
+    ESCREVER "O maior número é: ", NUMERO2
+  SENÃO // Ambos os números são iguais
+    ESCREVER "Os números são iguais: ", NUMERO1 // ou NUMERO2, tanto faz
+  FIM SE
+
+FIM
