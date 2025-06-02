@@ -1,0 +1,48 @@
+INÍCIO
+
+  // Constante sentinela
+  SENTINELA = 9999
+
+  // Variáveis para a entrada e cálculo
+  NUMERO_LIDO      // Para cada número que o usuário digitar
+  SOMA = 0         // Acumulador da soma dos números
+  CONTADOR = 0     // Conta quantos números válidos foram digitados
+  MEDIA = 0.0      // Para armazenar a média
+
+  // --- Início da Leitura dos Números ---
+  ESCREVER "Olá! Digite números inteiros para calcular sua soma e média."
+  ESCREVER "Para encerrar a entrada de dados, digite 9999."
+
+  // Lê o primeiro número antes do loop
+  ESCREVER "Digite um número (ou 9999 para finalizar):"
+  LER NUMERO_LIDO
+
+  // Loop para continuar lendo enquanto o número não for a sentinela
+  ENQUANTO NUMERO_LIDO <> SENTINELA FAÇA
+    // Validação básica para garantir que é um número (opcional, dependendo do ambiente)
+    SE TIPO_DE_DADO(NUMERO_LIDO) <> INTEIRO ENTÃO
+      ESCREVER "Entrada inválida. Por favor, digite um número inteiro ou 9999 para finalizar."
+    SENÃO
+      SOMA = SOMA + NUMERO_LIDO      // Adiciona o número à soma
+      CONTADOR = CONTADOR + 1        // Incrementa o contador de números válidos
+    FIM SE
+
+    // Lê o próximo número para a próxima iteração
+    ESCREVER "Digite outro número (ou 9999 para finalizar):"
+    LER NUMERO_LIDO
+  FIM ENQUANTO
+
+  // --- Cálculo da Média ---
+  SE CONTADOR > 0 ENTÃO // Evita divisão por zero se nenhum número válido for digitado
+    MEDIA = SOMA / CONTADOR
+  SENÃO
+    ESCREVER "\nNenhum número válido foi digitado antes da sentinela."
+    MEDIA = 0 // Ou pode-se deixar como indefinido, dependendo da necessidade
+  FIM SE
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Resultados da Análise ---"
+  ESCREVER "Soma dos números digitados: ", SOMA
+  ESCREVER "Média dos números digitados: ", FORMATAR_NUMERO(MEDIA, 2)
+
+FIM
