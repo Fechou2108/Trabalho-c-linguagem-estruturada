@@ -1,0 +1,64 @@
+INÍCIO
+
+  // Variáveis para a conta e operação
+  NUMERO_CONTA
+  SALDO_ATUAL
+  TIPO_OPERACAO    // 'D' para Depósito, 'R' para Retirada
+  VALOR_OPERACAO
+  NOVO_SALDO
+
+  // --- Entrada de Dados da Conta ---
+  ESCREVER "Olá! Vamos gerenciar sua conta bancária."
+
+  ESCREVER "Digite o número da conta:"
+  LER NUMERO_CONTA
+
+  REPITA
+    ESCREVER "Digite o saldo atual da conta (R$):"
+    LER SALDO_ATUAL
+    SE SALDO_ATUAL < 0 ENTÃO
+      ESCREVER "O saldo inicial não pode ser negativo. Por favor, digite um valor válido."
+    FIM SE
+  ATÉ SALDO_ATUAL >= 0
+
+  // --- Entrada do Tipo e Valor da Operação ---
+  REPITA
+    ESCREVER "Digite o tipo de operação (D para Depósito / R para Retirada):"
+    LER TIPO_OPERACAO
+
+    // Converte para maiúscula para facilitar a comparação
+    TIPO_OPERACAO = MAIUSCULA(TIPO_OPERACAO)
+
+    SE TIPO_OPERACAO <> 'D' E TIPO_OPERACAO <> 'R' ENTÃO
+      ESCREVER "Tipo de operação inválido. Por favor, digite 'D' ou 'R'."
+    FIM SE
+  ATÉ TIPO_OPERACAO = 'D' OU TIPO_OPERACAO = 'R'
+
+  REPITA
+    ESCREVER "Digite o valor da operação (R$):"
+    LER VALOR_OPERACAO
+    SE VALOR_OPERACAO <= 0 ENTÃO
+      ESCREVER "O valor da operação deve ser positivo. Tente novamente."
+    FIM SE
+  ATÉ VALOR_OPERACAO > 0
+
+  // --- Processamento da Operação ---
+  SE TIPO_OPERACAO = 'D' ENTÃO
+    NOVO_SALDO = SALDO_ATUAL + VALOR_OPERACAO
+  SENÃO // TIPO_OPERACAO = 'R'
+    NOVO_SALDO = SALDO_ATUAL - VALOR_OPERACAO
+  FIM SE
+
+  // --- Apresentação do Resultado ---
+  ESCREVER "\n--- Resumo da Operação Bancária ---"
+  ESCREVER "Número da Conta: ", NUMERO_CONTA
+  ESCREVER "Saldo Anterior: R$", FORMATAR_NUMERO(SALDO_ATUAL, 2)
+  ESCREVER "Tipo de Operação: ", SE TIPO_OPERACAO = 'D' ENTÃO "Depósito" SENAO "Retirada" FIM SE
+  ESCREVER "Valor da Operação: R$", FORMATAR_NUMERO(VALOR_OPERACAO, 2)
+  ESCREVER "Novo Saldo: R$", FORMATAR_NUMERO(NOVO_SALDO, 2)
+
+  SE NOVO_SALDO < 0 ENTÃO
+    ESCREVER "MENSAGEM: CONTA ESTOURADA!"
+  FIM SE
+
+FIM
