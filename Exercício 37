@@ -1,0 +1,100 @@
+INÍCIO
+
+  // Preços unitários das peças (podem ser lidos ou fixos)
+  PRECO_PARAFUSO = 1.50
+  PRECO_PORCA = 0.80
+  PRECO_ARRUELA = 0.50
+
+  // Descontos em percentual
+  DESCONTO_PARAFUSO_PERC = 0.20 // 20%
+  DESCONTO_PORCA_PERC = 0.10    // 10%
+  DESCONTO_ARRUELA_PERC = 0.30  // 30%
+
+  // Variáveis de entrada do cliente
+  NOME_CLIENTE
+  QTD_PARAFUSO
+  QTD_PORCA
+  QTD_ARRUELA
+
+  // Variáveis de cálculo
+  SUBTOTAL_PARAFUSO
+  SUBTOTAL_PORCA
+  SUBTOTAL_ARRUELA
+
+  DESCONTO_PARAFUSO_VALOR
+  DESCONTO_PORCA_VALOR
+  DESCONTO_ARRUELA_VALOR
+  TOTAL_DESCONTO
+
+  TOTAL_A_PAGAR
+
+  // --- Entrada de Dados do Cliente ---
+  ESCREVER "Olá! Vamos calcular o valor da sua compra de peças mecânicas."
+  ESCREVER "Digite o nome do cliente:"
+  LER NOME_CLIENTE
+
+  REPITA
+    ESCREVER "Digite a quantidade de PARAFUSOS comprados:"
+    LER QTD_PARAFUSO
+    SE QTD_PARAFUSO < 0 ENTÃO
+      ESCREVER "A quantidade de parafusos não pode ser negativa. Tente novamente."
+    FIM SE
+  ATÉ QTD_PARAFUSO >= 0
+
+  REPITA
+    ESCREVER "Digite a quantidade de PORCAS compradas:"
+    LER QTD_PORCA
+    SE QTD_PORCA < 0 ENTÃO
+      ESCREVER "A quantidade de porcas não pode ser negativa. Tente novamente."
+    FIM SE
+  ATÉ QTD_PORCA >= 0
+
+  REPITA
+    ESCREVER "Digite a quantidade de ARRUELAS compradas:"
+    LER QTD_ARRUELA
+    SE QTD_ARRUELA < 0 ENTÃO
+      ESCREVER "A quantidade de arruelas não pode ser negativa. Tente novamente."
+    FIM SE
+  ATÉ QTD_ARRUELA >= 0
+
+  // --- Cálculos ---
+
+  // Cálculo dos subtotais (valor antes do desconto)
+  SUBTOTAL_PARAFUSO = QTD_PARAFUSO * PRECO_PARAFUSO
+  SUBTOTAL_PORCA = QTD_PORCA * PRECO_PORCA
+  SUBTOTAL_ARRUELA = QTD_ARRUELA * PRECO_ARRUELA
+
+  // Cálculo do valor do desconto para cada tipo de peça
+  DESCONTO_PARAFUSO_VALOR = SUBTOTAL_PARAFUSO * DESCONTO_PARAFUSO_PERC
+  DESCONTO_PORCA_VALOR = SUBTOTAL_PORCA * DESCONTO_PORCA_PERC
+  DESCONTO_ARRUELA_VALOR = SUBTOTAL_ARRUELA * DESCONTO_ARRUELA_PERC
+
+  // Cálculo do total de desconto
+  TOTAL_DESCONTO = DESCONTO_PARAFUSO_VALOR + DESCONTO_PORCA_VALOR + DESCONTO_ARRUELA_VALOR
+
+  // Cálculo do total a pagar
+  TOTAL_A_PAGAR = (SUBTOTAL_PARAFUSO - DESCONTO_PARAFUSO_VALOR) + \
+                  (SUBTOTAL_PORCA - DESCONTO_PORCA_VALOR) + \
+                  (SUBTOTAL_ARRUELA - DESCONTO_ARRUELA_VALOR)
+  // Alternativamente: TOTAL_A_PAGAR = (SUBTOTAL_PARAFUSO + SUBTOTAL_PORCA + SUBTOTAL_ARRUELA) - TOTAL_DESCONTO
+
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Resumo da Compra ---"
+  ESCREVER "Nome do Cliente: ", NOME_CLIENTE
+  ESCREVER "\nQuantidades Compradas:"
+  ESCREVER "  Parafusos: ", QTD_PARAFUSO
+  ESCREVER "  Porcas: ", QTD_PORCA
+  ESCREVER "  Arruelas: ", QTD_ARRUELA
+
+  ESCREVER "\nDetalhes do Preço (Preço Unitário | Desconto):"
+  ESCREVER "  Parafuso: R$", FORMATAR_NUMERO(PRECO_PARAFUSO, 2), " | ", FORMATAR_NUMERO(DESCONTO_PARAFUSO_VALOR / QTD_PARAFUSO if QTD_PARAFUSO > 0 else 0, 2), " por unidade"
+  ESCREVER "  Porca:    R$", FORMATAR_NUMERO(PRECO_PORCA, 2), " | ", FORMATAR_NUMERO(DESCONTO_PORCA_VALOR / QTD_PORCA if QTD_PORCA > 0 else 0, 2), " por unidade"
+  ESCREVER "  Arruela:  R$", FORMATAR_NUMERO(PRECO_ARRUELA, 2), " | ", FORMATAR_NUMERO(DESCONTO_ARRUELA_VALOR / QTD_ARRUELA if QTD_ARRUELA > 0 else 0, 2), " por unidade"
+
+
+  ESCREVER "\nTotais:"
+  ESCREVER "  Total de Desconto: R$", FORMATAR_NUMERO(TOTAL_DESCONTO, 2)
+  ESCREVER "  Total a Pagar: R$", FORMATAR_NUMERO(TOTAL_A_PAGAR, 2)
+
+FIM
