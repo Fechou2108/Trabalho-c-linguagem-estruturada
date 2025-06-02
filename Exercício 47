@@ -1,0 +1,38 @@
+INÍCIO
+
+  // Variável para armazenar a nota do aluno
+  NOTA_ALUNO
+
+  // Variável para armazenar o conceito
+  CONCEITO
+
+  // --- Entrada da Nota do Aluno ---
+  ESCREVER "Olá! Vamos determinar o conceito de um aluno."
+
+  REPITA
+    ESCREVER "Digite a nota do aluno (valor inteiro entre 0 e 100):"
+    LER NOTA_ALUNO
+
+    // Validação da nota
+    SE NOTA_ALUNO < 0 OU NOTA_ALUNO > 100 ENTÃO
+      ESCREVER "Nota inválida. Por favor, digite um valor entre 0 e 100."
+    FIM SE
+  ATÉ NOTA_ALUNO >= 0 E NOTA_ALUNO <= 100
+
+  // --- Determinação do Conceito ---
+  SE NOTA_ALUNO >= 85 ENTÃO
+    CONCEITO = "Ótimo"
+  SENÃO SE NOTA_ALUNO >= 65 ENTÃO
+    CONCEITO = "Bom"
+  SENÃO SE NOTA_ALUNO >= 50 ENTÃO
+    CONCEITO = "Regular"
+  SENÃO // NOTA_ALUNO < 50 (e já sabemos que é >= 0 pela validação)
+    CONCEITO = "Insuficiente"
+  FIM SE
+
+  // --- Apresentação do Resultado ---
+  ESCREVER "\n--- Resultado ---"
+  ESCREVER "Nota do Aluno: ", NOTA_ALUNO
+  ESCREVER "Conceito: ", CONCEITO
+
+FIM
