@@ -1,0 +1,44 @@
+INÍCIO
+
+  // Variáveis para os números de entrada e resultados
+  NUM1        // Dividendo
+  NUM2        // Divisor
+  QUOC = 0    // Inicializa o quociente
+  RESTO       // Variável para o resto, que será o valor restante de NUM1
+
+  // --- Entrada dos Números com Validação ---
+  ESCREVER "Olá! Vamos dividir dois números inteiros positivos usando apenas adição e subtração."
+
+  REPITA
+    ESCREVER "Digite o primeiro número inteiro positivo (NUM1 - Dividendo):"
+    LER NUM1
+    SE NUM1 < 0 OU TIPO_DE_DADO(NUM1) <> INTEIRO ENTÃO
+      ESCREVER "Entrada inválida. Por favor, digite um número inteiro positivo."
+    FIM SE
+  ATÉ NUM1 >= 0 E TIPO_DE_DADO(NUM1) = INTEIRO
+
+  REPITA
+    ESCREVER "Digite o segundo número inteiro positivo (NUM2 - Divisor, não pode ser zero):"
+    LER NUM2
+    SE NUM2 <= 0 OU TIPO_DE_DADO(NUM2) <> INTEIRO ENTÃO
+      ESCREVER "Entrada inválida. Por favor, digite um número inteiro positivo e diferente de zero."
+    FIM SE
+  ATÉ NUM2 > 0 E TIPO_DE_DADO(NUM2) = INTEIRO
+
+  // --- Lógica da Divisão por Subtrações Sucessivas ---
+  RESTO = NUM1 // Começamos o resto com o valor do dividendo
+
+  // Enquanto o resto for maior ou igual ao divisor, podemos subtrair o divisor e incrementar o quociente
+  ENQUANTO RESTO >= NUM2 FAÇA
+    RESTO = RESTO - NUM2 // Subtrai o divisor do resto
+    QUOC = QUOC + 1      // Incrementa o quociente
+  FIM ENQUANTO
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Resultado da Divisão ---"
+  ESCREVER "Dividendo (NUM1): ", NUM1
+  ESCREVER "Divisor (NUM2): ", NUM2
+  ESCREVER "Quociente (QUOC): ", QUOC
+  ESCREVER "Resto (RESTO): ", RESTO
+
+FIM
