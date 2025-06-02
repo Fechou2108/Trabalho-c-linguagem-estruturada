@@ -1,0 +1,84 @@
+INÍCIO
+
+  // Constante sentinela para o nome do funcionário
+  SENTINELA = "fim"
+
+  // Variáveis para a entrada de dados
+  NOME_FUNCIONARIO
+  SALARIO_FUNCIONARIO
+
+  // Variáveis para os cálculos
+  SOMA_SALARIOS = 0.0          // Acumulador da soma de todos os salários
+  CONTADOR_FUNCIONARIOS = 0    // Contador de funcionários com salários válidos
+  MAIOR_SALARIO = -INFINITO    // Inicializa com um valor muito baixo
+  MENOR_SALARIO = +INFINITO    // Inicializa com um valor muito alto
+
+  // Variáveis para armazenar o nome de quem tem o maior/menor salário
+  NOME_MAIOR_SALARIO = ""
+  NOME_MENOR_SALARIO = ""
+
+  ESCREVER "Olá! Vamos calcular a média de salários da sua empresa."
+  ESCREVER "Para encerrar a entrada de dados, digite 'fim' no nome do funcionário."
+
+  // --- Início do Loop de Leitura de Dados ---
+  REPITA
+    ESCREVER "\n--- Dados do Funcionário ---"
+    ESCREVER "Digite o nome do funcionário (ou 'fim' para finalizar):"
+    LER NOME_FUNCIONARIO
+
+    // Converte o nome para minúsculas para facilitar a comparação com a sentinela
+    SE MINUSCULAS(NOME_FUNCIONARIO) = SENTINELA ENTÃO
+      QUEBRAR_LOOP // Sai do loop se a sentinela for digitada
+    FIM SE
+
+    // --- Leitura e Validação do Salário ---
+    REPITA
+      ESCREVER "Digite o salário de ", NOME_FUNCIONARIO, ":"
+      LER SALARIO_FUNCIONARIO
+      SE SALARIO_FUNCIONARIO < 0 OU TIPO_DE_DADO(SALARIO_FUNCIONARIO) <> NUMERICO ENTÃO
+        ESCREVER "Salário inválido. Por favor, digite um valor numérico não negativo."
+      FIM SE
+    ATÉ SALARIO_FUNCIONARIO >= 0 E TIPO_DE_DADO(SALARIO_FUNCIONARIO) = NUMERICO
+
+    // --- Processamento dos Dados ---
+    SOMA_SALARIOS = SOMA_SALARIOS + SALARIO_FUNCIONARIO // Acumula o salário
+    CONTADOR_FUNCIONARIOS = CONTADOR_FUNCIONARIOS + 1   // Incrementa o contador
+
+    // Verifica o maior salário
+    SE SALARIO_FUNCIONARIO > MAIOR_SALARIO ENTÃO
+      MAIOR_SALARIO = SALARIO_FUNCIONARIO
+      NOME_MAIOR_SALARIO = NOME_FUNCIONARIO
+    FIM SE
+
+    // Verifica o menor salário
+    SE SALARIO_FUNCIONARIO < MENOR_SALARIO ENTÃO
+      MENOR_SALARIO = SALARIO_FUNCIONARIO
+      NOME_MENOR_SALARIO = NOME_FUNCIONARIO
+    FIM SE
+
+  ATÉ FALSO // O loop será quebrado explicitamente pela sentinela
+  // OU: ENQUANTO MINUSCULAS(NOME_FUNCIONARIO) <> SENTINELA FAÇA (se a leitura for antes do corpo do loop)
+
+  // --- Cálculo da Média ---
+  MEDIA_SALARIOS = 0.0
+  SE CONTADOR_FUNCIONARIOS > 0 ENTÃO // Evita divisão por zero
+    MEDIA_SALARIOS = SOMA_SALARIOS / CONTADOR_FUNCIONARIOS
+  FIM SE
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Relatório de Salários da Empresa ---"
+  ESCREVER "----------------------------------------"
+
+  SE CONTADOR_FUNCIONARIOS = 0 ENTÃO
+    ESCREVER "Nenhum funcionário foi registrado para a análise."
+  SENÃO
+    ESCREVER "Total de funcionários registrados: ", CONTADOR_FUNCIONARIOS
+    ESCREVER "Soma total dos salários: R$", FORMATAR_NUMERO(SOMA_SALARIOS, 2)
+    ESCREVER "Média dos salários: R$", FORMATAR_NUMERO(MEDIA_SALARIOS, 2)
+    ESCREVER "----------------------------------------"
+    ESCREVER "Funcionário com o MAIOR salário: ", NOME_MAIOR_SALARIO, " (R$", FORMATAR_NUMERO(MAIOR_SALARIO, 2), ")"
+    ESCREVER "Funcionário com o MENOR salário: ", NOME_MENOR_SALARIO, " (R$", FORMATAR_NUMERO(MENOR_SALARIO, 2), ")"
+  FIM SE
+  ESCREVER "----------------------------------------"
+
+FIM
