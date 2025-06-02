@@ -1,0 +1,44 @@
+INÍCIO
+
+  // Constante sentinela
+  SENTINELA = 9999
+
+  // Variáveis para a entrada e o maior número
+  NUMERO_LIDO       // Para cada número que o usuário digitar
+  MAXIMO = -INFINITO // Inicializa com um valor muito baixo para garantir que o primeiro número válido seja o máximo
+
+  // --- Início da Leitura dos Números ---
+  ESCREVER "Olá! Digite números para encontrar o maior deles."
+  ESCREVER "Para encerrar a entrada de dados, digite 9999."
+
+  // Lê o primeiro número antes do loop
+  ESCREVER "Digite um número (ou 9999 para finalizar):"
+  LER NUMERO_LIDO
+
+  // Loop para continuar lendo enquanto o número não for a sentinela
+  ENQUANTO NUMERO_LIDO <> SENTINELA FAÇA
+    // Validação básica para garantir que é um número (opcional, dependendo do ambiente)
+    SE TIPO_DE_DADO(NUMERO_LIDO) <> NUMERICO ENTÃO
+      ESCREVER "Entrada inválida. Por favor, digite um valor numérico ou 9999 para finalizar."
+    SENÃO
+      // Compara o número lido com o máximo atual e atualiza se for maior
+      SE NUMERO_LIDO > MAXIMO ENTÃO
+        MAXIMO = NUMERO_LIDO
+      FIM SE
+    FIM SE
+
+    // Lê o próximo número para a próxima iteração
+    ESCREVER "Digite outro número (ou 9999 para finalizar):"
+    LER NUMERO_LIDO
+  FIM ENQUANTO
+
+  // --- Apresentação do Resultado ---
+  ESCREVER "\n--- Resultado da Análise ---"
+  // Verifica se algum número válido foi digitado além da sentinela
+  SE MAXIMO = -INFINITO ENTÃO // Se MAXIMO ainda for o valor inicial, significa que nenhum número válido foi digitado
+    ESCREVER "Nenhum número válido foi digitado antes da sentinela."
+  SENÃO
+    ESCREVER "O maior número digitado é: ", MAXIMO
+  FIM SE
+
+FIM
