@@ -1,0 +1,52 @@
+INÍCIO
+
+  // Declaração das variáveis para os três valores
+  VALOR1
+  VALOR2
+  VALOR3
+
+  // --- Leitura dos Três Valores ---
+  ESCREVER "Olá! Este programa vai organizar três números em ordem crescente."
+
+  ESCREVER "Digite o primeiro valor:"
+  LER VALOR1
+
+  ESCREVER "Digite o segundo valor:"
+  LER VALOR2
+
+  ESCREVER "Digite o terceiro valor:"
+  LER VALOR3
+
+  // --- Lógica para Ordenação ---
+  // Utilizaremos uma série de comparações e trocas para ordenar os valores.
+  // A ideia é garantir que o menor valor "flutue" para a esquerda e o maior para a direita.
+
+  // Compara e troca VALOR1 com VALOR2
+  SE VALOR1 > VALOR2 ENTÃO
+    // Troca os valores de VALOR1 e VALOR2
+    AUX = VALOR1
+    VALOR1 = VALOR2
+    VALOR2 = AUX
+  FIM SE
+
+  // Compara e troca VALOR1 com VALOR3 (garantindo que VALOR1 seja o menor de todos)
+  SE VALOR1 > VALOR3 ENTÃO
+    // Troca os valores de VALOR1 e VALOR3
+    AUX = VALOR1
+    VALOR1 = VALOR3
+    VALOR3 = AUX
+  FIM SE
+
+  // Compara e troca VALOR2 com VALOR3 (garantindo que VALOR2 seja o do meio)
+  SE VALOR2 > VALOR3 ENTÃO
+    // Troca os valores de VALOR2 e VALOR3
+    AUX = VALOR2
+    VALOR2 = VALOR3
+    VALOR3 = AUX
+  FIM SE
+
+  // --- Apresentação dos Valores Ordenados ---
+  ESCREVER "\n--- Valores em Ordem Crescente ---"
+  ESCREVER "Os valores em ordem crescente são: ", VALOR1, ", ", VALOR2, ", ", VALOR3
+
+FIM
