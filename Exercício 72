@@ -1,0 +1,36 @@
+INÍCIO
+
+  // Altura inicial e crescimento anual de Chico (em centímetros)
+  ALTURA_CHICO = 150 // 1.50 metros = 150 centímetros
+  CRESCIMENTO_CHICO = 2 // centímetros por ano
+
+  // Altura inicial e crescimento anual de Zé (em centímetros)
+  ALTURA_ZE = 110 // 1.10 metros = 110 centímetros
+  CRESCIMENTO_ZE = 3 // centímetros por ano
+
+  // Contador de anos
+  ANOS = 0
+
+  ESCREVER "Olá! Vamos calcular em quantos anos Zé será mais alto que Chico."
+  ESCREVER "Chico começa com ", (ALTURA_CHICO / 100), "m e cresce ", CRESCIMENTO_CHICO, "cm/ano."
+  ESCREVER "Zé começa com ", (ALTURA_ZE / 100), "m e cresce ", CRESCIMENTO_ZE, "cm/ano."
+
+  // Loop para simular o crescimento ano a ano
+  // O loop continua ENQUANTO Chico for maior ou igual a Zé
+  ENQUANTO ALTURA_CHICO >= ALTURA_ZE FAÇA
+    ALTURA_CHICO = ALTURA_CHICO + CRESCIMENTO_CHICO // Chico cresce
+    ALTURA_ZE = ALTURA_ZE + CRESCIMENTO_ZE         // Zé cresce
+    ANOS = ANOS + 1                                // Incrementa o contador de anos
+
+    // Opcional: Mostrar a altura a cada ano para acompanhar
+    // ESCREVER "Após ", ANOS, " ano(s): Chico = ", (ALTURA_CHICO / 100), "m, Zé = ", (ALTURA_ZE / 100), "m"
+  FIM ENQUANTO
+
+  // --- Apresentação do Resultado ---
+  ESCREVER "\n--- Resultado do Cálculo ---"
+  ESCREVER "Serão necessários ", ANOS, " anos para Zé ser maior que Chico."
+  ESCREVER "Após ", ANOS, " anos:"
+  ESCREVER "  Altura de Chico: ", FORMATAR_NUMERO((ALTURA_CHICO / 100), 2), " metros"
+  ESCREVER "  Altura de Zé: ", FORMATAR_NUMERO((ALTURA_ZE / 100), 2), " metros"
+
+FIM
