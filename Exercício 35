@@ -1,0 +1,56 @@
+def generate_commission_report():
+    """
+    Generates a sales and commission report for three brokers,
+    calculating commission based on sales value and showing the company's total sales.
+    """
+    brokers_data = []
+    total_company_sales = 0.0
+
+    print("--- Broker Data Entry ---")
+    for i in range(3):  # Loop for the three brokers
+        print(f"\nBroker {i + 1}:")
+        broker_name = input("Enter the broker's name: ").strip()
+
+        while True:
+            try:
+                sales_value = float(input("Enter the sales value (R$): "))
+                if sales_value < 0:
+                    print("Sales value cannot be negative. Please try again.")
+                else:
+                    break  # Exit loop if value is valid
+            except ValueError:
+                print("Invalid input. Please enter a numerical value for sales.")
+
+        commission = 0.0
+        if sales_value > 50000.00:
+            commission = sales_value * 0.12  # 12% commission
+        elif 30000.00 <= sales_value <= 50000.00:
+            commission = sales_value * 0.095  # 9.5% commission
+        else:
+            commission = sales_value * 0.07  # 7% commission
+
+        # Add the broker's sales to the company's total sales
+        total_company_sales += sales_value
+
+        # Store the broker's data
+        brokers_data.append({
+            "name": broker_name,
+            "sales_value": sales_value,
+            "commission": commission
+        })
+
+    print("\n--- Sales and Commission Report ---")
+    if not brokers_data:
+        print("No broker data entered.")
+        return
+
+    for broker in brokers_data:
+        print(f"\nBroker: {broker['name']}")
+        print(f"  Sales Value: R$ {broker['sales_value']:.2f}")
+        print(f"  Commission: R$ {broker['commission']:.2f}")
+        print("-" * 20)  # Separator
+
+    print(f"\nTotal Company Sales: R$ {total_company_sales:.2f}")
+
+# Run the algorithm
+generate_commission_report()
