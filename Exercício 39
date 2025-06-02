@@ -1,0 +1,57 @@
+INÍCIO
+
+  // Variável para acumular o total a pagar
+  TOTAL_A_PAGAR = 0.0
+
+  // Loop para processar os quatro artigos
+  PARA I DE 1 ATÉ 4 FAÇA
+    // Variáveis para cada artigo
+    NOME_ARTIGO
+    PRECO_ARTIGO
+    PERCENTUAL_DESCONTO
+
+    PRECO_COM_DESCONTO
+    VALOR_DESCONTO
+
+    // --- Entrada de Dados para o Artigo Atual ---
+    ESCREVER "\n--- Artigo ", I, " ---"
+    ESCREVER "Digite o nome do artigo:"
+    LER NOME_ARTIGO
+
+    REPITA
+      ESCREVER "Digite o preço do artigo (R$):"
+      LER PRECO_ARTIGO
+      SE PRECO_ARTIGO <= 0 ENTÃO
+        ESCREVER "O preço deve ser um valor positivo. Tente novamente."
+      FIM SE
+    ATÉ PRECO_ARTIGO > 0
+
+    REPITA
+      ESCREVER "Digite o percentual de desconto (ex: 10 para 10%):"
+      LER PERCENTUAL_DESCONTO
+      SE PERCENTUAL_DESCONTO < 0 OU PERCENTUAL_DESCONTO > 100 ENTÃO
+        ESCREVER "O percentual de desconto deve estar entre 0 e 100. Tente novamente."
+      FIM SE
+    ATÉ PERCENTUAL_DESCONTO >= 0 E PERCENTUAL_DESCONTO <= 100
+
+    // --- Cálculos para o Artigo Atual ---
+    // Converter percentual para decimal (ex: 10% = 0.10)
+    VALOR_DESCONTO = PRECO_ARTIGO * (PERCENTUAL_DESCONTO / 100)
+    PRECO_COM_DESCONTO = PRECO_ARTIGO - VALOR_DESCONTO
+
+    // Adiciona o preço com desconto deste artigo ao total a pagar
+    TOTAL_A_PAGAR = TOTAL_A_PAGAR + PRECO_COM_DESCONTO
+
+    // --- Impressão dos Detalhes do Artigo Atual ---
+    ESCREVER "\nDetalhes do Artigo ", I, ":"
+    ESCREVER "  Nome: ", NOME_ARTIGO
+    ESCREVER "  Preço Original: R$", FORMATAR_NUMERO(PRECO_ARTIGO, 2)
+    ESCREVER "  Percentual de Desconto: ", PERCENTUAL_DESCONTO, "%"
+    ESCREVER "  Preço com Desconto: R$", FORMATAR_NUMERO(PRECO_COM_DESCONTO, 2)
+  FIM PARA
+
+  // --- Impressão do Total a Pagar ---
+  ESCREVER "\n--- RESUMO DA COMPRA ---"
+  ESCREVER "TOTAL A PAGAR: R$", FORMATAR_NUMERO(TOTAL_A_PAGAR, 2)
+
+FIM
