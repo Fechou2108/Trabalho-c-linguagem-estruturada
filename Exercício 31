@@ -1,0 +1,27 @@
+INÍCIO
+
+  // Declaração das variáveis
+  A
+  B
+
+  // --- Leitura dos Dois Números ---
+  ESCREVER "Olá! Este programa compara dois números e informa qual é o maior."
+
+  ESCREVER "Digite o valor para o primeiro número (A):"
+  LER A
+
+  ESCREVER "Digite o valor para o segundo número (B):"
+  LER B
+
+  // --- Comparação e Impressão do Maior ---
+  ESCREVER "\n--- Resultado ---"
+
+  SE A > B ENTÃO
+    ESCREVER "O maior número é: ", A
+  SENÃO SE B > A ENTÃO
+    ESCREVER "O maior número é: ", B
+  SENÃO // Caso A seja igual a B
+    ESCREVER "Os números são iguais: ", A // Ou B, tanto faz
+  FIM SE
+
+FIM
