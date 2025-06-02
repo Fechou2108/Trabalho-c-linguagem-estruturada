@@ -1,0 +1,77 @@
+def calculate_salaries_metrics():
+    """
+    Calculates the average, highest, and lowest salaries for a company
+    by taking employee names and salaries as input until 'fim' is entered.
+    """
+    SENTINEL = "fim"
+
+    total_salaries_sum = 0.0
+    employee_count = 0
+    
+    # Initialize with values that any valid salary will replace
+    highest_salary = float('-inf')  # Represents negative infinity
+    lowest_salary = float('inf')   # Represents positive infinity
+
+    # Variables to store names associated with highest/lowest salaries
+    name_highest_salary = ""
+    name_lowest_salary = ""
+
+    print("--- Company Salary Analysis ---")
+    print(f"Enter employee names and salaries. Type '{SENTINEL}' for the employee name to finish.")
+
+    # --- Start of Data Input Loop ---
+    while True: # This simulates the 'REPITA' part, which always runs at least once
+        print("\n--- Employee Data ---")
+        employee_name = input("Enter employee name (or 'fim' to finish): ").strip().lower()
+
+        if employee_name == SENTINEL:
+            break # Exit the loop if the sentinel is entered
+
+        employee_salary = None
+        while employee_salary is None: # Loop for salary validation
+            try:
+                val = float(input(f"Enter {employee_name.capitalize()}'s salary: R$ "))
+                if val < 0:
+                    print("Invalid salary. Please enter a non-negative numerical value.")
+                else:
+                    employee_salary = val # Valid salary, exit inner loop
+            except ValueError:
+                print("Invalid input. Please enter a numerical value for the salary.")
+
+        # --- Process Data ---
+        total_salaries_sum += employee_salary
+        employee_count += 1
+
+        # Check for highest salary
+        if employee_salary > highest_salary:
+            highest_salary = employee_salary
+            name_highest_salary = employee_name
+
+        # Check for lowest salary
+        if employee_salary < lowest_salary:
+            lowest_salary = employee_salary
+            name_lowest_salary = employee_name
+
+    # --- Calculate Average ---
+    average_salary = 0.0
+    if employee_count > 0: # Avoids division by zero if no employees were entered
+        average_salary = total_salaries_sum / employee_count
+
+    # --- Display Results ---
+    print("\n--- Company Salary Report ---")
+    print("-" * 38) # A line for visual separation
+
+    if employee_count == 0:
+        print("No employees were registered for analysis.")
+    else:
+        print(f"Total employees registered: {employee_count}")
+        print(f"Total sum of salaries: R$ {total_salaries_sum:.2f}")
+        print(f"Average salary: R$ {average_salary:.2f}")
+        print("-" * 38)
+        # .capitalize() is used to ensure the displayed name starts with a capital letter
+        print(f"Employee with the HIGHEST salary: {name_highest_salary.capitalize()} (R$ {highest_salary:.2f})")
+        print(f"Employee with the LOWEST salary: {name_lowest_salary.capitalize()} (R$ {lowest_salary:.2f})")
+    print("-" * 38)
+
+# Execute the algorithm
+calculate_salaries_metrics()
