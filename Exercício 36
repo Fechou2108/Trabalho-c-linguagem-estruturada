@@ -1,0 +1,64 @@
+INÍCIO
+
+  // Declaração de variáveis
+  VALOR_COMPRA
+  VALOR_PAGO
+  TROCO_TOTAL
+  NOTAS_100
+  NOTAS_10
+  NOTAS_1
+  TROCO_RESTANTE // Variável auxiliar para o cálculo das notas
+
+  // --- Entrada de Dados ---
+  ESCREVER "Olá! Vamos calcular o troco e o número mínimo de notas."
+
+  REPITA
+    ESCREVER "Digite o valor da compra (apenas valores inteiros em Reais):"
+    LER VALOR_COMPRA
+    SE VALOR_COMPRA <= 0 ENTÃO
+      ESCREVER "O valor da compra deve ser positivo."
+    FIM SE
+  ATÉ VALOR_COMPRA > 0
+
+  REPITA
+    ESCREVER "Digite o valor pago pelo cliente (apenas valores inteiros em Reais):"
+    LER VALOR_PAGO
+    SE VALOR_PAGO < VALOR_COMPRA ENTÃO
+      ESCREVER "O valor pago deve ser maior ou igual ao valor da compra."
+    FIM SE
+  ATÉ VALOR_PAGO >= VALOR_COMPRA
+
+  // --- Cálculo do Troco ---
+  TROCO_TOTAL = VALOR_PAGO - VALOR_COMPRA
+
+  // --- Cálculo do Número Mínimo de Notas ---
+  // Inicializa as contagens de notas
+  NOTAS_100 = 0
+  NOTAS_10 = 0
+  NOTAS_1 = 0
+
+  TROCO_RESTANTE = TROCO_TOTAL // Começa com o troco total para distribuir as notas
+
+  // 1. Calcular notas de R$100
+  SE TROCO_RESTANTE >= 100 ENTÃO
+    NOTAS_100 = TROCO_RESTANTE DIV 100
+    TROCO_RESTANTE = TROCO_RESTANTE MOD 100
+  FIM SE
+
+  // 2. Calcular notas de R$10
+  SE TROCO_RESTANTE >= 10 ENTÃO
+    NOTAS_10 = TROCO_RESTANTE DIV 10
+    TROCO_RESTANTE = TROCO_RESTANTE MOD 10
+  FIM SE
+
+  // 3. O que sobrou é o número de notas de R$1
+  NOTAS_1 = TROCO_RESTANTE
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Detalhes da Transação ---"
+  ESCREVER "Valor da Compra: R$", VALOR_COMPRA, ".00"
+  ESCREVER "Valor Pago: R$", VALOR_PAGO, ".00"
+  ESCREVER "Troco Total: R$", TROCO_TOTAL, ".00"
+
+  ESCREVER "\n--- Notas do Troco ---"
+  ESCREVER
