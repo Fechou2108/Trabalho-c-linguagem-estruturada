@@ -1,0 +1,76 @@
+INÍCIO
+
+  // Variáveis para a Pessoa 1
+  NOME1
+  ALTURA1
+  PESO1
+
+  // Variáveis para a Pessoa 2
+  NOME2
+  ALTURA2
+  PESO2
+
+  // Variáveis para armazenar os resultados
+  NOME_MAIS_PESADA
+  PESO_MAIS_PESADA
+  NOME_MAIS_ALTA
+  ALTURA_MAIS_ALTA
+
+  ESCREVER "Olá! Vamos comparar a altura e o peso de duas pessoas."
+
+  // --- Entrada de Dados da Pessoa 1 ---
+  ESCREVER "\n--- Dados da Primeira Pessoa ---"
+  ESCREVER "Digite o nome da primeira pessoa:"
+  LER NOME1
+
+  REPITA
+    ESCREVER "Digite a altura de ", NOME1, " (em metros, ex: 1.75):"
+    LER ALTURA1
+    SE ALTURA1 <= 0 OU TIPO_DE_DADO(ALTURA1) <> NUMERICO ENTÃO
+      ESCREVER "Altura inválida. Por favor, digite um valor positivo em metros."
+    FIM SE
+  ATÉ ALTURA1 > 0 E TIPO_DE_DADO(ALTURA1) = NUMERICO
+
+  REPITA
+    ESCREVER "Digite o peso de ", NOME1, " (em kg, ex: 70.5):"
+    LER PESO1
+    SE PESO1 <= 0 OU TIPO_DE_DADO(PESO1) <> NUMERICO ENTÃO
+      ESCREVER "Peso inválido. Por favor, digite um valor positivo em kg."
+    FIM SE
+  ATÉ PESO1 > 0 E TIPO_DE_DADO(PESO1) = NUMERICO
+
+  // --- Entrada de Dados da Pessoa 2 ---
+  ESCREVER "\n--- Dados da Segunda Pessoa ---"
+  ESCREVER "Digite o nome da segunda pessoa:"
+  LER NOME2
+
+  REPITA
+    ESCREVER "Digite a altura de ", NOME2, " (em metros, ex: 1.68):"
+    LER ALTURA2
+    SE ALTURA2 <= 0 OU TIPO_DE_DADO(ALTURA2) <> NUMERICO ENTÃO
+      ESCREVER "Altura inválida. Por favor, digite um valor positivo em metros."
+    FIM SE
+  ATÉ ALTURA2 > 0 E TIPO_DE_DADO(ALTURA2) = NUMERICO
+
+  REPITA
+    ESCREVER "Digite o peso de ", NOME2, " (em kg, ex: 85.0):"
+    LER PESO2
+    SE PESO2 <= 0 OU TIPO_DE_DADO(PESO2) <> NUMERICO ENTÃO
+      ESCREVER "Peso inválido. Por favor, digite um valor positivo em kg."
+    FIM SE
+  ATÉ PESO2 > 0 E TIPO_DE_DADO(PESO2) = NUMERICO
+
+  // --- Determinar a Pessoa Mais Pesada ---
+  SE PESO1 > PESO2 ENTÃO
+    NOME_MAIS_PESADA = NOME1
+    PESO_MAIS_PESADA = PESO1
+  SENÃO SE PESO2 > PESO1 ENTÃO
+    NOME_MAIS_PESADA = NOME2
+    PESO_MAIS_PESADA = PESO2
+  SENÃO // PESO1 = PESO2
+    NOME_MAIS_PESADA = "Ambas as pessoas" // Ou pode-se escolher um dos nomes
+    PESO_MAIS_PESADA = PESO1 // Ambos têm o mesmo peso
+  FIM SE
+
+  // --- Determinar a Pessoa Mais Alta ---
+  SE ALTURA1 > ALTURA2
