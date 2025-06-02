@@ -1,0 +1,38 @@
+INÍCIO - ENQUANTO-FAÇA
+
+  // Variáveis para o número atual e a soma
+  X = 1   // Começa contando do 1
+  SOMA = 0 // Acumulador da soma
+
+  ESCREVER "--- Soma dos inteiros de 1 a 10 (usando ENQUANTO-FAÇA) ---"
+
+  // O laço continua ENQUANTO X for menor ou igual a 10
+  ENQUANTO X <= 10 FAÇA
+    SOMA = SOMA + X // Adiciona o valor atual de X à soma
+    X = X + 1       // Incrementa X para o próximo número
+  FIM ENQUANTO
+
+  // Imprime o resultado
+  ESCREVER "A soma dos inteiros de 1 a 10 é: ", SOMA
+
+FIM - ENQUANTO-FAÇA
+
+INÍCIO - REPITA-FAÇA
+
+  // Variáveis para o número atual e a soma
+  X = 1   // Começa contando do 1
+  SOMA = 0 // Acumulador da soma
+
+  ESCREVER "\n--- Soma dos inteiros de 1 a 10 (usando REPITA-FAÇA) ---"
+
+  // O laço REPITA-FAÇA executa o bloco de código ANTES de verificar a condição.
+  // Ele REPITE as ações ATÉ X se tornar 11.
+  REPITA
+    SOMA = SOMA + X // Adiciona o valor atual de X à soma
+    X = X + 1       // Incrementa X para o próximo número
+  ATÉ X = 11 // A condição de parada é quando X se torna 11
+
+  // Imprime o resultado
+  ESCREVER "A soma dos inteiros de 1 a 10 é: ", SOMA
+
+FIM - REPITA-FAÇA
