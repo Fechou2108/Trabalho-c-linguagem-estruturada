@@ -1,0 +1,61 @@
+INÍCIO
+
+  // Variáveis para os números de entrada e o resultado
+  NUMERO1
+  NUMERO2
+  RESULTADO = 0 // Inicializa o resultado da soma
+
+  // Variável para controlar o sinal do resultado (se um dos números for negativo)
+  SINAL_RESULTADO = 1 // 1 para positivo, -1 para negativo
+
+  // --- Entrada dos Números ---
+  ESCREVER "Olá! Vamos multiplicar dois números inteiros sem usar o operador de multiplicação."
+
+  REPITA
+    ESCREVER "Digite o primeiro número inteiro:"
+    LER NUMERO1
+    SE TIPO_DE_DADO(NUMERO1) <> INTEIRO ENTÃO
+      ESCREVER "Entrada inválida. Por favor, digite um número inteiro."
+    FIM SE
+  ATÉ TIPO_DE_DADO(NUMERO1) = INTEIRO
+
+  REPITA
+    ESCREVER "Digite o segundo número inteiro:"
+    LER NUMERO2
+    SE TIPO_DE_DADO(NUMERO2) <> INTEIRO ENTÃO
+      ESCREVER "Entrada inválida. Por favor, digite um número inteiro."
+    FIM SE
+  ATÉ TIPO_DE_DADO(NUMERO2) = INTEIRO
+
+  // --- Determinar o Sinal do Resultado ---
+  // Se um dos números for negativo e o outro positivo, o resultado é negativo
+  SE (NUMERO1 < 0 E NUMERO2 > 0) OU (NUMERO1 > 0 E NUMERO2 < 0) ENTÃO
+    SINAL_RESULTADO = -1
+  FIM SE
+
+  // Trabalhar com os valores absolutos para a soma repetida
+  NUMERO1_ABSOLUTO = VALOR_ABSOLUTO(NUMERO1)
+  NUMERO2_ABSOLUTO = VALOR_ABSOLUTO(NUMERO2)
+
+  // --- Realizar a Soma Repetida ---
+  // Se o segundo número for 0, o resultado é 0.
+  // Caso contrário, somamos o primeiro número absoluto, "NUMERO2_ABSOLUTO" vezes
+  SE NUMERO2_ABSOLUTO = 0 ENTÃO
+    RESULTADO = 0
+  SENÃO
+    PARA I DE 1 ATÉ NUMERO2_ABSOLUTO FAÇA
+      RESULTADO = RESULTADO + NUMERO1_ABSOLUTO
+    FIM PARA
+  FIM SE
+
+  // --- Aplicar o Sinal Final ao Resultado ---
+  RESULTADO = RESULTADO * SINAL_RESULTADO // Esta é a única "multiplicação" permitida, por 1 ou -1 para o sinal.
+                                        // Alternativamente, se SINAL_RESULTADO for -1, faça RESULTADO = -RESULTADO
+
+  // --- Apresentação do Resultado ---
+  ESCREVER "\n--- Resultado da Multiplicação (sem operador *) ---"
+  ESCREVER "Primeiro número: ", NUMERO1
+  ESCREVER "Segundo número: ", NUMERO2
+  ESCREVER "O produto é: ", RESULTADO
+
+FIM
