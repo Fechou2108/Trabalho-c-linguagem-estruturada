@@ -1,0 +1,39 @@
+INÍCIO
+
+  // Variável para o número de entrada
+  NUMERO_ENTRADA
+
+  // Variável para armazenar o resultado do fatorial
+  FATORIAL_RESULTADO
+
+  // --- Entrada do Número ---
+  ESCREVER "Olá! Vamos calcular o fatorial de um número."
+
+  REPITA
+    ESCREVER "Digite um número inteiro não negativo para calcular o fatorial:"
+    LER NUMERO_ENTRADA
+    SE NUMERO_ENTRADA < 0 OU TIPO_DE_DADO(NUMERO_ENTRADA) <> INTEIRO ENTÃO
+      ESCREVER "Entrada inválida. Por favor, digite um número inteiro não negativo."
+    FIM SE
+  ATÉ NUMERO_ENTRADA >= 0 E TIPO_DE_DADO(NUMERO_ENTRADA) = INTEIRO
+
+  // --- Cálculo do Fatorial ---
+
+  // Caso base: Fatorial de 0 é 1
+  SE NUMERO_ENTRADA = 0 ENTÃO
+    FATORIAL_RESULTADO = 1
+  SENÃO
+    // Inicializa o resultado do fatorial com 1 (para começar a multiplicação)
+    FATORIAL_RESULTADO = 1
+    // Loop para multiplicar os números de 1 até NUMERO_ENTRADA
+    PARA I DE 1 ATÉ NUMERO_ENTRADA FAÇA
+      FATORIAL_RESULTADO = FATORIAL_RESULTADO * I
+    FIM PARA
+  FIM SE
+
+  // --- Apresentação do Resultado ---
+  ESCREVER "\n--- Resultado do Fatorial ---"
+  ESCREVER "O número digitado foi: ", NUMERO_ENTRADA
+  ESCREVER "O fatorial de ", NUMERO_ENTRADA, " (", NUMERO_ENTRADA, "!) é: ", FATORIAL_RESULTADO
+
+FIM
