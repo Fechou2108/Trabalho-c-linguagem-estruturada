@@ -1,0 +1,55 @@
+INÍCIO
+
+  // Variáveis para os comprimentos dos lados
+  X
+  Y
+  Z
+
+  // --- Entrada de Dados dos Lados ---
+  ESCREVER "Olá! Vamos verificar e classificar um triângulo."
+
+  REPITA
+    ESCREVER "Digite o comprimento do lado X:"
+    LER X
+    SE X <= 0 ENTÃO
+      ESCREVER "O comprimento do lado deve ser um valor positivo. Tente novamente."
+    FIM SE
+  ATÉ X > 0
+
+  REPITA
+    ESCREVER "Digite o comprimento do lado Y:"
+    LER Y
+    SE Y <= 0 ENTÃO
+      ESCREVER "O comprimento do lado deve ser um valor positivo. Tente novamente."
+    FIM SE
+  ATÉ Y > 0
+
+  REPITA
+    ESCREVER "Digite o comprimento do lado Z:"
+    LER Z
+    SE Z <= 0 ENTÃO
+      ESCREVER "O comprimento do lado deve ser um valor positivo. Tente novamente."
+    FIM SE
+  ATÉ Z > 0
+
+  // --- Verificação se Forma um Triângulo ---
+  SE (X < Y + Z) E (Y < X + Z) E (Z < X + Y) ENTÃO
+    // Os lados formam um triângulo
+    ESCREVER "\n--- O Triângulo Pode Ser Formado! ---"
+
+    // --- Classificação do Triângulo ---
+    SE (X = Y) E (Y = Z) ENTÃO
+      ESCREVER "Tipo de Triângulo: Equilátero (todos os lados iguais)."
+    SENÃO SE (X = Y) OU (X = Z) OU (Y = Z) ENTÃO
+      ESCREVER "Tipo de Triângulo: Isóscele (dois lados iguais)."
+    SENÃO // Todos os lados são diferentes
+      ESCREVER "Tipo de Triângulo: Escaleno (todos os lados diferentes)."
+    FIM SE
+  SENÃO
+    // Os lados não formam um triângulo
+    ESCREVER "\n--- Não é um Triângulo ---"
+    ESCREVER "Mensagem: Os valores X, Y e Z não podem ser os comprimentos dos lados de um triângulo."
+    ESCREVER "  (Lembre-se: O comprimento de cada lado deve ser menor que a soma dos outros dois.)"
+  FIM SE
+
+FIM
