@@ -1,0 +1,48 @@
+def calcular_operacoes_distributivas():
+    """
+    Lê quatro números (A, B, C, D) e apresenta os resultados de adição
+    e multiplicação dos pares, seguindo a propriedade distributiva
+    (A com B, A com C, A com D; B com C, B com D; C com D).
+    """
+    print("--- Operações com Propriedade Distributiva ---")
+
+    # --- Leitura dos Quatro Números com validação ---
+    numeros = {}
+    variaveis = ['A', 'B', 'C', 'D']
+
+    for var in variaveis:
+        while True:
+            try:
+                # Converte a entrada para float para permitir números decimais
+                valor = float(input(f"Digite o valor para o número {var}: "))
+                numeros[var] = valor
+                break
+            except ValueError:
+                print(f"Entrada inválida para {var}. Por favor, digite um valor numérico.")
+
+    # Atribui os valores lidos às variáveis individuais para clareza no cálculo
+    A = numeros['A']
+    B = numeros['B']
+    C = numeros['C']
+    D = numeros['D']
+
+    # --- Apresentação dos Resultados de Adição ---
+    print("\n--- Resultados das Adições ---")
+    print(f"{A} + {B} = {A + B:.2f}")
+    print(f"{A} + {C} = {A + C:.2f}")
+    print(f"{A} + {D} = {A + D:.2f}")
+    print(f"{B} + {C} = {B + C:.2f}")
+    print(f"{B} + {D} = {B + D:.2f}")
+    print(f"{C} + {D} = {C + D:.2f}")
+
+    # --- Apresentação dos Resultados de Multiplicação ---
+    print("\n--- Resultados das Multiplicações ---")
+    print(f"{A} * {B} = {A * B:.2f}")
+    print(f"{A} * {C} = {A * C:.2f}")
+    print(f"{A} * {D} = {A * D:.2f}")
+    print(f"{B} * {C} = {B * C:.2f}")
+    print(f"{B} * {D} = {B * D:.2f}")
+    print(f"{C} * {D} = {C * D:.2f}")
+
+# Executa o algoritmo
+calcular_operacoes_distributivas()
