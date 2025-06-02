@@ -1,0 +1,42 @@
+def calcular_quociente_e_resto():
+    """
+    Lê dois números inteiros (Int1 e Int2) e imprime o quociente
+    e o resto da divisão inteira de Int1 por Int2.
+    """
+    print("--- Calculadora de Quociente e Resto de Divisão Inteira ---")
+
+    # --- Leitura do primeiro número (Int1) com validação ---
+    while True:
+        try:
+            int1 = int(input("Digite o primeiro número inteiro (Int1 - o dividendo): "))
+            break
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um NÚMERO INTEIRO.")
+
+    # --- Leitura do segundo número (Int2) com validação (não pode ser zero) ---
+    while True:
+        try:
+            int2 = int(input("Digite o segundo número inteiro (Int2 - o divisor, não pode ser zero): "))
+            if int2 == 0:
+                print("Erro: O divisor não pode ser zero. Por favor, digite outro número inteiro.")
+            else:
+                break
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um NÚMERO INTEIRO.")
+
+    # --- Cálculo do Quociente e Resto ---
+    # Em Python:
+    #   '//' é o operador para divisão inteira (retorna o quociente)
+    #   '%' é o operador para o resto da divisão
+    quociente = int1 // int2
+    resto = int1 % int2
+
+    # --- Apresentação dos Resultados ---
+    print("\n--- Resultados da Divisão Inteira ---")
+    print(f"Int1 (Dividendo): {int1}")
+    print(f"Int2 (Divisor): {int2}")
+    print(f"Quociente da divisão ({int1} // {int2}): {quociente}")
+    print(f"Resto da divisão ({int1} % {int2}): {resto}")
+
+# Executa o algoritmo
+calcular_quociente_e_resto()
