@@ -1,0 +1,123 @@
+INÍCIO
+
+  // Define o número de dias em um mês e um ano simplificado
+  DIAS_NO_MES = 30
+  DIAS_NO_ANO = 360 // 12 meses * 30 dias/mês
+
+  // --- Entrada de Dados de Nascimento ---
+  ESCREVER "Digite o dia de nascimento (ex: 15):"
+  LER DIA_NASCIMENTO
+
+  ESCREVER "Digite o mês de nascimento (ex: 7 para Julho):"
+  LER MES_NASCIMENTO
+
+  ESCREVER "Digite o ano de nascimento (ex: 1990):"
+  LER ANO_NASCIMENTO
+
+  // --- Entrada de Dados da Data Atual ---
+  ESCREVER "Digite o dia atual (ex: 20):"
+  LER DIA_ATUAL
+
+  ESCREVER "Digite o mês atual (ex: 10 para Outubro):"
+  LER MES_ATUAL
+
+  ESCREVER "Digite o ano atual (ex: 2023):"
+  LER ANO_ATUAL
+
+  // --- Cálculo dos Dias Vividos ---
+
+  // Calcula o total de dias a partir do ano de nascimento
+  TOTAL_DIAS_NASCIMENTO = (ANO_NASCIMENTO * DIAS_NO_ANO) + \
+                         ((MES_NASCIMENTO - 1) * DIAS_NO_MES) + \
+                         DIA_NASCIMENTO
+
+  // Calcula o total de dias até a data atual
+  TOTAL_DIAS_ATUAL = (ANO_ATUAL * DIAS_NO_ANO) + \
+                     ((MES_ATUAL - 1) * DIAS_NO_MES) + \
+                     DIA_ATUAL
+
+  // A diferença é o número de dias vividos
+  DIAS_VIVIDOS = TOTAL_DIAS_ATUAL - TOTAL_DIAS_NASCIMENTO
+
+  // --- Saída do Resultado ---
+  ESCREVER "A pessoa viveu aproximadamente", DIAS_VIVIDOS, "dias."
+
+FIM
+
+
+def calcular_dias_vividos_simplificado():
+    """
+    Calcula o número de dias que uma pessoa já viveu,
+    considerando que cada mês tem 30 dias.
+    """
+    DIAS_NO_MES = 30
+    DIAS_NO_ANO = 360  # 12 meses * 30 dias/mês
+
+    print("--- Calculadora de Dias Vividos ---")
+
+    # --- Entrada de Dados de Nascimento ---
+    print("\nPor favor, digite sua data de nascimento:")
+    while True:
+        try:
+            dia_nascimento = int(input("Dia (ex: 15): "))
+            if not 1 <= dia_nascimento <= 30:
+                print("Dia inválido. Digite um número entre 1 e 30.")
+                continue
+            mes_nascimento = int(input("Mês (ex: 7 para Julho): "))
+            if not 1 <= mes_nascimento <= 12:
+                print("Mês inválido. Digite um número entre 1 e 12.")
+                continue
+            ano_nascimento = int(input("Ano (ex: 1990): "))
+            if ano_nascimento <= 0:
+                print("Ano inválido. Digite um ano positivo.")
+                continue
+            break
+        except ValueError:
+            print("Entrada inválida. Por favor, digite números inteiros para as datas.")
+
+    # --- Entrada de Dados da Data Atual ---
+    print("\nPor favor, digite a data atual:")
+    while True:
+        try:
+            dia_atual = int(input("Dia (ex: 20): "))
+            if not 1 <= dia_atual <= 30:
+                print("Dia inválido. Digite um número entre 1 e 30.")
+                continue
+            mes_atual = int(input("Mês (ex: 10 para Outubro): "))
+            if not 1 <= mes_atual <= 12:
+                print("Mês inválido. Digite um número entre 1 e 12.")
+                continue
+            ano_atual = int(input("Ano (ex: 2023): "))
+            if ano_atual < ano_nascimento: # Não pode ser menor que o ano de nascimento
+                print("O ano atual não pode ser anterior ao ano de nascimento.")
+                continue
+            # Verificação adicional para garantir que a data atual não seja anterior à data de nascimento
+            if ano_atual == ano_nascimento:
+                if mes_atual < mes_nascimento:
+                    print("O mês atual não pode ser anterior ao mês de nascimento no mesmo ano.")
+                    continue
+                if mes_atual == mes_nascimento and dia_atual < dia_nascimento:
+                    print("O dia atual não pode ser anterior ao dia de nascimento no mesmo mês e ano.")
+                    continue
+            break
+        except ValueError:
+            print("Entrada inválida. Por favor, digite números inteiros para as datas.")
+
+    # --- Cálculo dos Dias Vividos ---
+    # Convertendo ambas as datas para um número total de dias a partir do "marco zero" (ano 0, mês 1, dia 1)
+    total_dias_nascimento = (ano_nascimento * DIAS_NO_ANO) + \
+                            ((mes_nascimento - 1) * DIAS_NO_MES) + \
+                            dia_nascimento
+
+    total_dias_atual = (ano_atual * DIAS_NO_ANO) + \
+                       ((mes_atual - 1) * DIAS_NO_MES) + \
+                       dia_atual
+
+    # A diferença é o número de dias vividos
+    dias_vividos = total_dias_atual - total_dias_nascimento
+
+    # --- Saída do Resultado ---
+    print(f"\nA pessoa viveu aproximadamente {dias_vividos} dias.")
+
+# Executa o algoritmo
+calcular_dias_vividos_simplificado()
