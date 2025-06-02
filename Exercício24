@@ -1,0 +1,77 @@
+INÍCIO
+
+  // Define o consumo do automóvel (12 Km por litro)
+  CONSUMO_POR_LITRO = 12
+
+  // --- Entrada de Dados do Usuário ---
+  ESCREVER "Olá! Vamos calcular o consumo de combustível da sua viagem."
+
+  ESCREVER "Por favor, digite o tempo gasto na viagem (em horas):"
+  LER TEMPO_GASTO
+
+  ESCREVER "Por favor, digite a velocidade média durante a viagem (em Km/h):"
+  LER VELOCIDADE_MEDIA
+
+  // --- Cálculos ---
+  // 1. Calcula a distância percorrida
+  DISTANCIA = TEMPO_GASTO * VELOCIDADE_MEDIA
+
+  // 2. Calcula a quantidade de litros de combustível usados
+  LITROS_USADOS = DISTANCIA / CONSUMO_POR_LITRO
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "--- Detalhes da Viagem ---"
+  ESCREVER "Velocidade Média: ", VELOCIDADE_MEDIA, " Km/h"
+  ESCREVER "Tempo Gasto na Viagem: ", TEMPO_GASTO, " horas"
+  ESCREVER "Distância Percorrida: ", DISTANCIA, " Km"
+  ESCREVER "Litros de Combustível Utilizados: ", LITROS_USADOS, " litros"
+
+FIM
+
+def calcular_consumo_combustivel_viagem():
+    """
+    Calcula a quantidade de litros de combustível gasta em uma viagem,
+    com base no tempo, velocidade média e um consumo de 12 Km/litro.
+    """
+    CONSUMO_POR_LITRO = 12 # Km por litro
+
+    print("--- Calculadora de Consumo de Combustível na Viagem ---")
+    print("Este programa calcula o combustível gasto para um carro que faz 12 Km/litro.")
+
+    # --- Entrada de Dados do Usuário com validação ---
+    while True:
+        try:
+            tempo_gasto = float(input("Digite o tempo gasto na viagem (em horas, ex: 2.5): "))
+            if tempo_gasto < 0:
+                print("O tempo não pode ser negativo. Por favor, digite um valor válido.")
+            else:
+                break
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um número para o tempo.")
+
+    while True:
+        try:
+            velocidade_media = float(input("Digite a velocidade média durante a viagem (em Km/h, ex: 80): "))
+            if velocidade_media < 0:
+                print("A velocidade não pode ser negativa. Por favor, digite um valor válido.")
+            else:
+                break
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um número para a velocidade.")
+
+    # --- Cálculos ---
+    # 1. Calcula a distância percorrida
+    distancia = tempo_gasto * velocidade_media
+
+    # 2. Calcula a quantidade de litros de combustível usados
+    litros_usados = distancia / CONSUMO_POR_LITRO
+
+    # --- Apresentação dos Resultados ---
+    print("\n--- Resultados da Viagem ---")
+    print(f"Velocidade Média: {velocidade_media:.2f} Km/h")
+    print(f"Tempo Gasto na Viagem: {tempo_gasto:.2f} horas")
+    print(f"Distância Percorrida: {distancia:.2f} Km")
+    print(f"Quantidade de Litros de Combustível Utilizados: {litros_usados:.2f} litros")
+
+# Executa o algoritmo
+calcular_consumo_combustivel_viagem()
