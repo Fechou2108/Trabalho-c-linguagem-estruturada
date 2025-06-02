@@ -1,0 +1,23 @@
+INÍCIO
+
+  // Escreve o cabeçalho da tabela
+  ESCREVER "Número   Quadrado   Cubo"
+  ESCREVER "---------------------------"
+
+  // Loop para iterar de 0 a 10
+  PARA NUMERO DE 0 ATÉ 10 FAÇA
+    // Calcula o quadrado
+    QUADRADO = NUMERO * NUMERO
+
+    // Calcula o cubo
+    CUBO = NUMERO * NUMERO * NUMERO
+    // Alternativamente: CUBO = NUMERO ^ 3 ou CUBO = QUADRADO * NUMERO
+
+    // Imprime a linha da tabela com os valores formatados
+    ESCREVER FORMATAR_NUMERO(NUMERO, 2, ' ') ESPACO "   " \
+            FORMATAR_NUMERO(QUADRADO, 8, ' ') ESPACO "   " \
+            FORMATAR_NUMERO(CUBO, 4, ' ')
+
+  FIM PARA
+
+FIM
