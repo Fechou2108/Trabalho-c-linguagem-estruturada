@@ -1,0 +1,70 @@
+INÍCIO
+
+  // Variáveis
+  NUMERO_ANDAR           // Contador de andares (de 1 ao N)
+  NUMERO_ANDAR_PREDIO    // Total de andares do prédio (lido do usuário)
+  PESSOAS_NO_ELEVADOR = 0 // Contador de pessoas dentro do elevador, começa vazio
+  ENTRARAM                // Número de pessoas que entram no elevador em um andar
+  SAIRAM                  // Número de pessoas que saem do elevador em um andar
+  EXCESSO_PASSAGEIROS     // Quantidade de pessoas em excesso
+
+  // Constante
+  LIMITE_PASSAGEIROS = 15
+
+  ESCREVER "Olá! Vamos simular a subida de um elevador."
+  ESCREVER "O elevador começa vazio e subirá andar por andar."
+
+  // --- Leitura e Validação do Número de Andares do Prédio ---
+  REPITA
+    ESCREVER "Digite o número total de andares do prédio (inteiro positivo):"
+    LER NUMERO_ANDAR_PREDIO
+    SE NUMERO_ANDAR_PREDIO <= 0 OU TIPO_DE_DADO(NUMERO_ANDAR_PREDIO) <> INTEIRO ENTÃO
+      ESCREVER "Número de andares inválido. Digite um valor inteiro e positivo."
+    FIM SE
+  ATÉ NUMERO_ANDAR_PREDIO > 0 E TIPO_DE_DADO(NUMERO_ANDAR_PREDIO) = INTEIRO
+
+  // --- Loop para cada Andar ---
+  PARA NUMERO_ANDAR DE 1 ATÉ NUMERO_ANDAR_PREDIO FAÇA
+    ESCREVER "\n--- Andar ", NUMERO_ANDAR, " ---"
+    ESCREVER "Pessoas no elevador antes deste andar: ", PESSOAS_NO_ELEVADOR
+
+    // --- Leitura e Validação de Entraram ---
+    REPITA
+      ESCREVER "Quantas pessoas entraram no elevador neste andar?"
+      LER ENTRARAM
+      SE ENTRARAM < 0 OU TIPO_DE_DADO(ENTRARAM) <> INTEIRO ENTÃO
+        ESCREVER "Número inválido. Digite um valor inteiro não negativo."
+      FIM SE
+    ATÉ ENTRARAM >= 0 E TIPO_DE_DADO(ENTRARAM) = INTEIRO
+
+    // --- Leitura e Validação de Saíram ---
+    REPITA
+      ESCREVER "Quantas pessoas saíram do elevador neste andar?"
+      LER SAIRAM
+      // Garante que o número de saídas não excede o número de pessoas no elevador (Pessoas_No_Elevador + Entraram)
+      SE SAIRAM < 0 OU TIPO_DE_DADO(SAIRAM) <> INTEIRO OU SAIRAM > (PESSOAS_NO_ELEVADOR + ENTRARAM) ENTÃO
+        ESCREVER "Número inválido. Digite um valor inteiro não negativo e menor ou igual às pessoas presentes."
+      FIM SE
+    ATÉ SAIRAM >= 0 E TIPO_DE_DADO(SAIRAM) = INTEIRO E SAIRAM <= (PESSOAS_NO_ELEVADOR + ENTRARAM)
+
+    // --- Atualiza o número de pessoas no elevador ---
+    PESSOAS_NO_ELEVADOR = PESSOAS_NO_ELEVADOR + ENTRARAM - SAIRAM
+
+    // --- Verifica Excesso de Passageiros ---
+    SE PESSOAS_NO_ELEVADOR > LIMITE_PASSAGEIROS ENTÃO
+      EXCESSO_PASSAGEIROS = PESSOAS_NO_ELEVADOR - LIMITE_PASSAGEIROS
+      ESCREVER "ATENÇÃO: EXCESSO DE PASSAGEIROS. DEVEM SAIR ", EXCESSO_PASSAGEIROS, " PESSOA(S)."
+      // Não alteramos PESSOAS_NO_ELEVADOR aqui, pois a simulação continua com o excesso se o usuário não o remover.
+      // Se fosse uma simulação real, teríamos que forçar a saída aqui.
+      // Para este algoritmo, apenas mostramos a mensagem.
+    FIM SE
+
+    ESCREVER "Pessoas no elevador após operações no Andar ", NUMERO_ANDAR, ": ", PESSOAS_NO_ELEVADOR
+  FIM PARA
+
+  // --- Resultado Final ---
+  ESCREVER "\n--- Fim da Subida ---"
+  ESCREVER "O elevador chegou ao último andar (", NUMERO_ANDAR_PREDIO, ")."
+  ESCREVER "Total de pessoas que irão descer nos próximos andares: ", PESSOAS_NO_ELEVADOR
+
+FIM
