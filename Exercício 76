@@ -1,0 +1,47 @@
+INÍCIO
+
+  // Variável para armazenar o número de termos (N)
+  N_TERMOS
+
+  // Variáveis para gerar a sequência de Fibonacci
+  TERMO_ANTERIOR = 0 // O primeiro termo da sequência
+  TERMO_ATUAL = 1    // O segundo termo da sequência
+  PROXIMO_TERMO      // Variável para calcular o próximo termo
+
+  ESCREVER "Olá! Vamos gerar os N primeiros termos da sequência de Fibonacci."
+  ESCREVER "A sequência começa com 0, 1, 1, 2, 3, 5, 8, ..."
+
+  // --- Leitura e Validação de N ---
+  // N sempre será maior ou igual a 2, então a validação é simplificada.
+  REPITA
+    ESCREVER "Digite o número de termos (N - um inteiro maior ou igual a 2):"
+    LER N_TERMOS
+    SE N_TERMOS < 2 OU TIPO_DE_DADO(N_TERMOS) <> INTEIRO ENTÃO
+      ESCREVER "Entrada inválida. N deve ser um número inteiro maior ou igual a 2."
+    FIM SE
+  ATÉ N_TERMOS >= 2 E TIPO_DE_DADO(N_TERMOS) = INTEIRO
+
+  // --- Geração e Exibição dos Termos ---
+  ESCREVER "\n--- Os ", N_TERMOS, " primeiros termos da sequência de Fibonacci são: ---"
+
+  // Caso N_TERMOS seja 2, imprimimos os dois primeiros termos diretamente
+  SE N_TERMOS = 2 ENTÃO
+    ESCREVER TERMO_ANTERIOR
+    ESCREVER TERMO_ATUAL
+  SENÃO // N_TERMOS > 2
+    // Imprime os dois primeiros termos que já estão inicializados
+    ESCREVER TERMO_ANTERIOR
+    ESCREVER TERMO_ATUAL
+
+    // Loop para gerar e imprimir os termos restantes (a partir do terceiro)
+    PARA I DE 3 ATÉ N_TERMOS FAÇA // I vai de 3 até N_TERMOS
+      PROXIMO_TERMO = TERMO_ANTERIOR + TERMO_ATUAL // Calcula o próximo termo
+      ESCREVER PROXIMO_TERMO                      // Imprime o próximo termo
+
+      // Atualiza os termos para a próxima iteração
+      TERMO_ANTERIOR = TERMO_ATUAL
+      TERMO_ATUAL = PROXIMO_TERMO
+    FIM PARA
+  FIM SE
+
+FIM
