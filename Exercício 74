@@ -1,0 +1,94 @@
+INÍCIO
+
+  // Variáveis para a entrada de dados
+  IDADE             // Idade do habitante
+  SEXO              // Sexo do habitante (M/F)
+  SALARIO           // Salário do habitante
+
+  // Variáveis para os cálculos
+  SOMA_SALARIOS = 0.0          // Acumulador da soma de todos os salários
+  CONTADOR_HABITANTES = 0      // Contador de habitantes com dados válidos
+  MAIOR_IDADE = -INFINITO      // Inicializa com um valor muito baixo
+  MENOR_IDADE = +INFINITO      // Inicializa com um valor muito alto
+  MULHERES_SALARIO_ATE_100 = 0 // Contador de mulheres com salário <= R$100,00
+
+  ESCREVER "Olá! Vamos analisar os dados de uma pesquisa de habitantes."
+  ESCREVER "Para encerrar a entrada de dados, digite uma idade negativa."
+
+  // --- Início do Loop de Leitura de Dados ---
+  REPITA
+    ESCREVER "\n--- Dados do Habitante ---"
+    ESCREVER "Digite a idade (ou um número negativo para finalizar):"
+    LER IDADE
+
+    // Verifica a condição de saída do loop (sentinela)
+    SE IDADE < 0 ENTÃO
+      QUEBRAR_LOOP // Sai do loop se a idade for negativa
+    FIM SE
+
+    // --- Validação da Idade (já sabemos que é não negativa) ---
+    SE TIPO_DE_DADO(IDADE) <> INTEIRO ENTÃO
+      ESCREVER "Idade inválida. Por favor, digite um número inteiro."
+      CONTINUAR_PROXIMA_ITERACAO // Pula para a próxima iteração do loop
+    FIM SE
+
+    // --- Leitura e Validação do Sexo ---
+    REPITA
+      ESCREVER "Digite o sexo (M para Masculino, F para Feminino):"
+      LER SEXO
+      // Converte para maiúsculas para facilitar a comparação
+      SEXO = MAIUSCULAS(SEXO)
+      SE SEXO <> "M" E SEXO <> "F" ENTÃO
+        ESCREVER "Sexo inválido. Por favor, digite 'M' ou 'F'."
+      FIM SE
+    ATÉ SEXO = "M" OU SEXO = "F"
+
+    // --- Leitura e Validação do Salário ---
+    REPITA
+      ESCREVER "Digite o salário (em R$):"
+      LER SALARIO
+      SE SALARIO < 0 OR TIPO_DE_DADO(SALARIO) <> NUMERICO ENTÃO
+        ESCREVER "Salário inválido. Por favor, digite um valor numérico não negativo."
+      FIM SE
+    ATÉ SALARIO >= 0 E TIPO_DE_DADO(SALARIO) = NUMERICO
+
+    // --- Processamento dos Dados Válidos ---
+    CONTADOR_HABITANTES = CONTADOR_HABITANTES + 1
+    SOMA_SALARIOS = SOMA_SALARIOS + SALARIO
+
+    // a) Maior e menor idade
+    SE IDADE > MAIOR_IDADE ENTÃO
+      MAIOR_IDADE = IDADE
+    FIM SE
+    SE IDADE < MENOR_IDADE ENTÃO
+      MENOR_IDADE = IDADE
+    FIM SE
+
+    // c) Quantidade de mulheres com salário até R$100,00
+    SE SEXO = "F" E SALARIO <= 100.00 ENTÃO
+      MULHERES_SALARIO_ATE_100 = MULHERES_SALARIO_ATE_100 + 1
+    FIM SE
+
+  ATÉ FALSO // O loop será quebrado explicitamente pela idade negativa
+
+  // --- Cálculo da Média de Salário (a) ---
+  MEDIA_SALARIO_GRUPO = 0.0
+  SE CONTADOR_HABITANTES > 0 ENTÃO // Evita divisão por zero
+    MEDIA_SALARIO_GRUPO = SOMA_SALARIOS / CONTADOR_HABITANTES
+  FIM SE
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Relatório da Pesquisa de Habitantes ---"
+  ESCREVER "------------------------------------------"
+
+  SE CONTADOR_HABITANTES = 0 ENTÃO
+    ESCREVER "Nenhum dado válido de habitante foi registrado para análise."
+  SENÃO
+    ESCREVER "a) Média de salário do grupo: R$", FORMATAR_NUMERO(MEDIA_SALARIO_GRUPO, 2)
+    ESCREVER "b) Maior idade do grupo: ", MAIOR_IDADE, " anos"
+    ESCREVER "   Menor idade do grupo: ", MENOR_IDADE, " anos"
+    ESCREVER "c) Quantidade de mulheres com salário até R$100,00: ", MULHERES_SALARIO_ATE_100
+  FIM SE
+  ESCREVER "------------------------------------------"
+
+FIM
