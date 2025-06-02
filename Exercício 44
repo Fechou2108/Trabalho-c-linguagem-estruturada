@@ -1,0 +1,61 @@
+INÍCIO
+
+  // Preço fixo da diária
+  PRECO_DIARIA = 60.00
+
+  // Variáveis de entrada do cliente
+  NOME_CLIENTE
+  NUMERO_DIARIAS
+
+  // Variáveis de cálculo
+  TAXA_SERVICO_POR_DIARIA
+  CUSTO_DIARIAS_BRUTO
+  CUSTO_TAXA_SERVICOS_TOTAL
+  TOTAL_DA_CONTA
+
+  // --- Entrada de Dados do Cliente ---
+  ESCREVER "Olá! Vamos calcular o total da sua conta de hotel."
+  ESCREVER "Digite o nome do cliente:"
+  LER NOME_CLIENTE
+
+  REPITA
+    ESCREVER "Digite o número de diárias de hospedagem:"
+    LER NUMERO_DIARIAS
+    SE NUMERO_DIARIAS <= 0 ENTÃO
+      ESCREVER "O número de diárias deve ser um valor positivo. Tente novamente."
+    FIM SE
+  ATÉ NUMERO_DIARIAS > 0
+
+  // --- Cálculo da Taxa de Serviço por Diária ---
+  SE NUMERO_DIARIAS > 15 ENTÃO
+    TAXA_SERVICO_POR_DIARIA = 5.50
+  SENÃO SE NUMERO_DIARIAS = 15 ENTÃO
+    TAXA_SERVICO_POR_DIARIA = 6.00
+  SENÃO // NUMERO_DIARIAS < 15
+    TAXA_SERVICO_POR_DIARIA = 8.00
+  FIM SE
+
+  // --- Cálculos Finais ---
+
+  // Custo bruto das diárias (sem taxa de serviço)
+  CUSTO_DIARIAS_BRUTO = NUMERO_DIARIAS * PRECO_DIARIA
+
+  // Custo total da taxa de serviços
+  CUSTO_TAXA_SERVICOS_TOTAL = NUMERO_DIARIAS * TAXA_SERVICO_POR_DIARIA
+
+  // Total da conta
+  TOTAL_DA_CONTA = CUSTO_DIARIAS_BRUTO + CUSTO_TAXA_SERVICOS_TOTAL
+
+  // --- Apresentação dos Resultados ---
+  ESCREVER "\n--- Resumo da Conta de Hospedagem ---"
+  ESCREVER "Nome do Cliente: ", NOME_CLIENTE
+  ESCREVER "Número de Diárias: ", NUMERO_DIARIAS
+  ESCREVER "Preço da Diária: R$", FORMATAR_NUMERO(PRECO_DIARIA, 2)
+  ESCREVER "Taxa de Serviço por Diária: R$", FORMATAR_NUMERO(TAXA_SERVICO_POR_DIARIA, 2)
+  ESCREVER "------------------------------------"
+  ESCREVER "Custo Bruto das Diárias: R$", FORMATAR_NUMERO(CUSTO_DIARIAS_BRUTO, 2)
+  ESCREVER "Custo Total da Taxa de Serviços: R$", FORMATAR_NUMERO(CUSTO_TAXA_SERVICOS_TOTAL, 2)
+  ESCREVER "------------------------------------"
+  ESCREVER "TOTAL DA CONTA: R$", FORMATAR_NUMERO(TOTAL_DA_CONTA, 2)
+
+FIM
