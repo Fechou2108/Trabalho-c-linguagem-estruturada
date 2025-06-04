@@ -1,0 +1,23 @@
+FUNCAO Fatorial(num: INTEIRO): INTEIRO
+VAR
+    resultado_fatorial: INTEIRO
+    i: INTEIRO
+INICIO
+    SE num < 0 ENTÃO
+        // Erro: fatorial não definido para negativos.
+        // Em uma implementação real, poderíamos lançar uma exceção ou retornar um valor específico.
+        // Aqui, para simplificar o pseudocódigo, retornaremos 0 e o algoritmo principal fará a validação.
+        RETORNE 0
+    FIM SE
+
+    resultado_fatorial <- 1
+
+    SE num = 0 ENTÃO
+        RETORNE 1 // Fatorial de 0 é 1
+    SENAO
+        PARA i DE 1 ATÉ num FAÇA
+            resultado_fatorial <- resultado_fatorial * i
+        FIM PARA
+        RETORNE resultado_fatorial
+    FIM SE
+FIM FUNCAO
