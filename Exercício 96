@@ -1,0 +1,84 @@
+ALGORITMO CalcularFatorialEPotenciaComRegistro
+
+// Declaração do tipo de registro para as informações do fatorial
+TYPE FatorialInfo
+    Numero: INTEIRO
+    FatorialCalculado: INTEIRO
+FIM TYPE
+
+// Declaração do tipo de registro para as informações da potência
+TYPE PotenciaInfo
+    Base: INTEIRO
+    Expoente: INTEIRO
+    ResultadoPotencia: REAL
+FIM TYPE
+
+VAR
+    infoFatorial: FatorialInfo // Variável para o cálculo do fatorial
+    infoPotencia: PotenciaInfo // Variável para o cálculo da potência
+    i: INTEIRO // Variável de controle para loops
+
+INICIO
+    ESCREVA "--- CÁLCULO DE FATORIAL E POTÊNCIA ---"
+
+    // --- PARTE 1: CÁLCULO DO FATORIAL ---
+    ESCREVA "\n--- CÁLCULO DE FATORIAL (N!) ---"
+    ESCREVA "Digite um número inteiro não negativo (N):"
+    LEIA infoFatorial.Numero // Lê N para o registro de fatorial
+
+    // Validação e Cálculo do Fatorial
+    SE infoFatorial.Numero < 0 ENTÃO
+        ESCREVA "Erro: O fatorial não é definido para números negativos."
+        infoFatorial.FatorialCalculado <- 0 // Indica erro
+    SENÃO
+        infoFatorial.FatorialCalculado <- 1 // Inicializa
+        SE infoFatorial.Numero > 0 ENTÃO
+            PARA i DE 1 ATÉ infoFatorial.Numero FAÇA
+                infoFatorial.FatorialCalculado <- infoFatorial.FatorialCalculado * i
+            FIM PARA
+        FIM SE
+        ESCREVA "O fatorial de ", infoFatorial.Numero, " é: ", infoFatorial.FatorialCalculado
+    FIM SE
+
+    // --- PARTE 2: CÁLCULO DA POTÊNCIA ---
+    ESCREVA "\n--- CÁLCULO DE POTÊNCIA (X^Y) ---"
+
+    // Leitura da Base (X)
+    ESCREVA "Digite um número inteiro e positivo para a BASE (X):"
+    LEIA infoPotencia.Base // Lê X para o registro de potência
+
+    // Validação da Base
+    SE infoPotencia.Base < 0 ENTÃO
+        ESCREVA "Erro: A base (X) deve ser um número inteiro e positivo."
+        infoPotencia.ResultadoPotencia <- 0 // Indica erro
+    FIM SE
+
+    // Leitura do Expoente (Y)
+    ESCREVA "Digite um número inteiro e positivo para o EXPOENTE (Y):"
+    LEIA infoPotencia.Expoente // Lê Y para o registro de potência
+
+    // Validação do Expoente
+    SE infoPotencia.Expoente < 0 ENTÃO
+        ESCREVA "Erro: O expoente (Y) deve ser um número inteiro e positivo."
+        infoPotencia.ResultadoPotencia <- 0 // Indica erro
+    FIM SE
+
+    // Cálculo da Potência (se as entradas forem válidas)
+    SE (infoPotencia.Base >= 0) E (infoPotencia.Expoente >= 0) ENTÃO
+        infoPotencia.ResultadoPotencia <- 1.0 // Inicializa com 1.0 para resultados reais
+
+        SE infoPotencia.Expoente = 0 ENTÃO
+            infoPotencia.ResultadoPotencia <- 1.0 // X^0 = 1
+        SENÃO SE infoPotencia.Base = 0 ENTÃO
+            infoPotencia.ResultadoPotencia <- 0.0 // 0^Y = 0 para Y > 0
+        SENÃO
+            PARA i DE 1 ATÉ infoPotencia.Expoente FAÇA
+                infoPotencia.ResultadoPotencia <- infoPotencia.ResultadoPotencia * infoPotencia.Base
+            FIM PARA
+        FIM SE
+        ESCREVA infoPotencia.Base, " elevado a ", infoPotencia.Expoente, " é: ", infoPotencia.ResultadoPotencia
+    FIM SE
+
+    ESCREVA "\n--- FIM DO PROGRAMA ---"
+
+FIM ALGORITMO
