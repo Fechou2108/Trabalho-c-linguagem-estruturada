@@ -1,0 +1,113 @@
+Refazendo o Algoritmo do Exercício 42 com Registro
+Vamos refazer o algoritmo do exercício 42 (cadastro de até 30 alunos com nome, disciplina e média final, com opção de consulta por nome), mas desta vez, utilizando um registro para a estrutura de dados de cada aluno e um vetor de registros para armazenar todos os alunos. Isso vai agrupar as informações de cada aluno de forma mais organizada.
+
+Estrutura do Registro para Aluno
+Primeiro, definimos o tipo de registro que vai conter as informações de cada aluno. Isso torna o código mais limpo e fácil de entender.
+
+TYPE Aluno
+    NomeAluno: CADEIA_DE_CARACTERES
+    NomeDisciplina: CADEIA_DE_CARACTERES
+    MediaFinal: REAL
+FIM TYPE
+NomeAluno: O nome completo do aluno (texto).
+NomeDisciplina: O nome da disciplina que o aluno está cursando (texto).
+MediaFinal: A média final do aluno naquela disciplina (número real, para permitir valores com casas decimais).
+Algoritmo Principal
+Agora, vamos ao algoritmo completo, que inclui a fase de cadastro e a fase de consulta, utilizando o registro Aluno.
+
+ALGORITMO CadastroConsultaAlunosComRegistro
+
+// Definição do tipo de registro Aluno
+TYPE Aluno
+    NomeAluno: CADEIA_DE_CARACTERES
+    NomeDisciplina: CADEIA_DE_CARACTERES
+    MediaFinal: REAL
+FIM TYPE
+
+// Definição do número máximo de alunos que podem ser cadastrados
+CONST
+    MAX_ALUNOS = 30
+
+VAR
+    turma: VETOR[MAX_ALUNOS] DE Aluno // Vetor para armazenar os alunos cadastrados
+    numAlunosCadastrados: INTEIRO // Contador de alunos atualmente cadastrados
+    opcaoNovoAluno: CADEIA_DE_CARACTERES // Para perguntar se o usuário quer cadastrar mais alunos
+    nomeParaConsulta: CADEIA_DE_CARACTERES // Nome digitado pelo usuário para buscar na consulta
+    encontrado: LOGICO // Sinaliza se o aluno foi encontrado na busca
+    i: INTEIRO // Variável de controle para loops (índice)
+
+INICIO
+    numAlunosCadastrados <- 0 // Inicializa o contador de alunos em zero
+
+    ESCREVA "--- INÍCIO DO CADASTRO DE ALUNOS ---"
+
+    // --- FASE DE CADASTRO ---
+    // Este loop continua até que o usuário não queira mais cadastrar
+    // ou até que o limite de 30 alunos seja atingido.
+    REPITA
+        SE numAlunosCadastrados < MAX_ALUNOS ENTÃO // Verifica se ainda há espaço
+            ESCREVA "\n--- CADASTRO DO ALUNO ", (numAlunosCadastrados + 1), " ---"
+
+            ESCREVA "Informe o nome do Aluno: "
+            LEIA turma[numAlunosCadastrados].NomeAluno // Acessa o campo NomeAluno do registro atual no vetor
+
+            ESCREVA "Informe o nome da Disciplina: "
+            LEIA turma[numAlunosCadastrados].NomeDisciplina // Acessa o campo NomeDisciplina
+
+            ESCREVA "Informe a Média Final: "
+            LEIA turma[numAlunosCadastrados].MediaFinal // Acessa o campo MediaFinal
+
+            numAlunosCadastrados <- numAlunosCadastrados + 1 // Incrementa o contador de alunos
+
+            // Pergunta ao usuário se deseja cadastrar outro aluno
+            SE numAlunosCadastrados < MAX_ALUNOS ENTÃO // Só pergunta se o vetor não estiver cheio
+                ESCREVA "Deseja cadastrar Novo Aluno (S/N)? "
+                LEIA opcaoNovoAluno
+                opcaoNovoAluno <- MAIUSCULA(opcaoNovoAluno) // Converte para maiúscula para padronizar a comparação
+            SENÃO
+                ESCREVA "Capacidade máxima de ", MAX_ALUNOS, " alunos atingida."
+                opcaoNovoAluno <- "N" // Força a saída do loop de cadastro
+            FIM SE
+        FIM SE
+    ATÉ (opcaoNovoAluno = "N") OU (numAlunosCadastrados = MAX_ALUNOS)
+
+    // --- FASE DE CONSULTA ---
+    // Simula a limpeza da tela (em linguagens de programação, seria um comando específico, como 'cls' ou 'clear')
+    ESCREVA "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+
+    ESCREVA "--- INÍCIO DA CONSULTA DE ALUNOS ---"
+    ESCREVA "Digite o nome do aluno para buscar. Digite 'FIM' para encerrar a consulta."
+
+    // Este loop permite várias consultas até que o usuário digite 'FIM'.
+    REPITA
+        ESCREVA "\nDigite o nome do aluno que deseja consultar: "
+        LEIA nomeParaConsulta
+        nomeParaConsulta <- MAIUSCULA(nomeParaConsulta) // Converte para maiúscula para busca não-sensível a caso
+
+        SE nomeParaConsulta = "FIM" ENTÃO
+            PARE // Sai do loop de consulta se o usuário digitar "FIM"
+        FIM SE
+
+        encontrado <- FALSO // Assume que o aluno não foi encontrado (até que se prove o contrário)
+
+        // Percorre todos os alunos cadastrados para buscar o nome
+        PARA i DE 0 ATÉ (numAlunosCadastrados - 1) FAÇA
+            // Compara o nome digitado com o nome do aluno cadastrado (ignorando maiúsculas/minúsculas)
+            SE MAIUSCULA(turma[i].NomeAluno) = nomeParaConsulta ENTÃO
+                ESCREVA "\n--- ALUNO ENCONTRADO ---"
+                ESCREVA "Nome do Aluno: ", turma[i].NomeAluno
+                ESCREVA "Disciplina: ", turma[i].NomeDisciplina
+                ESCREVA "Média Final: ", turma[i].MediaFinal
+                encontrado <- VERDADEIRO // Marca como encontrado
+            FIM SE
+        FIM PARA
+
+        SE NAO encontrado ENTÃO // Se a busca terminou e o aluno não foi encontrado
+            ESCREVA "Aluno '", nomeParaConsulta, "' não foi encontrado na base de dados."
+        FIM SE
+
+    ATÉ FALSO // Este loop é "infinito" e só é interrompido pelo 'PARE' quando o usuário digita 'FIM'
+
+    ESCREVA "\n--- PROGRAMA ENCERRADO ---"
+
+FIM ALGORITMO
