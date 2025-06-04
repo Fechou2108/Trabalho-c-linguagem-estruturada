@@ -1,0 +1,158 @@
+ALGORITMO SistemaDeCadastroDeFuncionarios
+
+// ... (Restante das definições de TYPES e VARs do algoritmo principal anterior) ...
+// (Mantém as definições de EnderecoInfo e Funcionario como estão)
+
+// Constantes e Variáveis Globais (do algoritmo principal anterior)
+CONST
+    MAX_FUNCIONARIOS = 100
+VAR
+    funcionarios: VETOR[MAX_FUNCIONARIOS] DE Funcionario
+    totalFuncionarios: INTEIRO
+    proximoCodigo: INTEIRO
+    opcaoMenu: CARACTERE
+
+// --- FUNÇÕES AUXILIARES (do algoritmo principal anterior) ---
+PROCEDIMENTO LimparTela()
+    ESCREVA "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+FIM PROCEDIMENTO
+
+FUNCAO EncontrarFuncionarioPorCodigo(codigoBuscado: INTEIRO): INTEIRO
+    // ... (Implementação existente) ...
+    VAR
+        i: INTEIRO
+    INICIO
+        PARA i DE 0 ATÉ totalFuncionarios - 1 FAÇA
+            SE funcionarios[i].Codigo = codigoBuscado ENTÃO
+                RETORNE i
+            FIM SE
+        FIM PARA
+        RETORNE -1
+    FIM FUNCAO
+
+FUNCAO EncontrarFuncionarioPorNome(nomeBuscado: CADEIA_DE_CARACTERES): INTEIRO
+    // ... (Implementação existente) ...
+    VAR
+        i: INTEIRO
+    INICIO
+        nomeBuscado <- MAIUSCULA(nomeBuscado)
+        PARA i DE 0 ATÉ totalFuncionarios - 1 FAÇA
+            SE MAIUSCULA(funcionarios[i].Nome) CONTEM nomeBuscado ENTÃO
+                RETORNE i
+            FIM SE
+        FIM PARA
+        RETORNE -1
+    FIM FUNCAO
+
+// --- NOVO PROCEDIMENTO: ExibirContracheque ---
+PROCEDIMENTO ExibirContracheque()
+VAR
+    i: INTEIRO
+    salarioBruto: REAL
+    descontoINSS: REAL
+    descontoVT: REAL
+    outrosDescontos: REAL
+    totalDescontos: REAL
+    salarioLiquido: REAL
+    dataEmissao: CADEIA_DE_CARACTERES // Simulação de data de emissão
+
+INICIO
+    SE totalFuncionarios = 0 ENTÃO
+        ESCREVA "Nenhum funcionário cadastrado para exibir contracheque."
+        RETORNE
+    FIM SE
+
+    // Simula uma data de emissão
+    dataEmissao <- "31/05/2025" // Ou usar função de data real se disponível
+
+    ESCREVA "\n--- FOLHA DE PAGAMENTO (CONTRACHEQUES) ---"
+    ESCREVA "Pressione ENTER para ver o próximo contracheque. Digite 'S' e ENTER para SAIR."
+
+    PARA i DE 0 ATÉ totalFuncionarios - 1 FAÇA
+        // Ignorar funcionários removidos para o contracheque
+        SE funcionarios[i].Status = '*' ENTÃO
+            CONTINUE // Pula para o próximo funcionário
+        FIM SE
+
+        LimparTela() // Limpa a tela para cada contracheque
+
+        // Calcula os valores para o contracheque
+        salarioBruto <- funcionarios[i].Salario
+        descontoINSS <- salarioBruto * 0.08 // Ex: 8% de INSS
+        descontoVT <- salarioBruto * 0.06 // Ex: 6% de Vale-Transporte
+        outrosDescontos <- 50.00 // Ex: R$ 50,00 de outros descontos fixos
+
+        totalDescontos <- descontoINSS + descontoVT + outrosDescontos
+        salarioLiquido <- salarioBruto - totalDescontos
+
+        ESCREVA "==================================================="
+        ESCREVA "        CONTRACHEQUE - COMPANHIA XYZ             "
+        ESCREVA "==================================================="
+        ESCREVA "Período Referência: MAIO/2025                   "
+        ESCREVA "Data de Emissão:    ", dataEmissao
+        ESCREVA "---------------------------------------------------"
+        ESCREVA "CÓDIGO: ", ZEROFIL(funcionarios[i].Codigo, 6)
+        ESCREVA "NOME:   ", TRUNCAR(funcionarios[i].Nome, 40)
+        ESCREVA "CARGO:  ", TRUNCAR(funcionarios[i].Cargo, 20)
+        ESCREVA "---------------------------------------------------"
+        ESCREVA "PROVENTOS:                                       "
+        ESCREVA "  Salário Base:         R$ ", FORMATAR_REAL(salarioBruto, 2)
+        ESCREVA "---------------------------------------------------"
+        ESCREVA "DESCONTOS:                                       "
+        ESCREVA "  INSS:                 R$ ", FORMATAR_REAL(descontoINSS, 2)
+        ESCREVA "  Vale Transporte:      R$ ", FORMATAR_REAL(descontoVT, 2)
+        ESCREVA "  Outros Descontos:     R$ ", FORMATAR_REAL(outrosDescontos, 2)
+        ESCREVA "  Total Descontos:      R$ ", FORMATAR_REAL(totalDescontos, 2)
+        ESCREVA "---------------------------------------------------"
+        ESCREVA "SALÁRIO LÍQUIDO:        R$ ", FORMATAR_REAL(salarioLiquido, 2)
+        ESCREVA "==================================================="
+
+        ESCREVA "\nPressione ENTER para o próximo ou 'S' para SAIR..."
+        LEIA TECLA
+        SE MAIUSCULA(TECLA) = 'S' ENTÃO
+            PARE // Sai do loop se o usuário digitar 'S'
+        FIM SE
+    FIM PARA
+FIM PROCEDIMENTO
+
+// --- OPÇÕES DO MENU (do algoritmo principal anterior) ---
+// (Mantém as implementações de IncluirFuncionario, ConsultarFuncionario,
+// AlterarFuncionario, ExcluirFuncionario, RelatorioFuncionarios)
+
+// --- INÍCIO DO PROGRAMA PRINCIPAL (do algoritmo principal anterior) ---
+INICIO
+    totalFuncionarios <- 0
+    proximoCodigo <- 1001
+
+    REPITA
+        LimparTela()
+        ESCREVA "--- SISTEMA DE CADASTRO DE FUNCIONÁRIOS ---"
+        ESCREVA "a - Inclusão de funcionários"
+        ESCREVA "b - Consulta de funcionários"
+        ESCREVA "c - Alteração de dados"
+        ESCREVA "d - Exclusão de funcionário (marcar como removido)"
+        ESCREVA "e - Relatório de funcionários"
+        ESCREVA "f - Exibir Folha de Pagamento (Contracheques)" // NOVA OPÇÃO
+        ESCREVA "g - Sair" // Opção de sair movida para 'g'
+        ESCREVA "Escolha uma opção: "
+        LEIA opcaoMenu
+        opcaoMenu <- MAIUSCULA(opcaoMenu)
+
+        CASO opcaoMenu SEJA
+            'A': IncluirFuncionario()
+            'B': ConsultarFuncionario()
+            'C': AlterarFuncionario()
+            'D': ExcluirFuncionario()
+            'E': RelatorioFuncionarios()
+            'F': ExibirContracheque() // Chamada para o novo procedimento
+            'G': ESCREVA "Saindo do sistema. Até mais!"
+            OUTRO: ESCREVA "Opção inválida. Tente novamente."
+        FIM CASO
+
+        SE opcaoMenu <> 'F' E opcaoMenu <> 'G' ENTÃO // Não pausa se já vai sair ou se já tem pausa no contracheque
+            ESCREVA "\nPressione ENTER para continuar..."
+            LEIA TECLA
+        FIM SE
+    ATÉ opcaoMenu = 'G'
+
+FIM ALGORITMO
