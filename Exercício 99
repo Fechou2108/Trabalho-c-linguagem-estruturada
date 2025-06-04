@@ -1,0 +1,77 @@
+ALGORITMO SistemaDeCadastroDeFuncionarios
+
+// Definição dos tipos de registro
+TYPE EnderecoInfo
+    Rua: CADEIA_DE_CARACTERES
+    Numero: INTEIRO
+    Cidade: CADEIA_DE_CARACTERES
+    Estado: CADEIA_DE_CARACTERES
+    CEP: CADEIA_DE_CARACTERES
+FIM TYPE
+
+TYPE Funcionario
+    Codigo: INTEIRO
+    Nome: CADEIA_DE_CARACTERES [40]
+    Cargo: CADEIA_DE_CARACTERES [20]
+    Salario: REAL
+    Endereco: EnderecoInfo
+    Telefone: CADEIA_DE_CARACTERES
+    Status: CARACTERE
+FIM TYPE
+
+// Constantes e Variáveis Globais (para o contexto do sistema)
+CONST
+    MAX_FUNCIONARIOS = 100 // Exemplo: suporta até 100 funcionários
+
+VAR
+    funcionarios: VETOR[MAX_FUNCIONARIOS] DE Funcionario // Vetor de registros para armazenar os funcionários
+    totalFuncionarios: INTEIRO // Quantidade atual de funcionários cadastrados (ativos ou removidos)
+    proximoCodigo: INTEIRO // Gera códigos sequenciais
+    opcaoMenu: CARACTERE // Opção escolhida pelo usuário no menu
+
+// --- FUNÇÕES AUXILIARES (para organização do código) ---
+
+// Função para limpar a tela do console (simulada aqui)
+PROCEDIMENTO LimparTela()
+    ESCREVA "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+FIM PROCEDIMENTO
+
+// Função para encontrar um funcionário pelo código
+FUNCAO EncontrarFuncionarioPorCodigo(codigoBuscado: INTEIRO): INTEIRO // Retorna o índice ou -1 se não encontrar
+VAR
+    i: INTEIRO
+INICIO
+    PARA i DE 0 ATÉ totalFuncionarios - 1 FAÇA
+        SE funcionarios[i].Codigo = codigoBuscado ENTÃO
+            RETORNE i // Retorna o índice do funcionário
+        FIM SE
+    FIM PARA
+    RETORNE -1 // Não encontrado
+FIM FUNCAO
+
+// Função para encontrar funcionários por nome (pode retornar múltiplos)
+// Retorna o primeiro índice encontrado. Uma implementação real poderia retornar uma lista de índices.
+FUNCAO EncontrarFuncionarioPorNome(nomeBuscado: CADEIA_DE_CARACTERES): INTEIRO // Retorna o índice ou -1
+VAR
+    i: INTEIRO
+INICIO
+    nomeBuscado <- MAIUSCULA(nomeBuscado)
+    PARA i DE 0 ATÉ totalFuncionarios - 1 FAÇA
+        SE MAIUSCULA(funcionarios[i].Nome) CONTEM nomeBuscado ENTÃO // Busca por parte do nome
+            RETORNE i // Retorna o índice do primeiro funcionário encontrado
+        FIM SE
+    FIM PARA
+    RETORNE -1 // Não encontrado
+FIM FUNCAO
+
+// --- OPÇÕES DO MENU ---
+
+PROCEDIMENTO IncluirFuncionario()
+VAR
+    novoFuncionario: Funcionario
+    resposta: CADEIA_DE_CARACTERES
+INICIO
+    SE totalFuncionarios >= MAX_FUNCIONARIOS ENTÃO
+        ESCREVA "ERRO: Capacidade máxima de funcionários atingida (" , MAX_FUNCIONARIOS , ")."
+        RETORNE
+    FIM SE
