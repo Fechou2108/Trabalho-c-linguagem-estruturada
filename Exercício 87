@@ -1,0 +1,65 @@
+ALGORITMO CadastroMultiplosClientes
+
+// Definição do tipo de registro Cliente
+TYPE Cliente
+    Nome: CADEIA_DE_CARACTERES
+    Endereco: CADEIA_DE_CARACTERES
+    Telefone: CADEIA_DE_CARACTERES
+FIM TYPE
+
+// Declaração de um vetor de 50 posições do tipo Cliente
+// Indices de 0 a 49 para 50 clientes
+CONST
+    MAX_CLIENTES = 50
+
+VAR
+    clientes: VETOR[MAX_CLIENTES] DE Cliente // Vetor para armazenar os clientes
+    numClientesCadastrados: INTEIRO // Contador de clientes já cadastrados
+    opcaoNovoCliente: CADEIA_DE_CARACTERES // Variável para a resposta S/N
+
+INICIO
+    numClientesCadastrados <- 0 // Inicializa o contador de clientes
+
+    // Loop principal para o cadastro de clientes
+    REPITA
+        SE numClientesCadastrados < MAX_CLIENTES ENTÃO
+            ESCREVA "--- CADASTRO DO CLIENTE ", (numClientesCadastrados + 1), " ---"
+
+            ESCREVA "Informe o nome do cliente: "
+            LEIA clientes[numClientesCadastrados].Nome
+
+            ESCREVA "Informe o endereço do cliente: "
+            LEIA clientes[numClientesCadastrados].Endereco
+
+            ESCREVA "Informe o telefone do cliente: "
+            LEIA clientes[numClientesCadastrados].Telefone
+
+            numClientesCadastrados <- numClientesCadastrados + 1 // Incrementa o contador
+
+            // Pergunta ao usuário se deseja cadastrar um novo cliente
+            SE numClientesCadastrados < MAX_CLIENTES ENTÃO // Só pergunta se ainda houver espaço
+                ESCREVA "Novo Cliente (S/N)? "
+                LEIA opcaoNovoCliente
+                // Converte para maiúscula para facilitar a comparação
+                opcaoNovoCliente <- MAIUSCULA(opcaoNovoCliente)
+            SENÃO
+                ESCREVA "Capacidade máxima de clientes atingida (" , MAX_CLIENTES , " clientes)."
+                opcaoNovoCliente <- "N" // Força a saída do loop
+            FIM SE
+        FIM SE
+    ATÉ (opcaoNovoCliente = "N") OU (numClientesCadastrados = MAX_CLIENTES)
+
+    // Exibição dos dados de todos os clientes cadastrados
+    ESCREVA "\n--- DADOS DOS CLIENTES CADASTRADOS ---"
+    SE numClientesCadastrados = 0 ENTÃO
+        ESCREVA "Nenhum cliente cadastrado."
+    SENÃO
+        PARA i DE 0 ATÉ (numClientesCadastrados - 1) FAÇA
+            ESCREVA "\nCliente ", (i + 1), ":"
+            ESCREVA "Nome: ", clientes[i].Nome
+            ESCREVA "Endereço: ", clientes[i].Endereco
+            ESCREVA "Telefone: ", clientes[i].Telefone
+        FIM PARA
+    FIM SE
+
+FIM ALGORITMO
