@@ -1,0 +1,62 @@
+ALGORITMO CalculoCombinacaoArranjoComRegistro
+
+// Declaração do tipo de registro para os resultados
+TYPE ResultadosCombinatoria
+    Arranjo: REAL
+    Combinacao: REAL
+FIM TYPE
+
+VAR
+    N: INTEIRO // Tamanho total do conjunto
+    P: INTEIRO // Tamanho do subconjunto
+    fatN: INTEIRO // Fatorial de N
+    fatP: INTEIRO // Fatorial de P
+    fatNmenosP: INTEIRO // Fatorial de (N-P)
+    resultados: ResultadosCombinatoria // Variável do tipo ResultadosCombinatoria
+
+INICIO
+    ESCREVA "--- CÁLCULO DE ARRANJO E COMBINAÇÃO ---"
+    ESCREVA "Digite o tamanho total do conjunto (N - inteiro e não negativo):"
+    LEIA N
+
+    ESCREVA "Digite o tamanho do subconjunto (P - inteiro e não negativo e P <= N):"
+    LEIA P
+
+    // --- 1. Validação das Entradas ---
+    SE N < 0 OU P < 0 OU P > N ENTÃO
+        ESCREVA "Erro: Os valores de N e P são inválidos para cálculo de arranjo/combinação."
+        ESCREVA "Certifique-se de que N >= 0, P >= 0 e P <= N."
+    SENÃO
+        // --- 2. Cálculo dos Fatoriais Necessários ---
+        fatN <- Fatorial(N)
+        fatP <- Fatorial(P)
+        fatNmenosP <- Fatorial(N - P)
+
+        // --- 3. Cálculo do Arranjo ---
+        // $A_{N,P} = \frac{N!}{(N-P)!}$
+        SE fatNmenosP = 0 ENTÃO // Evita divisão por zero. Aconteceria se Fatorial(0) retornasse 0, mas nossa função retorna 1.
+                                // Contudo, é uma boa prática de segurança.
+            ESCREVA "Erro: Divisão por zero no cálculo do Arranjo. Verifique os fatoriais."
+            resultados.Arranjo <- 0 // Define um valor padrão de erro
+        SENAO
+            resultados.Arranjo <- fatN / fatNmenosP
+        FIM SE
+
+        // --- 4. Cálculo da Combinação ---
+        // $C_{N,P} = \frac{N!}{P! * (N-P)!}$
+        SE (fatP * fatNmenosP) = 0 ENTÃO // Evita divisão por zero
+            ESCREVA "Erro: Divisão por zero no cálculo da Combinação. Verifique os fatoriais."
+            resultados.Combinacao <- 0 // Define um valor padrão de erro
+        SENAO
+            resultados.Combinacao <- fatN / (fatP * fatNmenosP)
+        FIM SE
+
+        // --- 5. Exibição dos Resultados ---
+        ESCREVA "\n--- RESULTADOS ---"
+        ESCREVA "N: ", N
+        ESCREVA "P: ", P
+        ESCREVA "Arranjo (A", N, ",", P, ") = ", resultados.Arranjo
+        ESCREVA "Combinação (C", N, ",", P, ") = ", resultados.Combinacao
+    FIM SE
+
+FIM ALGORITMO
