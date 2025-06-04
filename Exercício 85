@@ -1,0 +1,257 @@
+Okay, vamos definir cada um desses registros e, em seguida, criar um algoritmo geral que peça ao usuário para inserir os dados de cada um deles e os exiba na tela.
+
+Definição dos Registros
+Um registro (ou struct em algumas linguagens de programação) é uma coleção de dados relacionados, de diferentes tipos, que são tratados como uma única unidade. Imagine-o como uma ficha que contém várias informações sobre um item específico.
+
+a) Cheque Bancário
+Um cheque bancário é um documento que ordena a um banco o pagamento de uma quantia específica de dinheiro a uma pessoa ou entidade.
+
+Número do Cheque: Identificação única do cheque. (Inteiro)
+Data de Emissão: Quando o cheque foi emitido. (Data)
+Valor: A quantia em dinheiro a ser paga. (Real)
+Nome do Beneficiário: Para quem o cheque será pago. (Cadeia de Caracteres)
+Nome do Emitente: Quem está emitindo o cheque. (Cadeia de Caracteres)
+Banco do Emitente: O nome do banco do emitente. (Cadeia de Caracteres)
+Status: Se o cheque foi compensado, cancelado, etc. (Cadeia de Caracteres)
+b) Livro
+Um livro é uma obra escrita ou impressa, que contém informações, histórias ou conhecimentos.
+
+Título: O nome da obra. (Cadeia de Caracteres)
+Autor: A pessoa que escreveu o livro. (Cadeia de Caracteres)
+ISBN: International Standard Book Number, um identificador único para o livro. (Cadeia de Caracteres)
+Ano de Publicação: Quando o livro foi publicado. (Inteiro)
+Número de Páginas: Quantas páginas o livro possui. (Inteiro)
+Gênero: O tipo de literatura (ficção, não ficção, romance, etc.). (Cadeia de Caracteres)
+Editora: A empresa que publicou o livro. (Cadeia de Caracteres)
+c) Aluno
+Um aluno é uma pessoa que está matriculada em uma instituição de ensino.
+
+Matrícula: Identificador único do aluno na instituição. (Inteiro)
+Nome Completo: O nome completo do aluno. (Cadeia de Caracteres)
+Data de Nascimento: A data em que o aluno nasceu. (Data)
+Curso: O curso em que o aluno está matriculado. (Cadeia de Caracteres)
+Período/Semestre: O período ou semestre em que o aluno se encontra. (Inteiro)
+CPF: Cadastro de Pessoa Física do aluno. (Cadeia de Caracteres)
+Email: Endereço de e-mail do aluno. (Cadeia de Caracteres)
+d) Endereço
+Um endereço é a localização específica de um imóvel ou pessoa.
+
+Logradouro: Nome da rua, avenida, praça, etc. (Cadeia de Caracteres)
+Número: O número do imóvel no logradouro. (Inteiro)
+Complemento: Informações adicionais como apartamento, sala, bloco. (Cadeia de Caracteres)
+Bairro: O bairro onde o endereço se localiza. (Cadeia de Caracteres)
+Cidade: A cidade onde o endereço se localiza. (Cadeia de Caracteres)
+Estado: O estado onde o endereço se localiza. (Cadeia de Caracteres)
+CEP: Código de Endereçamento Postal. (Cadeia de Caracteres)
+e) Cadastro de Pessoa
+Um cadastro de pessoa contém informações básicas de identificação e contato de um indivíduo.
+
+Nome Completo: O nome completo da pessoa. (Cadeia de Caracteres)
+CPF: Cadastro de Pessoa Física. (Cadeia de Caracteres)
+RG: Registro Geral. (Cadeia de Caracteres)
+Data de Nascimento: A data em que a pessoa nasceu. (Data)
+Telefone: Número de telefone para contato. (Cadeia de Caracteres)
+Email: Endereço de e-mail. (Cadeia de Caracteres)
+Gênero: Gênero da pessoa. (Cadeia de Caracteres)
+Algoritmo para Leitura e Impressão de Registros
+Vamos criar um algoritmo que define a estrutura de cada registro e, em seguida, pede ao usuário para preencher os dados de um de cada tipo e os exibe.
+
+ALGORITMO GerenciadorRegistros
+
+// Definição dos Tipos de Registro (Estruturas)
+
+TIPO ChequeBancario
+    numero: INTEIRO
+    dataEmissao: CADEIA_DE_CARACTERES // Para simplificar a entrada de data
+    valor: REAL
+    beneficiario: CADEIA_DE_CARACTERES
+    emitente: CADEIA_DE_CARACTERES
+    bancoEmitente: CADEIA_DE_CARACTERES
+    status: CADEIA_DE_CARACTERES
+FIM TIPO
+
+TIPO Livro
+    titulo: CADEIA_DE_CARACTERES
+    autor: CADEIA_DE_CARACTERES
+    isbn: CADEIA_DE_CARACTERES
+    anoPublicacao: INTEIRO
+    numeroPaginas: INTEIRO
+    genero: CADEIA_DE_CARACTERES
+    editora: CADEIA_DE_CARACTERES
+FIM TIPO
+
+TIPO Aluno
+    matricula: INTEIRO
+    nomeCompleto: CADEIA_DE_CARACTERES
+    dataNascimento: CADEIA_DE_CARACTERES // Para simplificar a entrada de data
+    curso: CADEIA_DE_CARACTERES
+    periodoSemestre: INTEIRO
+    cpf: CADEIA_DE_CARACTERES
+    email: CADEIA_DE_CARACTERES
+FIM TIPO
+
+TIPO Endereco
+    logradouro: CADEIA_DE_CARACTERES
+    numero: INTEIRO
+    complemento: CADEIA_DE_CARACTERES
+    bairro: CADEIA_DE_CARACTERES
+    cidade: CADEIA_DE_CARACTERES
+    estado: CADEIA_DE_CARACTERES
+    cep: CADEIA_DE_CARACTERES
+FIM TIPO
+
+TIPO CadastroPessoa
+    nomeCompleto: CADEIA_DE_CARACTERES
+    cpf: CADEIA_DE_CARACTERES
+    rg: CADEIA_DE_CARACTERES
+    dataNascimento: CADEIA_DE_CARACTERES // Para simplificar a entrada de data
+    telefone: CADEIA_DE_CARACTERES
+    email: CADEIA_DE_CARACTERES
+    genero: CADEIA_DE_CARACTERES
+FIM TIPO
+
+// Variáveis para armazenar uma instância de cada registro
+VAR
+    meuCheque: ChequeBancario
+    meuLivro: Livro
+    meuAluno: Aluno
+    meuEndereco: Endereco
+    minhaPessoa: CadastroPessoa
+
+INICIO
+    // --- a) Cheque Bancário ---
+    ESCREVA "--- INFORME OS DADOS DO CHEQUE BANCÁRIO ---"
+    ESCREVA "Número do Cheque: "
+    LEIA meuCheque.numero
+    ESCREVA "Data de Emissão (DD/MM/AAAA): "
+    LEIA meuCheque.dataEmissao
+    ESCREVA "Valor: "
+    LEIA meuCheque.valor
+    ESCREVA "Nome do Beneficiário: "
+    LEIA meuCheque.beneficiario
+    ESCREVA "Nome do Emitente: "
+    LEIA meuCheque.emitente
+    ESCREVA "Banco do Emitente: "
+    LEIA meuCheque.bancoEmitente
+    ESCREVA "Status (Compensado, Cancelado, etc.): "
+    LEIA meuCheque.status
+
+    ESCREVA "\n--- DADOS DO CHEQUE BANCÁRIO ---"
+    ESCREVA "Número: ", meuCheque.numero
+    ESCREVA "Data de Emissão: ", meuCheque.dataEmissao
+    ESCREVA "Valor: ", meuCheque.valor
+    ESCREVA "Beneficiário: ", meuCheque.beneficiario
+    ESCREVA "Emitente: ", meuCheque.emitente
+    ESCREVA "Banco: ", meuCheque.bancoEmitente
+    ESCREVA "Status: ", meuCheque.status
+    ESCREVA "\n"
+
+    // --- b) Livro ---
+    ESCREVA "--- INFORME OS DADOS DO LIVRO ---"
+    ESCREVA "Título: "
+    LEIA meuLivro.titulo
+    ESCREVA "Autor: "
+    LEIA meuLivro.autor
+    ESCREVA "ISBN: "
+    LEIA meuLivro.isbn
+    ESCREVA "Ano de Publicação: "
+    LEIA meuLivro.anoPublicacao
+    ESCREVA "Número de Páginas: "
+    LEIA meuLivro.numeroPaginas
+    ESCREVA "Gênero: "
+    LEIA meuLivro.genero
+    ESCREVA "Editora: "
+    LEIA meuLivro.editora
+
+    ESCREVA "\n--- DADOS DO LIVRO ---"
+    ESCREVA "Título: ", meuLivro.titulo
+    ESCREVA "Autor: ", meuLivro.autor
+    ESCREVA "ISBN: ", meuLivro.isbn
+    ESCREVA "Ano de Publicação: ", meuLivro.anoPublicacao
+    ESCREVA "Número de Páginas: ", meuLivro.numeroPaginas
+    ESCREVA "Gênero: ", meuLivro.genero
+    ESCREVA "Editora: ", meuLivro.editora
+    ESCREVA "\n"
+
+    // --- c) Aluno ---
+    ESCREVA "--- INFORME OS DADOS DO ALUNO ---"
+    ESCREVA "Matrícula: "
+    LEIA meuAluno.matricula
+    ESCREVA "Nome Completo: "
+    LEIA meuAluno.nomeCompleto
+    ESCREVA "Data de Nascimento (DD/MM/AAAA): "
+    LEIA meuAluno.dataNascimento
+    ESCREVA "Curso: "
+    LEIA meuAluno.curso
+    ESCREVA "Período/Semestre: "
+    LEIA meuAluno.periodoSemestre
+    ESCREVA "CPF: "
+    LEIA meuAluno.cpf
+    ESCREVA "Email: "
+    LEIA meuAluno.email
+
+    ESCREVA "\n--- DADOS DO ALUNO ---"
+    ESCREVA "Matrícula: ", meuAluno.matricula
+    ESCREVA "Nome Completo: ", meuAluno.nomeCompleto
+    ESCREVA "Data de Nascimento: ", meuAluno.dataNascimento
+    ESCREVA "Curso: ", meuAluno.curso
+    ESCREVA "Período/Semestre: ", meuAluno.periodoSemestre
+    ESCREVA "CPF: ", meuAluno.cpf
+    ESCREVA "Email: ", meuAluno.undo
+    ESCREVA "\n"
+
+    // --- d) Endereço ---
+    ESCREVA "--- INFORME OS DADOS DO ENDEREÇO ---"
+    ESCREVA "Logradouro (Rua, Av.): "
+    LEIA meuEndereco.logradouro
+    ESCREVA "Número: "
+    LEIA meuEndereco.numero
+    ESCREVA "Complemento: "
+    LEIA meuEndereco.complemento
+    ESCREVA "Bairro: "
+    LEIA meuEndereco.bairro
+    ESCREVA "Cidade: "
+    LEIA meuEndereco.cidade
+    ESCREVA "Estado (UF): "
+    LEIA meuEndereco.estado
+    ESCREVA "CEP: "
+    LEIA meuEndereco.cep
+
+    ESCREVA "\n--- DADOS DO ENDEREÇO ---"
+    ESCREVA "Logradouro: ", meuEndereco.logradouro
+    ESCREVA "Número: ", meuEndereco.numero
+    ESCREVA "Complemento: ", meuEndereco.numero
+    ESCREVA "Bairro: ", meuEndereco.bairro
+    ESCREVA "Cidade: ", meuEndereco.cidade
+    ESCREVA "Estado: ", meuEndereco.estado
+    ESCREVA "CEP: ", meuEndereco.cep
+    ESCREVA "\n"
+
+    // --- e) Cadastro de Pessoa ---
+    ESCREVA "--- INFORME OS DADOS DO CADASTRO DE PESSOA ---"
+    ESCREVA "Nome Completo: "
+    LEIA minhaPessoa.nomeCompleto
+    ESCREVA "CPF: "
+    LEIA minhaPessoa.cpf
+    ESCREVA "RG: "
+    LEIA minhaPessoa.rg
+    ESCREVA "Data de Nascimento (DD/MM/AAAA): "
+    LEIA minhaPessoa.dataNascimento
+    ESCREVA "Telefone: "
+    LEIA minhaPessoa.telefone
+    ESCREVA "Email: "
+    LEIA minhaPessoa.email
+    ESCREVA "Gênero: "
+    LEIA minhaPessoa.genero
+
+    ESCREVA "\n--- DADOS DO CADASTRO DE PESSOA ---"
+    ESCREVA "Nome Completo: ", minhaPessoa.nomeCompleto
+    ESCREVA "CPF: ", minhaPessoa.cpf
+    ESCREVA "RG: ", minhaPessoa.rg
+    ESCREVA "Data de Nascimento: ", minhaPessoa.dataNascimento
+    ESCREVA "Telefone: ", minhaPessoa.telefone
+    ESCREVA "Email: ", minhaPessoa.email
+    ESCREVA "Gênero: ", minhaPessoa.genero
+    ESCREVA "\n"
+
+FIM ALGORITMO
