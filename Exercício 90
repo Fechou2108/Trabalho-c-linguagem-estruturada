@@ -1,0 +1,81 @@
+ALGORITMO ManipularMatrizComRegistro
+
+// Declaração do tipo de registro para as somas
+TYPE SomasMatriz
+    somaLinha4: INTEIRO
+    somaColuna2: INTEIRO
+    somaDiagonalPrincipal: INTEIRO
+    somaDiagonalSecundaria: INTEIRO
+    somaTodosElementos: INTEIRO
+FIM TYPE
+
+VAR
+    M: MATRIZ [5][5] DE INTEIRO // Declaração da matriz 5x5
+    resultadosSomas: SomasMatriz // Variável do tipo SomasMatriz para guardar os resultados
+    i, j: INTEIRO // Variáveis de controle para os loops
+
+INICIO
+    // Inicializar os campos do registro de somas com zero
+    resultadosSomas.somaLinha4 <- 0
+    resultadosSomas.somaColuna2 <- 0
+    resultadosSomas.somaDiagonalPrincipal <- 0
+    resultadosSomas.somaDiagonalSecundaria <- 0
+    resultadosSomas.somaTodosElementos <- 0
+
+    // 1. Leitura da Matriz e cálculo da soma de todos os elementos
+    ESCREVA "Digite os elementos da matriz M(5,5):"
+    PARA i DE 0 ATÉ 4 FAÇA // Percorre as linhas (0 a 4)
+        PARA j DE 0 ATÉ 4 FAÇA // Percorre as colunas (0 a 4)
+            ESCREVA "M[", i, "][", j, "]: "
+            LEIA M[i][j]
+            resultadosSomas.somaTodosElementos <- resultadosSomas.somaTodosElementos + M[i][j] // Soma todos
+        FIM PARA
+    FIM PARA
+
+    // 2. Cálculos das somas específicas
+    PARA i DE 0 ATÉ 4 FAÇA
+        PARA j DE 0 ATÉ 4 FAÇA
+            // a) Soma da linha 4 (índice 3, se considerarmos 0 a 4)
+            SE i = 3 ENTÃO
+                resultadosSomas.somaLinha4 <- resultadosSomas.somaLinha4 + M[i][j]
+            FIM SE
+
+            // b) Soma da coluna 2 (índice 1, se considerarmos 0 a 4)
+            SE j = 1 ENTÃO
+                resultadosSomas.somaColuna2 <- resultadosSomas.somaColuna2 + M[i][j]
+            FIM SE
+
+            // c) Soma da diagonal principal (onde i é igual a j)
+            SE i = j ENTÃO
+                resultadosSomas.somaDiagonalPrincipal <- resultadosSomas.somaDiagonalPrincipal + M[i][j]
+            FIM SE
+
+            // d) Soma da diagonal secundária (onde i + j = tamanho da matriz - 1. Para 5x5, i + j = 4)
+            SE (i + j) = 4 ENTÃO
+                resultadosSomas.somaDiagonalSecundaria <- resultadosSomas.somaDiagonalSecundaria + M[i][j]
+            FIM SE
+        FIM PARA
+    FIM PARA
+
+    ---
+
+    // 3. Escrita das somas e da matriz
+
+    ESCREVA "---"
+    ESCREVA "Somas calculadas:"
+    ESCREVA "a) Soma da linha 4: ", resultadosSomas.somaLinha4
+    ESCREVA "b) Soma da coluna 2: ", resultadosSomas.somaColuna2
+    ESCREVA "c) Soma da diagonal principal: ", resultadosSomas.somaDiagonalPrincipal
+    ESCREVA "d) Soma da diagonal secundária: ", resultadosSomas.somaDiagonalSecundaria
+    ESCREVA "e) Soma de todos os elementos da matriz: ", resultadosSomas.somaTodosElementos
+    ESCREVA "---"
+
+    ESCREVA "Matriz M(5,5):"
+    PARA i DE 0 ATÉ 4 FAÇA
+        PARA j DE 0 ATÉ 4 FAÇA
+            ESCREVA M[i][j], " "
+        FIM PARA
+        ESCREVA "" // Quebra de linha para a próxima linha da matriz
+    FIM PARA
+
+FIM ALGORITMO
