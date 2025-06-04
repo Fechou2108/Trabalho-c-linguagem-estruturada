@@ -1,0 +1,58 @@
+ALGORITMO CalcularPotenciaComRegistro
+
+// Declaração do tipo de registro para as informações da potência
+TYPE PotenciaInfo
+    Base: INTEIRO
+    Expoente: INTEIRO
+    ResultadoPotencia: REAL
+FIM TYPE
+
+VAR
+    infoPotencia: PotenciaInfo // Variável do tipo PotenciaInfo
+    i: INTEIRO // Variável de controle para o loop
+
+INICIO
+    ESCREVA "--- CÁLCULO DE POTÊNCIA (X^Y) ---"
+
+    // --- 1. Leitura das Entradas e Validação para X ---
+    ESCREVA "Digite um número inteiro e positivo para a BASE (X):"
+    LEIA infoPotencia.Base
+
+    SE infoPotencia.Base < 0 ENTÃO
+        ESCREVA "Erro: A base (X) deve ser um número inteiro e positivo."
+        infoPotencia.ResultadoPotencia <- 0 // Indica um erro ou valor inválido
+        PARE_EXECUCAO // Encerra o programa ou salta para o fim
+    FIM SE
+
+    // --- 1. Leitura das Entradas e Validação para Y ---
+    ESCREVA "Digite um número inteiro e positivo para o EXPOENTE (Y):"
+    LEIA infoPotencia.Expoente
+
+    SE infoPotencia.Expoente < 0 ENTÃO
+        ESCREVA "Erro: O expoente (Y) deve ser um número inteiro e positivo."
+        infoPotencia.ResultadoPotencia <- 0 // Indica um erro ou valor inválido
+        PARE_EXECUCAO // Encerra o programa ou salta para o fim
+    FIM SE
+
+    // --- 2. Cálculo da Potência ---
+    infoPotencia.ResultadoPotencia <- 1.0 // Inicializa o resultado com 1.0 (para garantir tipo REAL)
+
+    SE infoPotencia.Expoente = 0 ENTÃO
+        // Qualquer número (exceto 0) elevado a 0 é 1.
+        // Se X=0 e Y=0 (0^0), matematicamente pode ser indefinido ou 1.
+        // Neste algoritmo, ele resultará em 1, que é uma convenção comum em computação.
+        infoPotencia.ResultadoPotencia <- 1.0
+    SENÃO SE infoPotencia.Base = 0 ENTÃO
+        // 0 elevado a qualquer potência positiva é 0.
+        infoPotencia.ResultadoPotencia <- 0.0
+    SENÃO
+        PARA i DE 1 ATÉ infoPotencia.Expoente FAÇA
+            infoPotencia.ResultadoPotencia <- infoPotencia.ResultadoPotencia * infoPotencia.Base
+        FIM PARA
+    FIM SE
+
+    // --- 3. Exibição do Resultado ---
+    ESCREVA "\n--- RESULTADO ---"
+    ESCREVA infoPotencia.Base, " elevado a ", infoPotencia.Expoente, " é: ", infoPotencia.ResultadoPotencia
+
+FIM ALGORITMO
