@@ -1,0 +1,46 @@
+ALGORITMO PotenciaXY
+
+VAR
+    X: INTEIRO
+    Y: INTEIRO
+    potencia: INTEIRO
+    i: INTEIRO
+
+INICIO
+    // 1. Entrada e 2. Validação para X
+    ESCREVA "Digite um número inteiro e positivo para a base (X):"
+    LEIA X
+
+    SE X < 0 ENTÃO
+        ESCREVA "Erro: X deve ser um número inteiro e positivo."
+        // Poderíamos adicionar um loop aqui para pedir a entrada novamente
+        SAIR
+    FIM SE
+
+    // 1. Entrada e 2. Validação para Y
+    ESCREVA "Digite um número inteiro e positivo para o expoente (Y):"
+    LEIA Y
+
+    SE Y < 0 ENTÃO
+        ESCREVA "Erro: Y deve ser um número inteiro e positivo."
+        // Poderíamos adicionar um loop aqui para pedir a entrada novamente
+        SAIR
+    FIM SE
+
+    // 3. Cálculo
+    potencia <- 1
+
+    SE Y = 0 ENTÃO
+        potencia <- 1 // Qualquer número (exceto 0) elevado a 0 é 1
+    SENÃO SE X = 0 ENTÃO
+        potencia <- 0 // 0 elevado a qualquer potência positiva é 0
+    SENÃO
+        PARA i DE 1 ATÉ Y FAÇA
+            potencia <- potencia * X
+        FIM PARA
+    FIM SE
+
+    // 4. Saída
+    ESCREVA X, " elevado a ", Y, " é: ", potencia
+
+FIM ALGORITMO
