@@ -1,0 +1,54 @@
+ALGORITMO VerificarTipoTrianguloComRegistro
+
+// Declaração do tipo de registro para as informações do triângulo
+TYPE TrianguloInfo
+    LadoA: REAL
+    LadoB: REAL
+    LadoC: REAL
+    TipoTriangulo: CADEIA_DE_CARACTERES
+FIM TYPE
+
+VAR
+    meuTriangulo: TrianguloInfo // Variável do tipo TrianguloInfo
+
+INICIO
+    ESCREVA "--- VERIFICADOR DE TRIÂNGULOS ---"
+
+    // --- 1. Leitura dos Lados do Triângulo ---
+    ESCREVA "Digite o valor para o Lado A: "
+    LEIA meuTriangulo.LadoA
+
+    ESCREVA "Digite o valor para o Lado B: "
+    LEIA meuTriangulo.LadoB
+
+    ESCREVA "Digite o valor para o Lado C: "
+    LEIA meuTriangulo.LadoC
+
+    // --- 2. Verificação da Condição de Existência de Triângulo ---
+    // A soma de dois lados deve ser sempre maior que o terceiro lado
+    SE (meuTriangulo.LadoA + meuTriangulo.LadoB > meuTriangulo.LadoC) E
+       (meuTriangulo.LadoA + meuTriangulo.LadoC > meuTriangulo.LadoB) E
+       (meuTriangulo.LadoB + meuTriangulo.LadoC > meuTriangulo.LadoA) ENTÃO
+
+        // Se puder formar um triângulo, então classifica o tipo
+        SE (meuTriangulo.LadoA = meuTriangulo.LadoB) E (meuTriangulo.LadoB = meuTriangulo.LadoC) ENTÃO
+            meuTriangulo.TipoTriangulo <- "Equilátero" // Todos os lados iguais
+        SENÃO SE (meuTriangulo.LadoA = meuTriangulo.LadoB) OU
+                   (meuTriangulo.LadoA = meuTriangulo.LadoC) OU
+                   (meuTriangulo.LadoB = meuTriangulo.LadoC) ENTÃO
+            meuTriangulo.TipoTriangulo <- "Isósceles" // Dois lados iguais
+        SENÃO
+            meuTriangulo.TipoTriangulo <- "Escaleno" // Todos os lados diferentes
+        FIM SE
+    SENÃO
+        meuTriangulo.TipoTriangulo <- "Não é triângulo" // Não cumpre a condição de existência
+    FIM SE
+
+    // --- 3. Exibição do Resultado ---
+    ESCREVA "\n--- RESULTADO ---"
+    ESCREVA "Lado A: ", meuTriangulo.LadoA
+    ESCREVA "Lado B: ", meuTriangulo.LadoB
+    ESCREVA "Lado C: ", meuTriangulo.LadoC
+    ESCREVA "Estes lados ", meuTriangulo.TipoTriangulo, "."
+
+FIM ALGORITMO
