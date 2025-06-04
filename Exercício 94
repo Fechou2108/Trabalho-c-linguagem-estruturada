@@ -1,0 +1,39 @@
+ALGORITMO CalcularFatorialComRegistro
+
+// Declaração do tipo de registro para as informações do fatorial
+TYPE FatorialInfo
+    Numero: INTEIRO
+    FatorialCalculado: INTEIRO
+FIM TYPE
+
+VAR
+    infoFatorial: FatorialInfo // Variável do tipo FatorialInfo
+    i: INTEIRO // Variável de controle para o loop
+
+INICIO
+    ESCREVA "--- CÁLCULO DE FATORIAL ---"
+    ESCREVA "Digite um número inteiro não negativo (N):"
+    LEIA infoFatorial.Numero // Lê o número diretamente para o campo 'Numero' do registro
+
+    // --- 1. Validação da Entrada ---
+    SE infoFatorial.Numero < 0 ENTÃO
+        ESCREVA "Erro: O fatorial não é definido para números negativos."
+        infoFatorial.FatorialCalculado <- 0 // Define 0 ou outro valor para indicar erro
+    SENÃO
+        // --- 2. Cálculo do Fatorial ---
+        infoFatorial.FatorialCalculado <- 1 // Inicializa o fatorial com 1
+
+        SE infoFatorial.Numero = 0 ENTÃO
+            // O fatorial de 0 é 1, já inicializado corretamente
+        SENAO
+            PARA i DE 1 ATÉ infoFatorial.Numero FAÇA
+                infoFatorial.FatorialCalculado <- infoFatorial.FatorialCalculado * i
+            FIM PARA
+        FIM SE
+
+        // --- 3. Exibição do Resultado ---
+        ESCREVA "\n--- RESULTADO ---"
+        ESCREVA "O fatorial de ", infoFatorial.Numero, " é: ", infoFatorial.FatorialCalculado
+    FIM SE
+
+FIM ALGORITMO
