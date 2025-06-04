@@ -1,0 +1,77 @@
+ALGORITMO ManipularMatriz
+
+VAR
+    M: MATRIZ [5][5] DE INTEIRO // Declaração da matriz 5x5
+    somaLinha4: INTEIRO
+    somaColuna2: INTEIRO
+    somaDiagonalPrincipal: INTEIRO
+    somaDiagonalSecundaria: INTEIRO
+    somaTodosElementos: INTEIRO
+    i, j: INTEIRO // Variáveis de controle para os loops
+
+INICIO
+    // Inicializar acumuladores
+    somaLinha4 <- 0
+    somaColuna2 <- 0
+    somaDiagonalPrincipal <- 0
+    somaDiagonalSecundaria <- 0
+    somaTodosElementos <- 0
+
+    // 1. Leitura da Matriz e cálculo da soma de todos os elementos
+    ESCREVA "Digite os elementos da matriz M(5,5):"
+    PARA i DE 0 ATÉ 4 FAÇA // Percorre as linhas (0 a 4)
+        PARA j DE 0 ATÉ 4 FAÇA // Percorre as colunas (0 a 4)
+            ESCREVA "M[", i, "][", j, "]: "
+            LEIA M[i][j]
+            somaTodosElementos <- somaTodosElementos + M[i][j] // Soma todos os elementos
+        FIM PARA
+    FIM PARA
+
+    // 2. Cálculos das somas específicas
+    PARA i DE 0 ATÉ 4 FAÇA
+        PARA j DE 0 ATÉ 4 FAÇA
+            // a) Soma da linha 4 (índice 3, se considerarmos 0 a 4)
+            SE i = 3 ENTÃO // Linha 4 (índice 3)
+                somaLinha4 <- somaLinha4 + M[i][j]
+            FIM SE
+
+            // b) Soma da coluna 2 (índice 1, se considerarmos 0 a 4)
+            SE j = 1 ENTÃO // Coluna 2 (índice 1)
+                somaColuna2 <- somaColunaColuna2 + M[i][j]
+            FIM SE
+
+            // c) Soma da diagonal principal (onde i é igual a j)
+            SE i = j ENTÃO
+                somaDiagonalPrincipal <- somaDiagonalPrincipal + M[i][j]
+            FIM SE
+
+            // d) Soma da diagonal secundária (onde i + j = tamanho da matriz - 1)
+            // Para uma matriz 5x5, i + j = 4
+            SE (i + j) = 4 ENTÃO
+                somaDiagonalSecundaria <- somaDiagonalSecundaria + M[i][j]
+            FIM SE
+        FIM PARA
+    FIM PARA
+
+    ---
+
+    // 3. Escrita das somas e da matriz
+
+    ESCREVA "---"
+    ESCREVA "Somas calculadas:"
+    ESCREVA "a) Soma da linha 4: ", somaLinha4
+    ESCREVA "b) Soma da coluna 2: ", somaColuna2
+    ESCREVA "c) Soma da diagonal principal: ", somaDiagonalPrincipal
+    ESCREVA "d) Soma da diagonal secundária: ", somaDiagonalSecundaria
+    ESCREVA "e) Soma de todos os elementos da matriz: ", somaTodosElementos
+    ESCREVA "---"
+
+    ESCREVA "Matriz M(5,5):"
+    PARA i DE 0 ATÉ 4 FAÇA
+        PARA j DE 0 ATÉ 4 FAÇA
+            ESCREVA M[i][j], " " // Escreve o elemento seguido de um espaço
+        FIM PARA
+        ESCREVA "" // Quebra de linha para a próxima linha da matriz
+    FIM PARA
+
+FIM ALGORITMO
