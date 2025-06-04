@@ -1,0 +1,77 @@
+ALGORITMO ProcessarSalarios
+
+// Definição do tipo de registro Pessoa
+TYPE Pessoa
+    Nome: CADEIA_DE_CARACTERES
+    Endereco: CADEIA_DE_CARACTERES
+    Telefone: CADEIA_DE_CARACTERES
+    Email: CADEIA_DE_CARACTERES
+    Salario: REAL
+FIM TYPE
+
+// Definição do número máximo de registros
+CONST
+    MAX_REGISTROS = 100 // Exemplo: suporta até 100 registros
+
+VAR
+    cadastro: VETOR[MAX_REGISTROS] DE Pessoa // Vetor para armazenar os registros das pessoas
+    numPessoasCadastradas: INTEIRO // Contador de pessoas cadastradas
+    totalSalarios: REAL // Acumulador do total de salários
+    maiorSalario: REAL // Variável para armazenar o maior salário encontrado
+    nomeMaiorSalario: CADEIA_DE_CARACTERES // Nome da pessoa com o maior salário
+    i: INTEIRO // Variável de controle para loops
+
+INICIO
+    // Inicialização das variáveis
+    numPessoasCadastradas <- 0
+    totalSalarios <- 0.0
+    maiorSalario <- -1.0 // Inicializa com um valor que será facilmente superado por qualquer salário positivo
+    nomeMaiorSalario <- ""
+
+    ESCREVA "--- CADASTRO DE PESSOAS E SALÁRIOS ---"
+    ESCREVA "Digite 'fim' no campo 'Nome' para encerrar o cadastro a qualquer momento."
+    ESCREVA "Capacidade máxima: ", MAX_REGISTROS, " registros."
+
+    // Loop para ler os dados das pessoas
+    PARA i DE 0 ATÉ (MAX_REGISTROS - 1) FAÇA
+        ESCREVA "\n--- DADOS DA PESSOA ", (i + 1), " ---"
+
+        ESCREVA "Nome: "
+        LEIA cadastro[i].Nome
+
+        // Verifica a condição de parada
+        SE MAIUSCULA(cadastro[i].Nome) = "FIM" ENTÃO
+            PARE // Sai do loop se o nome for "fim"
+        FIM SE
+
+        ESCREVA "Endereço: "
+        LEIA cadastro[i].Endereco
+        ESCREVA "Telefone: "
+        LEIA cadastro[i].Telefone
+        ESCREVA "Email: "
+        LEIA cadastro[i].Email
+        ESCREVA "Salário: "
+        LEIA cadastro[i].Salario
+
+        // Processamento dos salários
+        totalSalarios <- totalSalarios + cadastro[i].Salario
+
+        SE cadastro[i].Salario > maiorSalario ENTÃO
+            maiorSalario <- cadastro[i].Salario
+            nomeMaiorSalario <- cadastro[i].Nome
+        FIM SE
+
+        numPessoasCadastradas <- numPessoasCadastradas + 1 // Incrementa o contador de pessoas cadastradas
+    FIM PARA
+
+    ESCREVA "\n--- RESULTADOS DO PROCESSAMENTO ---"
+    ESCREVA "Total de pessoas cadastradas: ", numPessoasCadastradas
+    ESCREVA "Total dos salários: ", totalSalarios
+
+    SE numPessoasCadastradas > 0 ENTÃO
+        ESCREVA "Maior salário: ", maiorSalario, " (pertence a: ", nomeMaiorSalario, ")"
+    SENÃO
+        ESCREVA "Nenhum dado de salário foi cadastrado."
+    FIM SE
+
+FIM ALGORITMO
