@@ -1,0 +1,29 @@
+ALGORITMO CalcularFatorial
+
+VAR
+    N: INTEIRO
+    fatorial: INTEIRO
+    i: INTEIRO
+
+INICIO
+    ESCREVA "Digite um número inteiro não negativo para calcular o fatorial:"
+    LEIA N
+
+    SE N < 0 ENTÃO
+        ESCREVA "Erro: O fatorial não é definido para números negativos."
+    SENÃO
+        fatorial <- 1 // Inicializa o fatorial
+
+        SE N = 0 ENTÃO
+            fatorial <- 1 // O fatorial de 0 é 1
+        SENÃO
+            // Loop para calcular o fatorial para N > 0
+            PARA i DE 1 ATÉ N FAÇA
+                fatorial <- fatorial * i
+            FIM PARA
+        FIM SE
+
+        ESCREVA "O fatorial de ", N, " é: ", fatorial
+    FIM SE
+
+FIM ALGORITMO
