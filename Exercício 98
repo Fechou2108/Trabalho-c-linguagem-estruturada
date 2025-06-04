@@ -1,0 +1,80 @@
+ALGORITMO AnalisarTrianguloCompletoComRegistro
+
+// Declaração do tipo de registro para as informações completas do triângulo
+TYPE TrianguloCompleto
+    LadoA: REAL
+    LadoB: REAL
+    LadoC: REAL
+    TipoTriangulo: CADEIA_DE_CARACTERES
+    Perimetro: REAL
+    Area: REAL
+FIM TYPE
+
+VAR
+    infoTriangulo: TrianguloCompleto // Variável do tipo TrianguloCompleto
+    semiPerimetro: REAL // Variável auxiliar para o cálculo da área (fórmula de Herão)
+
+INICIO
+    ESCREVA "--- ANALISADOR DE TRIÂNGULOS COMPLETO ---"
+
+    // --- 1. Leitura dos Lados do Triângulo ---
+    ESCREVA "Digite o valor para o Lado A: "
+    LEIA infoTriangulo.LadoA
+
+    ESCREVA "Digite o valor para o Lado B: "
+    LEIA infoTriangulo.LadoB
+
+    ESCREVA "Digite o valor para o Lado C: "
+    LEIA infoTriangulo.LadoC
+
+    // Inicializa campos de resultado com zero
+    infoTriangulo.Perimetro <- 0.0
+    infoTriangulo.Area <- 0.0
+
+    // --- 2. Verificação da Condição de Existência de Triângulo ---
+    // A soma de dois lados deve ser sempre maior que o terceiro lado
+    SE (infoTriangulo.LadoA + infoTriangulo.LadoB > infoTriangulo.LadoC) E
+       (infoTriangulo.LadoA + infoTriangulo.LadoC > infoTriangulo.LadoB) E
+       (infoTriangulo.LadoB + infoTriangulo.LadoC > infoTriangulo.LadoA) ENTÃO
+
+        // Se puder formar um triângulo, classifica e calcula o perímetro
+        infoTriangulo.TipoTriangulo <- "" // Limpa o tipo antes de classificar
+
+        SE (infoTriangulo.LadoA = infoTriangulo.LadoB) E (infoTriangulo.LadoB = infoTriangulo.LadoC) ENTÃO
+            infoTriangulo.TipoTriangulo <- "Equilátero" // Todos os lados iguais
+        SENÃO SE (infoTriangulo.LadoA = infoTriangulo.LadoB) OU
+                   (infoTriangulo.LadoA = infoTriangulo.LadoC) OU
+                   (infoTriangulo.LadoB = infoTriangulo.LadoC) ENTÃO
+            infoTriangulo.TipoTriangulo <- "Isósceles" // Dois lados iguais
+        SENÃO
+            infoTriangulo.TipoTriangulo <- "Escaleno" // Todos os lados diferentes
+        FIM SE
+
+        // Cálculo do Perímetro
+        infoTriangulo.Perimetro <- infoTriangulo.LadoA + infoTriangulo.LadoB + infoTriangulo.LadoC
+
+    SENÃO
+        // Se não for um triângulo, armazena a mensagem e calcula a área (assumindo a lógica do ex. 124)
+        infoTriangulo.TipoTriangulo <- "Não é triângulo"
+
+        // Cálculo da Área (por exemplo, a área de um retângulo com lados A e B, se não é triângulo)
+        // Esta parte pode variar dependendo da interpretação exata do exercício 124.
+        // Aqui, usaremos A * B como exemplo de "cálculo de área" para o caso de não ser triângulo.
+        infoTriangulo.Area <- infoTriangulo.LadoA * infoTriangulo.LadoB
+    FIM SE
+
+    // --- 3. Exibição dos Resultados ---
+    ESCREVA "\n--- RESULTADO DA ANÁLISE ---"
+    ESCREVA "Lado A: ", infoTriangulo.LadoA
+    ESCREVA "Lado B: ", infoTriangulo.LadoB
+    ESCREVA "Lado C: ", infoTriangulo.LadoC
+
+    SE infoTriangulo.TipoTriangulo = "Não é triângulo" ENTÃO
+        ESCREVA "Estes lados não formam um triângulo."
+        ESCREVA "Área calculada (A * B): ", infoTriangulo.Area
+    SENÃO
+        ESCREVA "Estes lados formam um triângulo ", infoTriangulo.TipoTriangulo, "."
+        ESCREVA "Perímetro do triângulo: ", infoTriangulo.Perimetro
+    FIM SE
+
+FIM ALGORITMO
