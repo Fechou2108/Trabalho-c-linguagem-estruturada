@@ -1,0 +1,96 @@
+ALGORITMO CadastroConsultaAlunos
+
+// Declaração do tipo de registro Aluno
+TYPE Aluno
+    NomeAluno: CADEIA_DE_CARACTERES
+    NomeDisciplina: CADEIA_DE_CARACTERES
+    MediaFinal: REAL
+FIM TYPE
+
+// Definição do número máximo de alunos
+CONST
+    MAX_ALUNOS = 30
+
+VAR
+    turma: VETOR[MAX_ALUNOS] DE Aluno // Vetor para armazenar os alunos
+    numAlunosCadastrados: INTEIRO // Contador de alunos já cadastrados
+    opcaoNovoAluno: CADEIA_DE_CARACTERES // Variável para a resposta S/N
+    nomeParaConsulta: CADEIA_DE_CARACTERES // Variável para o nome na consulta
+    encontrado: LOGICO // Flag para indicar se o aluno foi encontrado na consulta
+    i: INTEIRO // Variável de controle para loops
+
+INICIO
+    numAlunosCadastrados <- 0 // Inicializa o contador de alunos
+
+    ESCREVA "--- CADASTRO DE ALUNOS ---"
+
+    // --- FASE DE CADASTRO ---
+    REPITA
+        SE numAlunosCadastrados < MAX_ALUNOS ENTÃO
+            ESCREVA "\n--- DADOS DO ALUNO ", (numAlunosCadastrados + 1), " ---"
+
+            ESCREVA "Nome do Aluno: "
+            LEIA turma[numAlunosCadastrados].NomeAluno
+
+            ESCREVA "Nome da Disciplina: "
+            LEIA turma[numAlunosCadastrados].NomeDisciplina
+
+            ESCREVA "Média Final: "
+            LEIA turma[numAlunosCadastrados].MediaFinal
+
+            numAlunosCadastrados <- numAlunosCadastrados + 1 // Incrementa o contador
+
+            // Pergunta ao usuário se deseja cadastrar um novo aluno
+            SE numAlunosCadastrados < MAX_ALUNOS ENTÃO // Só pergunta se ainda houver espaço
+                ESCREVA "Novo Aluno (S/N)? "
+                LEIA opcaoNovoAluno
+                opcaoNovoAluno <- MAIUSCULA(opcaoNovoAluno) // Converte para maiúscula
+            SENÃO
+                ESCREVA "Capacidade máxima de ", MAX_ALUNOS, " alunos atingida."
+                opcaoNovoAluno <- "N" // Força a saída do loop
+            FIM SE
+        FIM SE
+    ATÉ (opcaoNovoAluno = "N") OU (numAlunosCadastrados = MAX_ALUNOS)
+
+    // --- FASE DE CONSULTA ---
+    // Limpar a tela (comando específico pode variar por ambiente/linguagem)
+    // EX: PARA PSEUDOCÓDIGO PODERIA SER CHAMADA DE UMA FUNÇÃO SISTEMA.LIMPAR_TELA()
+    // Ou simplesmente exibir várias linhas em branco para simular a limpeza
+    ESCREVA "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" // Simula limpeza de tela
+
+    ESCREVA "--- TELA DE CONSULTA DE ALUNOS ---"
+    ESCREVA "Para encerrar a consulta, digite 'FIM' no nome do aluno."
+
+    SE numAlunosCadastrados = 0 ENTÃO
+        ESCREVA "Nenhum aluno cadastrado para consulta."
+    SENÃO
+        REPITA
+            ESCREVA "\nDigite o nome do aluno para consulta: "
+            LEIA nomeParaConsulta
+            nomeParaConsulta <- MAIUSCULA(nomeParaConsulta) // Converte para maiúscula para busca case-insensitive
+
+            SE nomeParaConsulta = "FIM" ENTÃO
+                PARE // Sai do loop de consulta
+            FIM SE
+
+            encontrado <- FALSO // Reinicia a flag para cada busca
+
+            // Percorre o vetor de alunos para buscar o nome
+            PARA i DE 0 ATÉ (numAlunosCadastrados - 1) FAÇA
+                // Compara o nome digitado com o nome do aluno cadastrado (ignora maiúsculas/minúsculas)
+                SE MAIUSCULA(turma[i].NomeAluno) = nomeParaConsulta ENTÃO
+                    ESCREVA "\n--- ALUNO ENCONTRADO ---"
+                    ESCREVA "Nome do Aluno: ", turma[i].NomeAluno
+                    ESCREVA "Disciplina: ", turma[i].NomeDisciplina
+                    ESCREVA "Média Final: ", turma[i].MediaFinal
+                    encontrado <- VERDADEIRO
+                FIM SE
+            FIM PARA
+
+            SE NAO encontrado ENTÃO
+                ESCREVA "Aluno '", nomeParaConsulta, "' não encontrado na base de dados."
+            FIM SE
+        ATÉ FALSO // Loop infinito, só sai com 'FIM'
+    FIM SE
+
+    ESCREVA "
