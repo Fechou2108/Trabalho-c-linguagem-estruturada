@@ -1,0 +1,44 @@
+ALGORITMO CadastroClientes
+
+// Declaração do tipo de registro Cliente
+TYPE Cliente
+    Nome: CADEIA_DE_CARACTERES
+    Endereco: CADEIA_DE_CARACTERES
+    Telefone: CADEIA_DE_CARACTERES
+FIM TYPE
+
+// Declaração de duas variáveis do tipo Cliente
+VAR
+    cliente1: Cliente
+    cliente2: Cliente
+
+INICIO
+    ESCREVA "--- CADASTRO DO CLIENTE 1 ---"
+    ESCREVA "Informe o nome do cliente 1: "
+    LEIA cliente1.Nome
+    ESCREVA "Informe o endereço do cliente 1: "
+    LEIA cliente1.Endereco
+    ESCREVA "Informe o telefone do cliente 1: "
+    LEIA cliente1.Telefone
+
+    ESCREVA "\n--- CADASTRO DO CLIENTE 2 ---"
+    ESCREVA "Informe o nome do cliente 2: "
+    LEIA cliente2.Nome
+    ESCREVA "Informe o endereço do cliente 2: "
+    LEIA cliente2.Endereco
+    ESCREVA "Informe o telefone do cliente 2: "
+    LEIA cliente2.Telefone
+
+    ESCREVA "\n--- DADOS DOS CLIENTES CADASTRADOS ---"
+
+    ESCREVA "\nCliente 1:"
+    ESCREVA "Nome: ", cliente1.Nome
+    ESCREVA "Endereço: ", cliente1.Endereco
+    ESCREVA "Telefone: ", cliente1.Telefone
+
+    ESCREVA "\nCliente 2:"
+    ESCREVA "Nome: ", cliente2.Nome
+    ESCREVA "Endereço: ", cliente2.Endereco
+    ESCREVA "Telefone: ", cliente2.Telefone
+
+FIM ALGORITMO
