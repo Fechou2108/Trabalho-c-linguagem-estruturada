@@ -1,7 +1,7 @@
 
 # Trabalho-c-linguagem-estruturada
 ---
-## Informações do Nome: "Trabalho c linguagem estruturada"
+## Informações do Nome: "Trabalho C linguagem estruturada"
 
 Pelo que você me forneceu, "Trabalho c linguagem estruturada" parece ser a **disciplina ou o título de um trabalho** relacionado à programação.
 
