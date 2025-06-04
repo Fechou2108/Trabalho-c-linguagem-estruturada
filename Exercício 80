@@ -1,0 +1,32 @@
+ALGORITMO Fatorial
+
+VAR
+    N: INTEIRO
+    fatorial: INTEIRO
+
+INICIO
+    // 1. Entrada e 2. Validação
+    ESCREVA "Digite um número inteiro e positivo (N):"
+    LEIA N
+
+    SE N < 0 ENTÃO
+        ESCREVA "Erro: N deve ser um número positivo."
+        // Poderíamos adicionar um loop aqui para pedir a entrada novamente
+        SAIR
+    FIM SE
+
+    // 3. Cálculo
+    fatorial <- 1
+
+    SE N = 0 ENTÃO
+        fatorial <- 1 // O fatorial de 0 é 1 por definição
+    SENÃO
+        PARA i DE 1 ATÉ N FAÇA
+            fatorial <- fatorial * i
+        FIM PARA
+    FIM SE
+
+    // 4. Saída
+    ESCREVA "O fatorial de ", N, " é: ", fatorial
+
+FIM ALGORITMO
